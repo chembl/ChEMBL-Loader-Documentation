@@ -1,0 +1,6 @@
+# Glossary — chembl\_load 1.1.1 documentation
+
+When loading, the ChEMBL administrator may have a particular understanding or expectation of the result of loading a particular job, based on their knowledge of the nature and load history of the source. Thus, for example, some sources might be considered to usually only provide data where the load would not be expected to update any entities previously deposited in the DB \(but to simply incrementally add more entities\), and for the referential integrity to be fully defined within the job itself \(ie: with no reference to previously deposited entities\). An example of such a source would be molcon literature data, where each load is usually from a new collection of research papers that have not been loaded before, and where ‘updates’ to previously deposited data are rare. For LoadTypes such as these \(called here ‘Cumulative Load with job-defined referential integrity’\), the -L option should be set to ‘2’. \[If -L is not defined, when running the loader, then L defaults to ‘1’\]. Changing the ‘-L’ option results in the loader altering the weighting assigned to certain types of warning and errors, in order to highlight and emphasize deviations from the differently anticipated result of the load.
+
+Thus, with -L set to ‘2’ ..
+
