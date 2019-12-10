@@ -1,4 +1,4 @@
-# complexResultSets.rst
+# Complex Results Sets
 
 ChEMBL has always handled simple forms of bioactivity data extremely well, such as 'cpdX has affinity \(Ki\) of Y uM in assay Z.' \(and perhaps with a reference to the source of this data, to indicate where the raw or supporting data may be found\). Such data is represented by a single record in the ACTIVITY load file, such those shown in 'Activities' example in the Examples link above. For most depositors, this data model is quite sufficient to capture their data. Such depositors need only deposit their data using the ACTIVITY deposition file, and read no further.
 

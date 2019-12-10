@@ -1,4 +1,4 @@
-# newChemblrequirements.rst
+# List of requirements for ChEMBL
 
 Following a recent review of ChEMBL, a series of requirements were identified for how ChEMBL might be updated and enhanced. The following is a summary list of the main requirements that have been identified..
 

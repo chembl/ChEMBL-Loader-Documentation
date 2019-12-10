@@ -1,10 +1,6 @@
-# assayParams.rst
+# The Assay Parameters table
 
 The ASSAY\_PARAMETERS table has the following structure...
-
-System Message: ERROR/3 \(assayParams.rst, line 18\)
-
-Malformed table. Bottom/header table border does not match top border.
 
 ```text
 ======================  ===================== ========= ========== =======================================================
@@ -58,10 +54,9 @@ For consistency with COMPOUND\_RECORDS, a field ‘TYPE\_N\_FIXED’ would also 
 
 An additional field of ‘ACTIVE’ would indicate whether the parameter was currently assigned to the Assay\_ID, or was once in the past \(this prevents us from deleting previous curation efforts if parameters get updated several times\). All records with ‘ACTIVE’ as ‘null’ would be deleted as part of the release process \(in the released schemas, not the production system\). For analysis, joining to between ASSAYS and ASSAY\_PARAMETERS would require a ‘where ACTIVE is not null’ clause, unless the analysis was done on the released data \(where it should be done\).
 
-Loading.
+**Loading**
 
-Loading wrt the ASSAY\_PARAMETERS table would work as follows, in two steps…
-
+Loading wrt the ASSAY\_PARAMETERS table would work as follows, in two steps:  
 Firstly, if the ASSAY\_PARAM deposition file contained ANY TYPE for a given AIDX, then ALL existing records for the assay\_id \(corresponding to the AIDX\) in the ASSAY\_PARAMETER table would have the ‘ACTIVE’ set to null \(effectively dissociating all these TYPEs from the assay\_ID\).
 
 Secondly, updates or inserts would occur as follows… \[These operations are also summarized on the table diagram above\] New TYPEs for an assay\_id would be inserted as a new record, and Existing TYPEs for an assay\_id would simply update the existing record for this TYPE and assay\_id. Other fields would be inserted / updated as described in the table diagram above.

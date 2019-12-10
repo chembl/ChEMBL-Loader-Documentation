@@ -1,4 +1,4 @@
-# embargoAndTagging.rst
+# Embargo and Tagging
 
 Tagging of a data set is a utility that enables a depositor to refer to a given set of their data within ChEMBL. The process of ‘tagging’ involves the creation of a SET\_ID. The SET\_ID contains one or more ‘job\_id’s. Each of the job\_id data sets within the SET\_ID may be edited, provided they are not shared with other SET\_IDs that have been frozen. In this un-frozen state the SET\_ID is termed ‘fluid’.
 

@@ -1,12 +1,6 @@
-# intro.rst
+# Introduction to the ChEMBL Loader Gateway
 
-This is Administrators documentation for the [\|PJ\|](). Last updated [\|today\|]()
-
-The [\|PJ\|]() aims to satisfy a number of requirements for loading and storing data in ChEMBL, as outlined in the requirements summary document: [:ref:\`requirements\`]()
-
-System Message: ERROR/3 \(intro.rst, line 8\); [_backlink_]()
-
- Unknown interpreted text role "ref".
+The ChEMBL Gateway aims to satisfy a number of requirements for loading and storing data in ChEMBL
 
 Although loading data to ChEMBL will remain by invitation only, and will remain in the complete control of ChEMBL administrators, the external facing 'Gateway' aims to stimulate external requests, and assist depositors in correctly formatting depositions before submission to ChEMBL.
 
@@ -18,39 +12,23 @@ The loading of a collection of files for a single deposition is called a job and
 
 The job\_id associated with a Depositor defined ID in ChEMBL is always the job\_id when the Depositor defined ID _was first defined_. Thus, updating the definition of a Depositor defined ID by including the Depositor defined ID in a subsequent deposition job will _not change_ the job\_id associated with this Depositor defined ID.
 
-Full details elsewhere. see [:ref:\`jobids\`]()
-
-System Message: ERROR/3 \(intro.rst, line 22\); [_backlink_]()
-
- Unknown interpreted text role "ref".
-
 ## Depositor-Defined Identifiers: CIDX, AIDX and RIDX
 
-Depositor-defined Identifiers are used for Compounds/Substances, Assays and References, and are called CIDX, AIDX and RIDX, respectively. Depositors may use any UniCode characters to define these identifiers. The most important aspect of these identifiers that depositors must understand is that they are 'owned' by the depositor. In other words, a given identifier is defined by the depositor when a deposition is first made with the identifier, and subsequent use of the same identifier in future ChEMBL loads will result in the updating of the data that was originally associated with this identofier when it was first loaded.
+Depositor-defined Identifiers are used for Compounds/Substances, Assays and References, and are called CIDX, AIDX and RIDX, respectively.
 
-Full details elsewhere. see [:ref:\`DDIDs\`]()
-
-System Message: ERROR/3 \(intro.rst, line 30\); [_backlink_]()
-
- Unknown interpreted text role "ref".
+* Depositors may use any UniCode characters to define these identifiers.
+* The most important aspect of these identifiers that depositors must understand is that they are 'owned' by the depositor. In other words, a given identifier is defined by the depositor when a deposition is first made with the identifier.
+* Subsequent use of the same identifier in future ChEMBL loads will result in the updating of the data that was originally associated with this identfier when it was first loaded.
 
 ## Load files
 
-Load files must be ascii or UTF-8 encoded, and named and formatted as described in the 'Requirements' link above. Within these files, column headers such as 'CIDX', 'AIDX' and 'RIDX' are used to indicate the column position of the Depositor defined IDs. Depositor defined IDs may be consist of a string of upto 200 UniCode characters.
+Load files must be ascii or UTF-8 encoded, and named and formatted as described in the 'Requirements' link above. Within these files, column headers such as 'CIDX', 'AIDX' and 'RIDX' are used to indicate the column position of the Depositor defined IDs. Depositor defined IDs may be consist of a string of upto 200 UniCode characters
 
-For each of these three key entities a single \('primary'\) file is used to define \(or redefine\) them, as shown in the 'Requirements' link above.
+* For each of these three key entities a single \('primary'\) file is used to define \(or redefine\) them, as shown in the 'Requirements' link above.
+* Other \(secondary\) files may define or redefine properties of existing Depositor defined IDs \(ie: which either exist in the corresponding primary file in the same deposition job, or already exist in the database\).
+* Activity files must also cite only existing Depositor defined IDs.
 
-Other \(secondary\) files may define or redefine properties of existing Depositor defined IDs \(ie: which either exist in the corresponding primary file in the same deposition job, or already exist in the database\).
-
-Activity files must also cite only existing Depositor defined IDs.
-
-Currently, ChEMBL only accepts data formatted into tsv \(tab-separated variable\) files, but alternative formats will be available in the future.
-
-Full details elsewhere. see [:ref:\`loadFiles\`]()
-
-System Message: ERROR/3 \(intro.rst, line 46\); [_backlink_]()
-
- Unknown interpreted text role "ref".
+Currently, ChEMBL only accepts data formatted into tsv \(tab-separated variable\) files, but alternative formats will be available in the future..
 
 ## Complex Result Sets
 

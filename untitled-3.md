@@ -1,4 +1,4 @@
-# faq.rst
+# FAQs
 
 FAQs are listed below.
 

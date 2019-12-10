@@ -1,4 +1,4 @@
-# loaderModel.rst
+# The Loader Model
 
 Here we descibe the model used by the loader.
 
