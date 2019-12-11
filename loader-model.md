@@ -10,37 +10,13 @@ A ‘Job’ is defined as the collection of depostion files loaded together in a
 
 The use of identifiers for key entities, created and maintained by the source to be updated is a vital component of a simple, automatable mechanism for maintaining updatable data in ChEMBL. The names \(or 'headers' in a deposition file\) for such identifiers are of the form ‘\*IDX’ where the ‘\*’ may be any capital letter, and ‘X’ refers to the fact that it is externally managed. This format is designed to clearly distinguish this class of identifiers from other \(internal\) ChEMBL identifiers. Currently there are three such \*IDX’s, covering the 3 main entity types in ChEMBL: Assays, Compounds and References. Each of these are defined in a 'primary' deposition file, as show below...
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align:left">
-        <p><a href>*</a>IDX</p>
-        <p>System Message: WARNING/2 (loaderModel.rst, line 26); <a href><em>backlink</em></a>
-        </p>
-        <p>Inline emphasis start-string without end-string.</p>
-      </th>
-      <th style="text-align:left">Description</th>
-      <th style="text-align:left">Primary File</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align:left">AIDX</td>
-      <td style="text-align:left">Depositor-defined Assay ID</td>
-      <td style="text-align:left">ASSAY</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">CIDX</td>
-      <td style="text-align:left">Depositor-defined Compound ID</td>
-      <td style="text-align:left">COMPOUND_RECORD</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">RIDX</td>
-      <td style="text-align:left">Depositor-defined Reference ID</td>
-      <td style="text-align:left">REFERENCE</td>
-    </tr>
-  </tbody>
-</table>Depositors may use upto 200 characters to define \*IDX’s. Depositors are free to use whatever UniCode characters they wish to use \(but non-visible characters will be stripped from both ends\). All deposited files must be ascii or UTF-8 encoded.
+| [\*]()IDX | Description | Primary File |
+| :--- | :--- | :--- |
+| AIDX | Depositor-defined Assay ID | ASSAY |
+| CIDX | Depositor-defined Compound ID | COMPOUND\_RECORD |
+| RIDX | Depositor-defined Reference ID | REFERENCE |
+
+Depositors may use upto 200 characters to define \*IDX’s. Depositors are free to use whatever UniCode characters they wish to use \(but non-visible characters will be stripped from both ends\). All deposited files must be ascii or UTF-8 encoded.
 
 ### RIDX
 
@@ -74,20 +50,12 @@ Currently permitted Deposition Files are given on the 'Requirements' page.
 
 Deposition files are classed as either ‘‘Primary’, ‘Secondary’ or 'Tertiary'. ‘Primary’ files contain and define the primary keys for a particular Depositor-defined entity \(eg: AIDX for ASSAYS\). ‘Secondary’ files are keyed on the primary keys from these primary files \(eg: In the secondary file ‘ASSAY\_PARAM’, AIDX is a FK to the PK in ASSAY\). Teriary files do not define [\*]()IDX's in any way, but serve to define relationships between them in some way \(such as ACTIVITY and all other related files\).
 
-System Message: WARNING/2 \(loaderModel.rst, line 77\); [_backlink_]()
-
- Inline emphasis start-string without end-string.
-
 Secondary files serve to further define [\*]()IDX's where...
-
-System Message: WARNING/2 \(loaderModel.rst, line 79\); [_backlink_]()
-
- Inline emphasis start-string without end-string.
 
 * multiple records may be required to define multiple definitions for a single \*IDX \[eg: multiple parameters for a single AIDX\), or,
 * the format of the primary file cannot hold the data associated with the [\*]()IDX \(eg: a CTAB structure in an SDF \)
 
-  System Message: WARNING/2 \(loaderModel.rst, line 82\); [_backlink_]()
+  System Message: WARNING/2 \(loaderModel.rst, line 82\);
 
   Inline emphasis start-string without end-string.
 
