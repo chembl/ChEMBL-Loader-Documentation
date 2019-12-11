@@ -43,10 +43,10 @@ The loading utility \(-u 1\) is executable in different ‘modes’ \(set with �
 
 | Mode | Description |
 | :--- | :--- |
-| 1 | [\|m1\|]() |
-| 2 | [\|m2\|]() |
-| 3 | [\|m3\|]() |
-| 4 | [\|m4\|]() |
+| 1 | File Validation \[simply run checks on the deposited set of files\] |
+| 2 | Update report \[A report on what will be updated, whats new, etc. For updates, specifically which fields will be changed or remain the same\] |
+| 3 | Update report \[A report on how ChEMBL will be updated. Eg: How many new assays, targets, etc\] |
+| 4 | Loading. \[Load to the database. Only mode which triggers a new job\_id\] |
 
 Note that all modes require a DB connection except mode 1. If mode 1 is run without a DB connection then data integrity checks can only be run on deposited sets \(so penalty scores are set lower if integrity rules are broken, as the missing data may exist within the DB\).
 
@@ -91,7 +91,7 @@ When loading, the ChEMBL administrator may have a particular understanding or ex
 
 When a a source is first created, a LOADTYPE may be defined in the SOURCES table. This may be null, or an integer defined as a PK of the SOURCE\_LOADTYPE table.
 
-At load time, the value of the LOADTYPE for the source is obtained from the SOURCE\_LOADTYPE table, and the weighting of warnings and Errors are adjusted accordingly, in order to highlight and emphasize deviations from the differently anticipated result of the load. If a 'null' exists for the source, then the default LOADTYPE \(currently set as [\|LOADTYPE\|]() in globalVars.py\) is used instead. If the command line option '-L' is used \(which takes an integer\) then this overides any of the above.
+At load time, the value of the LOADTYPE for the source is obtained from the SOURCE\_LOADTYPE table, and the weighting of warnings and Errors are adjusted accordingly, in order to highlight and emphasize deviations from the differently anticipated result of the load. If a 'null' exists for the source, then the default LOADTYPE \(currently set as 1 in globalVars.py\) is used instead. If the command line option '-L' is used \(which takes an integer\) then this overides any of the above.
 
 A LOADTYPE of '1' is considered the norm, but With LOADTYPE set to '2', the following changes are made...
 
