@@ -1,4 +1,4 @@
-# scanForCleanerStructures.rst
+# Scan For Cleaner Structures
 
 This page describes a process which HAS NOT YET BEEN IMPLEMENTED ... but is planned. Please treat information below as 'requirements'.
 
