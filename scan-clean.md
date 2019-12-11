@@ -16,35 +16,15 @@ The process described on this page, does identify these 'better' structures, ale
 
 ChEMBL uses a 'structure checker' web service \[link here\] to assess the 'quality' of a CTAB, assigning 'Penalty Scores' \[see [:ref:\`penaltyScores\`]() \] for such undesirable features. ChEMBL uses a 'structure checker' web service \[link here\] to assess the 'quality' of a CTAB, assigning 'Penalty Scores' \[see [:ref:\`penaltyScores\`]() \] for features that are judged to be erroneous, inaccurate or ambiguous.
 
-System Message: ERROR/3 \(scanForCleanerStructures.rst, line 26\); [_backlink_]()
-
- Unknown interpreted text role "ref".
-
-System Message: ERROR/3 \(scanForCleanerStructures.rst, line 26\); [_backlink_]()
-
- Unknown interpreted text role "ref".
-
-The normalization process \([:ref:\`cpdNorm\`]()\) relies on comparing iKeys of the incoming structure to those iKeys already in ChEMBL. Thus, if the iKey for the incoming structure is not in ChEMBL, then a new molregno is **created** in ChEMBL with this iKey, using the deposited CTAB. On the other hand, however, if the incoming structure iKey **matches** an iKey that is already in ChEMBL, then the molregno for this existing iKey is assigned to the CIDX/SRC\_ID.
-
-System Message: ERROR/3 \(scanForCleanerStructures.rst, line 30\); [_backlink_]()
-
- Unknown interpreted text role "ref".
+The normalization process \([:ref:\`compound-norm\`](untitled-12.md)\) relies on comparing iKeys of the incoming structure to those iKeys already in ChEMBL. Thus, if the iKey for the incoming structure is not in ChEMBL, then a new molregno is **created** in ChEMBL with this iKey, using the deposited CTAB. On the other hand, however, if the incoming structure iKey **matches** an iKey that is already in ChEMBL, then the molregno for this existing iKey is assigned to the CIDX/SRC\_ID.
 
 A shortcoming of this process is that in the latter \(‘matching’\) situation, no assessment is made as to whether the incoming CTAB might be a better \(or 'cleaner'\) representation of the molecule, lacking the undesirable features mentioned above.The process below,\(fewer Penalty Scores associated with it\) than the existing representation assigned to this iKey in ChEMBL.
-
-System Message: WARNING/2 \(scanForCleanerStructures.rst, line 38\)
-
- Definition list ends without a blank line; unexpected unindent.
 
 If such a CTAB is ‘cleaner’, then it is necessary to bring this matter to the attention of a curator, who may decide that ChEMBL should adopt this new CTAB and discard the old ChEMBL CTAB for this iKey. The purpose of this documentation page is to describe the process \(‘scanForCleanerStructures’\) that is used to identify these potentially cleaner structures, and bring them to the attention of the curator.
 
 ## Process: scanForCleanerStructures
 
 This process \(util14\) can be run at anytime, but is most conveniently run after the weekly normalization process is run. The purpose of the process is to identify if there are any recently deposited structures \(CTABs\), which appear to be 'cleaner' than the structure for the same iKey in ChEMBL. The 'cleanliness' of a CTAB is assessed on the basis of the results of the 'structure checker' web service \[link here\], which assigns penalty scores \[[:ref:\`penaltyScores\`]()\] to a CTAB: a lower overall score indicates a 'cleaner' CTAB.
-
-System Message: ERROR/3 \(scanForCleanerStructures.rst, line 45\); [_backlink_]()
-
- Unknown interpreted text role "ref".
 
 Different running options exist for the process, such as: Run on... 'last N jobs', or 'job\_id X', or 'job\_ids X-Y' \(a range\), or 'all jobs since date'. All CIDX/SRC\_IDs that have had new/updated CTABS deposited in the specified timeframe are identified, and the deposited structure and the corresponding ChEMBL structure \(with the same iKey\) are then both run through the ‘structure checker’ web service. Penalty scores for both are compared, and a report is generated \(example below\), and the data logged to a DB table, highlighting any pairs where the deposited structure appears to be ‘cleaner’ than the existing ChEMBL structure.
 

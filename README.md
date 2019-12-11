@@ -34,12 +34,6 @@ Currently, ChEMBL only accepts data formatted into tsv \(tab-separated variable\
 
 Activity data that is more complicated than a simple 'cpdX has affinity Y nM against target Z' can now be accommodated in ChEMBL.
 
-Full details elsewhere. see [:ref:\`crsets\`]()
-
-System Message: ERROR/3 \(intro.rst, line 54\); [_backlink_]()
-
- Unknown interpreted text role "ref".
-
 ## Compound Normalization
 
 A Compound Normalization procedure is run separately from loading processes, and now includes an assassment of the quality of the drawn structures.

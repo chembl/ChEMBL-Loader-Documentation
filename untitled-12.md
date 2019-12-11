@@ -1,14 +1,10 @@
-# cpdNormalization.rst
+# Compound Normalization
 
 In the loader, the normal operation for loading data and normalizing cpds is to run these two operations in 2 separate stages \(using different utilities of the same loader script\). The first stage \('Loading a Job'\) is run manually during the day. Multiple 'Loading a Job' runs may be done in one day. The second stage \('Normalization'\) is kicked off nightly with cron. The second of these two stages is the focus of this document, although some information on the first stage is also included, as this is required for a full understanding of the second stage. Before describing these processes, however, it is useful to describe some general aspects of the data model that are directly relevant to compound normalization.
 
 ## Normalization aspects of the data model.
 
-A full description of the data model is explained elsewhere \( [:any:\`loaderModel\`]() \). Here, are some details of the model relevant to the Normalization procedure.
-
-System Message: ERROR/3 \(cpdNormalization.rst, line 18\); [_backlink_]()
-
- Unknown interpreted text role "any".
+A full description of the data model is explained elsewhere  Here, are some details of the model relevant to the Normalization procedure.
 
 A job, from a given depositor 'S', may include either one, or both, or neither, of the files: COMPOUND\_RECORD.txt and COMPOUND\_CTAB.sdf. Deposited data from these files is stored, unchanged in tables DEP\_COMPOUND\_RECORD and DEP\_COMPOUND\_CTAB, respectively.
 
@@ -27,10 +23,6 @@ The 'Standardization' process refers to the process of re-formatting the CTAB in
 ## Stage 1: Loading a job \(util1 in 'cloader.py'\)
 
 This involves setting certain cr.MOLREGNO fields to 'null', depending upon what has been loaded in the job, as described below. This stage also involves an assessment of the quality of each deposited structure using a 'structure checker' web service. This service is described elsewhere \(link required here\), but in essence returns a list of comments on the quality of each structure, and a 'Penalty Score' for each \(see [:ref:\`penaltyScores\`]() for more info on Penalty Scores\). These scores are not used during stage 1, but are stored in the DEP\_COMPOUND\_CTAB\_LOG table for later use in 'Stage 2' \(further below\). No other Standardization/Normalization' steps are carried out at this stage.
-
-System Message: ERROR/3 \(cpdNormalization.rst, line 44\); [_backlink_]()
-
- Unknown interpreted text role "ref".
 
 If a COMPOUND\_RECORD.txt contains a new CIDX/RIDX combination, a new record is loaded to CR, with cr.MOLREGNO set to 'null', and cr.MOLREGNO\_COMMENT set to 'new record'
 
@@ -58,7 +50,7 @@ Then for each CIDX, apply the following rules, in this order, until a molregno i
 
 Note also that CIDX/SRC\_ID combinations which have one or more records with a Penalty Score of 6 or more in the DEP\_COMPOUND\_CTAB\_LOG table \(as generated in stage 1, above\) are excluded from rules 2 and 3. This is to prevent any structures with particular problems, identified during loading by the structure checker, from being loaded into ChEMBL. These CIDX/SRC\_ID combinations are assigned a molregno only on the basis of rules 1, 4 and 5.
 
-For several rules below, the MOLREGNO\_COMMENT field may be updated with text to describe the rule employed. In these cases, in addition to the text described below, the text 'insert' or 'match' is also be appended. This describes whether the molregno assignment in this case was achieved by 'matching' to an existing iKey within ChEMBL, or whether no such iKey currently exists, and so a new molregno, and iKey, was 'inserted' into ChEMBL. This information is required for the 'scanForCleanerStructures' process which may be run after normalization. See [:ref:\`scanClean\`]() for more information on this.
+For several rules below, the MOLREGNO\_COMMENT field may be updated with text to describe the rule employed. In these cases, in addition to the text described below, the text 'insert' or 'match' is also be appended. This describes whether the molregno assignment in this case was achieved by 'matching' to an existing iKey within ChEMBL, or whether no such iKey currently exists, and so a new molregno, and iKey, was 'inserted' into ChEMBL. This information is required for the 'scanForCleanerStructures' process which may be run after normalization. See \[Scanning for cleanrer structures\]\(../scan-clean\) for more information on this.
 
 System Message: ERROR/3 \(cpdNormalization.rst, line 81\); [_backlink_]()
 
