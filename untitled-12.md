@@ -50,9 +50,9 @@ Then for each CIDX, apply the following rules, in this order, until a molregno i
 
 Note also that CIDX/SRC\_ID combinations which have one or more records with a Penalty Score of 6 or more in the DEP\_COMPOUND\_CTAB\_LOG table \(as generated in stage 1, above\) are excluded from rules 2 and 3. This is to prevent any structures with particular problems, identified during loading by the structure checker, from being loaded into ChEMBL. These CIDX/SRC\_ID combinations are assigned a molregno only on the basis of rules 1, 4 and 5.
 
-For several rules below, the MOLREGNO\_COMMENT field may be updated with text to describe the rule employed. In these cases, in addition to the text described below, the text 'insert' or 'match' is also be appended. This describes whether the molregno assignment in this case was achieved by 'matching' to an existing iKey within ChEMBL, or whether no such iKey currently exists, and so a new molregno, and iKey, was 'inserted' into ChEMBL. This information is required for the 'scanForCleanerStructures' process which may be run after normalization. See \[Scanning for cleanrer structures\]\(../scan-clean\) for more information on this.
+For several rules below, the MOLREGNO\_COMMENT field may be updated with text to describe the rule employed. In these cases, in addition to the text described below, the text 'insert' or 'match' is also be appended. This describes whether the molregno assignment in this case was achieved by 'matching' to an existing iKey within ChEMBL, or whether no such iKey currently exists, and so a new molregno, and iKey, was 'inserted' into ChEMBL. This information is required for the 'scanForCleanerStructures' process which may be run after normalization. See "[Scanning for cleaner structures"](scan-clean.md) for more information on this.
 
-System Message: ERROR/3 \(cpdNormalization.rst, line 81\); [_backlink_]()
+System Message: ERROR/3 \(cpdNormalization.rst, line 81\);
 
  Unknown interpreted text role "ref".
 

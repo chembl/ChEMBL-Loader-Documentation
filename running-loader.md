@@ -16,13 +16,13 @@ The '-h' option details all command line options available.
 
 Rules are applied during the load process, and other processes controlled by the laoder application, to test whether the data conforms to certain expectations. Each rule has associated with it a single 'Penalty Score' value. The Penalty Scores range from 0 to 9 inclusive. The higher the score, the more serious the problem. Depending upon the Penalty Scores accrued during an attempted load, one or more of the deposition load files may be assigned the status of 'invalid'. If one or more files in the load are 'invalid' then the entire load is aborted. Rules may either be applied to each individual record in a file \(eg: 'Field X must contain an integer'\), or, to the file as a whole \(eg: 'The filename must have a particular spelling or case', or 'field names must all match a list of permitted field names'\).
 
-The highest Penalty Scores are termed [\|qCE\|](). A Score greater than or equal to the [\|qCET\|]() is classified as a [\|qCE\|](). One or more [\|qCE\|]() associated with a file will render the file invalid. By default, the [\|qCET\|]() is set to a value of [\|TE\|](), However, this value may be manually adjusted for each job at load time \(by use of the '-T' command line option\) to any value from \(but NOT including\) the [\|qAWT\|]() \(see below\), up to and including '9'.
+The highest Penalty Scores are termed 'Critical Errors'. A Score greater than or equal to the 'Threshold for Critical Errors' is classified as a 'Critical Error'. One or more  'Critical Errors' associated with a file will render the file invalid. By default, the 'Threshold for Critical Errors'is set to a value of 7, However, this value may be manually adjusted for each job at load time \(by use of the '-T' command line option\) to any value from \(but NOT including\) the 'Threshold for Alerts becoming Warnings' \(see below\), up to and including '9'.
 
-Penalty scores greater than 0, upto and including the [\|qAWT\|]() are termed 'Alerts' and have no effect on loading but are considered to be worthy of being logged. Currently the [\|qAWT\|]() default value is [\|AWthreshold\|](), but this value may be adjusted using the -H command line option from \(and including\) 1 up to \(but NOT including\) the [\|qCET\|]() \(see above\). Penalty scores greater than the [\|qAWT\|]() but less than the [\|qCET\|]() are termed 'Warnings'. For rules applied separately to each individual record in a file, if more than a certain percentage \(Known as the [\|qCWT\|]()\) of records in a file contains one or more Warnings, then the file is marked as invalid. Currently the [\|qCWT\|]() default value is [\|CWTV\|](), but this value may be adjusted using the -W command line option to anywhere between 0 and 100. For rules applied to files as a whole, a Warning behaves as an Alert \(ie: is not included in the cumulative warning calculation for a file\). Note that a Penalty Score of 0 represents a 'Rule OFF', as it has no effect at all on loading \(like an Alert\), and is not even logged for the users attention. Thus, editing a Penalty Score for a Rule to 0 is an effective way of 'turning off' the rule without having to alter the code implementing the rule.
+Penalty scores greater than 0, upto and including the 'Threshold for Alerts becoming Warnings' are termed 'Alerts' and have no effect on loading but are considered to be worthy of being logged. Currently the 'Threshold for Alerts becoming Warnings' default value is 2, but this value may be adjusted using the -H command line option from \(and including\) 1 up to \(but NOT including\) the 'Threshold for Critical Errors' \(see above\). Penalty scores greater than the 'Threshold for Alerts becoming Warnings' but less than the 'Threshold for Critical Errors' are termed 'Warnings'. For rules applied separately to each individual record in a file, if more than a certain percentage \(Known as the 'Cumulative Warnings Threshold'\) of records in a file contains one or more Warnings, then the file is marked as invalid. Currently the Cumulative Warnings Threshold default value is 20, but this value may be adjusted using the -W command line option to anywhere between 0 and 100. For rules applied to files as a whole, a Warning behaves as an Alert \(ie: is not included in the cumulative warning calculation for a file\). Note that a Penalty Score of 0 represents a 'Rule OFF', as it has no effect at all on loading \(like an Alert\), and is not even logged for the users attention. Thus, editing a Penalty Score for a Rule to 0 is an effective way of 'turning off' the rule without having to alter the code implementing the rule.
 
-Note also that setting the [\|qAWT\|]() to a value 1 less than the [\|qCET\|]() means that NONE of the Penalty Scores are treated as Warnings \(they are all either 'rule OFF's, 'Alerts' or '[\|CE\|]()'\).
+Note also that setting the 'Threshold for Alerts becoming Warnings' to a value 1 less than the 'Threshold for Critical Errors' means that NONE of the Penalty Scores are treated as Warnings \(they are all either 'rule OFF's, 'Alerts' or 'Critical Errors'\).
 
-Note that Penalty Scores of 9 are usually associated with rules which ensure data integrity \(eg: a CIDX in an ACTIVITY file is not defined elsewhere in the load or in the DB\), as data with these sorts of errors must never be loaded under any circumstances. Notice therefore that '9's can never be adjusted to 'Warnings' or 'Alerts' because the '[\|CET\|]()' can never be set to greater than '9'. For this reason the '9' Penalty Score is termed a 'Fatal Error' Penalty Score as it will always lead to an invalid file whatever adjustements are made to the thresholds.
+Note that Penalty Scores of 9 are usually associated with rules which ensure data integrity \(eg: a CIDX in an ACTIVITY file is not defined elsewhere in the load or in the DB\), as data with these sorts of errors must never be loaded under any circumstances. Notice therefore that '9's can never be adjusted to 'Warnings' or 'Alerts' because the 'Threshold for Critical Errors' can never be set to greater than '9'. For this reason the '9' Penalty Score is termed a 'Fatal Error' Penalty Score as it will always lead to an invalid file whatever adjustements are made to the thresholds.
 
 Lastly, note that a Penalty Scores of '6' or above, have additional meaning in the context of 'checking structures': Regardless of whether a score &gt;= 6 is classified as an Alert, Warning or Error, a score of &gt;=6 against a deposited structure in the COMPOUND\_CTAB file indicates that this particular CTAB should not be used during the compound Normalization procedures, and instead the 'structure' should be assigned an 'empty structure' molregno.
 
@@ -30,55 +30,14 @@ During the load process \(which may be lengthy\), any Penalty Scores of '9' are 
 
 Towards the end of the load process, when all deposited data has been processed and Penalty Scores are shown to the user, the user is told whether the numbers of errors etc has exceeded the thresholds for an acceptable data set to load. If ANY '9's were detected then the job will automatcially terminate. However, if no '9's were detected, but the load still did not meet quality criteria, then the user will be asked if they wish to attempt to load anyway. The default answer for this user question is 'no' \(so if '-a' is used, such data will not proceed to loading\). If the user answers 'yes', then the loader will attempt to load the data, and will reset '-H' to 8 and '-T' to 9 \(and record these values in the DEPOSIT\_JOB table against the current JOB\_ID\).
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align:left">PENALTY SCORE</th>
-      <th style="text-align:left">CLASS OF PENALTY SCORE</th>
-      <th style="text-align:left">SHOW IN LOAD REPORT?</th>
-      <th style="text-align:left">LOG TO DB ON SUCCESSFUL LOAD?</th>
-      <th style="text-align:left">COMMENTS</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align:left">0</td>
-      <td style="text-align:left">Rule OFF</td>
-      <td style="text-align:left">No</td>
-      <td style="text-align:left">No</td>
-      <td style="text-align:left">Rule &apos;ignorred&apos;, or &apos;switched off&apos;</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">1 ...to... The <a href>|qAWT|</a> [ default = &apos;2&apos;, alter with
-        -H ]</td>
-      <td style="text-align:left">Alerts</td>
-      <td style="text-align:left">Yes</td>
-      <td style="text-align:left">Yes</td>
-      <td style="text-align:left">No effect on loading.</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">... to ...</td>
-      <td style="text-align:left">Warnings</td>
-      <td style="text-align:left">Yes</td>
-      <td style="text-align:left">Yes</td>
-      <td style="text-align:left">The <a href>|qCWT|</a> [ default = &apos;20&apos;] The % records in a file
-        with 1 or more warnings, above which a &apos;Critical Errors&apos; is triggered.</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">The <a href>|qCET|</a> [ default = &apos;7&apos;, alter with -T ] ... to
-        ... 9 [ ... a &apos;fatal error&apos; ]</td>
-      <td style="text-align:left"><a href>|CE|</a>
-      </td>
-      <td style="text-align:left">Yes</td>
-      <td style="text-align:left">
-        <ul>
-          <li></li>
-        </ul>
-      </td>
-      <td style="text-align:left">Loading aborted if 1 or more such scores incurred.</td>
-    </tr>
-  </tbody>
-</table>## Loading ‘Modes’ \(-m option\)
+| PENALTY SCORE | CLASS OF PENALTY SCORE | SHOW IN LOAD REPORT? | LOG TO DB ON SUCCESSFUL LOAD? | COMMENTS |
+| :--- | :--- | :--- | :--- | :--- |
+| 0 | Rule OFF | No | No | Rule 'ignorred', or 'switched off' |
+| 1 ...to... The 'Threshold for Alerts becoming Warnings' \[ default = '2', alter with -H \] | Alerts | Yes | Yes | No effect on loading. |
+| ... to ... | Warnings | Yes | Yes | The 'Cumulative Warnings Threshold' \[ default = '20'\] The % records in a file with 1 or more warnings, above which a 'Critical Errors' is triggered. |
+| The'Threshold for Critical Errors' \[ default = '7', alter with -T \] ... to ... 9 \[ ... a 'fatal error' \] | Critical Errors | Yes | - | Loading aborted if 1 or more such scores incurred. |
+
+## Loading ‘Modes’ \(-m option\)
 
 The loading utility \(-u 1\) is executable in different ‘modes’ \(set with –m option, \[1 unless specified\]\), as shown below. Four modes are available \(1-4\). Selecting a particular mode will run all modes up to the selected number \(ie: selecting ‘-m 3’, runs 1, then 2, then 3, then stops\).
 
@@ -97,7 +56,7 @@ All output from the loader is managed by the function 'verb', the second argumen
 
 The verbosity of the output is set with the '-v' option \(an integer\). The 'verb' function will give output if '-v' is greater than or equal to the 'level' for the function.
 
-Levels higher than 9 are reserved for calls which output particular data structures, or related information on the content flowing through the program. These can be very useful during debugging. The levels assigned to such information progrssively inclrease throughout the program. So, for example, levels upto 1000 are used for 'mode 1' operations, levels 1000-2000 are reserved for 'mode 2' operations, and so on. These data can, of course, be outputted by raising '-v' to the level required, but this will also output all levels from 0 upto this raised level. Therefore, a more sensible way of viewing such structure is to use the '-w' or '-j' option. These two options have identical effects. Setting one of these to a particular level, and not setting the other, will output all calls with levels equal to this option. Setting both -w and -j to different levels will output all verb calls inbetween \(and including\) these two level values. This can be useful if a number of data structures are required to be viewed at once.
+Levels higher than 9 are reserved for calls which output particular data structures, or related information on the content flowing through the program. These can be very useful during debugging. The levels assigned to such information progrssively inclrease throughout the program. So, for example, levels up to 1000 are used for 'mode 1' operations, levels 1000-2000 are reserved for 'mode 2' operations, and so on. These data can, of course, be outputted by raising '-v' to the level required, but this will also output all levels from 0 upto this raised level. Therefore, a more sensible way of viewing such structure is to use the '-w' or '-j' option. These two options have identical effects. Setting one of these to a particular level, and not setting the other, will output all calls with levels equal to this option. Setting both -w and -j to different levels will output all verb calls inbetween \(and including\) these two level values. This can be useful if a number of data structures are required to be viewed at once.
 
 A special case for using -w and -j can be invoked when both are set to the SAME value. In these circumstances, all calls with levels equal to or higher than this value will be outputted, with the 'value' of the data structure or related info not shown, but instead 'subsituted' for the 'level' number. In addition, information on the calling subroutine of the verb function, and the data Type of the data structure is shown. This 'special case' is useful for identifying 'level' values that may be useful for a particular debugging process. In this special case, all '-v' levels are also outputted, but no 'substitution' occurs.
 
@@ -142,141 +101,7 @@ A LOADTYPE of '1' is considered the norm, but With LOADTYPE set to '2', the foll
 
 Currently, only 2 LoadTypes are recognized, but others may be added in future, if required.
 
-## Documentation
 
-All documentation is stored in reStructured Text files in the 'docs' and 'userdocs' directories of the [\|PJ\|](). To view full documentation either use the [\|PJ\|]() web interface, or use ‘-i’ \(information\) from the command line.
 
-To update documentation, update the relevant '.rst' file in the 'docs' or 'userdocs' directory \(and the conf.py and index.rst files if necessary\) and then, in the same directory, run 'make html' and then 'make man'.
 
-The html files created from this operation are then viewable in the [\|PJ\|]() web interface. The output from the command line '-i' is simply the same reStructured Text files in 'man' format.
-
-## Docutils System Messages
-
-System Message: ERROR/3 \(runnngTheLoader.rst, line 31\); [_backlink_]()
-
- Undefined substitution referenced: "qCE".
-
-System Message: ERROR/3 \(runnngTheLoader.rst, line 31\); [_backlink_]()
-
- Undefined substitution referenced: "qCET".
-
-System Message: ERROR/3 \(runnngTheLoader.rst, line 31\); [_backlink_]()
-
- Undefined substitution referenced: "qCE".
-
-System Message: ERROR/3 \(runnngTheLoader.rst, line 31\); [_backlink_]()
-
- Undefined substitution referenced: "qCE".
-
-System Message: ERROR/3 \(runnngTheLoader.rst, line 31\); [_backlink_]()
-
- Undefined substitution referenced: "qCET".
-
-System Message: ERROR/3 \(runnngTheLoader.rst, line 31\); [_backlink_]()
-
- Undefined substitution referenced: "TE".
-
-System Message: ERROR/3 \(runnngTheLoader.rst, line 31\); [_backlink_]()
-
- Undefined substitution referenced: "qAWT".
-
-System Message: ERROR/3 \(runnngTheLoader.rst, line 34\); [_backlink_]()
-
- Undefined substitution referenced: "qAWT".
-
-System Message: ERROR/3 \(runnngTheLoader.rst, line 34\); [_backlink_]()
-
- Undefined substitution referenced: "qAWT".
-
-System Message: ERROR/3 \(runnngTheLoader.rst, line 34\); [_backlink_]()
-
- Undefined substitution referenced: "AWthreshold".
-
-System Message: ERROR/3 \(runnngTheLoader.rst, line 34\); [_backlink_]()
-
- Undefined substitution referenced: "qCET".
-
-System Message: ERROR/3 \(runnngTheLoader.rst, line 34\); [_backlink_]()
-
- Undefined substitution referenced: "qAWT".
-
-System Message: ERROR/3 \(runnngTheLoader.rst, line 34\); [_backlink_]()
-
- Undefined substitution referenced: "qCET".
-
-System Message: ERROR/3 \(runnngTheLoader.rst, line 34\); [_backlink_]()
-
- Undefined substitution referenced: "qCWT".
-
-System Message: ERROR/3 \(runnngTheLoader.rst, line 34\); [_backlink_]()
-
- Undefined substitution referenced: "qCWT".
-
-System Message: ERROR/3 \(runnngTheLoader.rst, line 34\); [_backlink_]()
-
- Undefined substitution referenced: "CWTV".
-
-System Message: ERROR/3 \(runnngTheLoader.rst, line 43\); [_backlink_]()
-
- Undefined substitution referenced: "qAWT".
-
-System Message: ERROR/3 \(runnngTheLoader.rst, line 43\); [_backlink_]()
-
- Undefined substitution referenced: "qCET".
-
-System Message: ERROR/3 \(runnngTheLoader.rst, line 43\); [_backlink_]()
-
- Undefined substitution referenced: "CE".
-
-System Message: ERROR/3 \(runnngTheLoader.rst, line 45\); [_backlink_]()
-
- Undefined substitution referenced: "CET".
-
-System Message: ERROR/3 \(runnngTheLoader.rst, line 58\); [_backlink_]()
-
- Undefined substitution referenced: "qAWT".
-
-System Message: ERROR/3 \(runnngTheLoader.rst, line 63\); [_backlink_]()
-
- Undefined substitution referenced: "qCWT".
-
-System Message: ERROR/3 \(runnngTheLoader.rst, line 67\); [_backlink_]()
-
- Undefined substitution referenced: "qCET".
-
-System Message: ERROR/3 \(runnngTheLoader.rst, line 68\); [_backlink_]()
-
- Undefined substitution referenced: "CE".
-
-System Message: ERROR/3 \(runnngTheLoader.rst, line 83\); [_backlink_]()
-
- Undefined substitution referenced: "m1".
-
-System Message: ERROR/3 \(runnngTheLoader.rst, line 84\); [_backlink_]()
-
- Undefined substitution referenced: "m2".
-
-System Message: ERROR/3 \(runnngTheLoader.rst, line 85\); [_backlink_]()
-
- Undefined substitution referenced: "m3".
-
-System Message: ERROR/3 \(runnngTheLoader.rst, line 86\); [_backlink_]()
-
- Undefined substitution referenced: "m4".
-
-System Message: ERROR/3 \(runnngTheLoader.rst, line 163\); [_backlink_]()
-
- Undefined substitution referenced: "LOADTYPE".
-
-System Message: ERROR/3 \(runnngTheLoader.rst, line 180\); [_backlink_]()
-
- Undefined substitution referenced: "PJ".
-
-System Message: ERROR/3 \(runnngTheLoader.rst, line 180\); [_backlink_]()
-
- Undefined substitution referenced: "PJ".
-
-System Message: ERROR/3 \(runnngTheLoader.rst, line 184\); [_backlink_]()
-
- Undefined substitution referenced: "PJ".
 
