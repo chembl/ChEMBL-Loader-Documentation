@@ -14,7 +14,7 @@ Loading and Normalization processes do not identify and highlight such CTABs.
 
 The process described on this page, does identify these 'better' structures, alerts curators to their appearance, and thereby potentially provide a simple way of improving the quality of a ChEMBL CTAB with minimal curation effort in this particular case.
 
-ChEMBL uses a 'structure checker' web service \[link here\] to assess the 'quality' of a CTAB, assigning 'Penalty Scores' \[see [:ref:\`penaltyScores\`]() \] for such undesirable features. ChEMBL uses a 'structure checker' web service \[link here\] to assess the 'quality' of a CTAB, assigning 'Penalty Scores' \[see [:ref:\`penaltyScores\`]() \] for features that are judged to be erroneous, inaccurate or ambiguous.
+ChEMBL uses a 'structure checker' web service \[link here\] to assess the 'quality' of a CTAB, assigning '[Penalty Scores](https://app.gitbook.com/@chembl/s/chembl-loader/~/drafts/-LvpPM2s7ephYXEXdJAX/running-loader#rules-alerts-warnings-and-errors)' for such undesirable features. ChEMBL uses a 'structure checker' web service \[link here\] to assess the 'quality' of a CTAB, assigning 'Penalty Scores' for features that are judged to be erroneous, inaccurate or ambiguous.
 
 The normalization process \([:ref:\`compound-norm\`](untitled-12.md)\) relies on comparing iKeys of the incoming structure to those iKeys already in ChEMBL. Thus, if the iKey for the incoming structure is not in ChEMBL, then a new molregno is **created** in ChEMBL with this iKey, using the deposited CTAB. On the other hand, however, if the incoming structure iKey **matches** an iKey that is already in ChEMBL, then the molregno for this existing iKey is assigned to the CIDX/SRC\_ID.
 
