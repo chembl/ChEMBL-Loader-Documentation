@@ -1,5 +1,7 @@
 # Embargo and Tagging
 
+## Tagging datasets
+
 Tagging of a data set is a utility that enables a depositor to refer to a given set of their data within ChEMBL. The process of ‘tagging’ involves the creation of a SET\_ID. The SET\_ID contains one or more ‘job\_id’s. Each of the job\_id data sets within the SET\_ID may be edited, provided they are not shared with other SET\_IDs that have been frozen. In this un-frozen state the SET\_ID is termed ‘fluid’.
 
 Freezing of a SET\_ID prevents a depositor from updating, deleting or inserting any data into a defined, deposited tagged set \(NB: Curated data associated with the deposited set may still be changed, as new rules and normalization procedures are edited and introduced\). Within ChEMBL, curation efforts often require that certain curated data be ‘locked’. The term ‘freeze’ is used here instead of ‘lock’ simply to try to make clear the difference between this same action on raw deposited data and curated data: ‘freeze’ is therefore used specifically to refer to the ‘locking’ of deposited, precurated data.
@@ -14,7 +16,7 @@ A far simpler and more flexible option, recommended here and described below, is
 
 Depositors would also be given the option to have their tagged set be either ‘public’ or ‘private’. Public sets would be exported to a public ftp site, but private sets would be exported only to private directories behind the EBI firewall, and then manually emailed to depositors by ChEMBL administrators. The download would consist very simply of several files \(sdf and txt\) which contain essentially the same data as was first deposited by the source, and nothing else, except for a README, and possibly an md5checksum file
 
-Required Changes to the existing Schema
+## Required Changes to the existing Schema
 
 It is proposed that all DEP\_ tables \(but no other tables\) have a ‘FROZEN’ field added, and that freezing is reliably implemented by the addition of a trigger to each DEP\_ table that prevents any field \(including the ‘FROZEN’ field itself\) in the record from being edited if this field is ‘1’ \(example trigger in appendix G\). Freezing a record is therefore simply achieved by updating this field to ‘1’ from null or ‘0’. On the other hand, ‘Tagging’ of data does not require any edits to the DEP\_ tables.
 
@@ -28,7 +30,7 @@ The ‘DEPOSIT\_SET\_MAP’ table, with fields \(a composite PK \(SET\_ID and JO
 
 FIELDDatatypeDescription SET\_IDint not nullThe set id. PK JOB\_IDint not nullThe job id. PK FROZENchar\(1\) 0=fluid, 1=frozen CREATEDdateDate stamp
 
-Code functions to manage sets.
+## Code functions to manage sets.
 
 In addition to functions to create edit, freeze and thaw sets, and switch on the public flag, a generic ‘export’ function or base class will be created. This exports all data associated with a list of job\_ids, to a single tarball \(Option not to tarball, and Option to keep files in separate dirs.\). A ‘README’ file produced by default, detailing status of data … public or private, frozen or fluid, export location, date, number of files, md5checksums ??? etc etc. Format of filename… CHEMBL64538.tar.gz or of directory if files kept separate… CHEMBL64538
 
@@ -44,7 +46,7 @@ README’s in publishedDataSets/, fluid/, and frozen/. The README in the publish
 
 The README in the fluid/ dir must explain that the data content of any set in this directory may change over time. One reason for this may be that the owner of the job\_ids within this set may choose to update these data. Another reason may be that the set within ChEMBL contains data still under embargo. Only when a set is ‘frozen’ \(and no longer appears in this directory, but in the frozen directory instead\) can the user be assured that the set data will not change, and that all data is present \(ie: any data in the set that may have been under embargo at some point has now either been permanently removed from the set, or is included as it is no longer under embargo\).
 
-How it works from the User’s perspective.
+## How it works from the User’s perspective.
 
 A depositor indicates that they wish to ‘tag’ a data set. This must be all the data from one or more job\_ids \(ie: it is not possible to ‘tag’ part of a job\_id\). The administrator then runs loader code to create a new ‘set\_id’ \(a single new record in DEPOSIT\_SET, associated with the job\_ids specified \(one new record per job\_id in DEPOSIT\_SET\_MAP\). A description would also be required at this stage. The tagged set may include ANY valid JOB\_ID \(ie: the JOB\_IDs may be embargoed, frozen, and from any depositor\). This tagged set is assigned a SET\_ID and a CHEMBL\_ID.
 
@@ -70,7 +72,7 @@ On the ftp site, users would be able to find downloads for all public sets, list
 
 In the release schema interface, users and depositors would be able to view a “ ‘Tagged and Frozen’ data sets “ page which would simply have a link to the current FTP site, with warnings to take note of the file modification times \(as only those files with times prior to the ChMBL release date can be guaranteed to not contain IDs that are not in the current release\).
 
-Public Release of a Frozen set.
+## Public Release of a Frozen set.
 
 As a nightly cron job, the loader would be run in a mode which would, in a single transaction:
 
@@ -83,7 +85,7 @@ Note that this ‘Release’ process is..
 
 1.completely automatic. So, can be set to any day of the week, months in advance, and once set, can be relied upon to release the data on exactly the right day. 2.will fail if any of the jobs are still under embargo, or the set is not marked as ‘Frozen’. For this reason, the same nightly script also assesses which releases are imminent \(maybe 1-2 weeks away ?\), and if any are expected to fail. If any are, then chembl admin is emailed to warn of this imminent problem. 3.an export directly from the production database. So, the release does not rely on the data passing through a schema release process before it can be made available. 4.Does not contain any curated data, only raw, deposited data. It is very important that the frozen set does not contain any curated data, as this may change over time, meaning that the ‘frozen’ download set would need to be continually updated. Note, however, that the frozen set contains activity\_ids and \*IDx’s which allow researchers to subsequently map the frozen sets to the latest curated equivalents in the released ChEMBL schema.
 
-Private export of the depositor set.
+## Private export of the depositor set.
 
 For the purposes of review for a publication, either by the author or the reviewers, it may be necessary to export a ‘tagged’ or ‘frozen’ data set at anytime. This export would run a similar process to the public export described above, except that the process would...
 
@@ -111,7 +113,7 @@ Clearly, none of these more complicated scenarios are very satisfactory. This is
 
 Splitting jobs: A functionality which could be added, although not advertised or encouraged might be the ability to ‘split’ a job\_id. Administrators could use this under circumstances where depositors found existing job\_id data sets difficult to work with. Splitting would not break the data model.
 
-Other required functions for the loader to manage frozen sets
+## Other required functions for the loader to manage frozen sets
 
 The simple data model for managing depositor set \(with two tables and a few simple constraints\), can leave open the possibility of manually editing tables in a way which has unforeseen consequences. For example, there is no database constraint that would prevent a ChEMBL admin from manually inserting a job\_id to a tagged/frozen set which was owned by another depositor.
 
