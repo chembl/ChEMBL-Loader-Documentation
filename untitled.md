@@ -42,25 +42,13 @@ However, the RIDX is not mandatory, and so for most simple depositions it can ig
 
 Note that all src\_ids, when first created by the ChEMBL administrator, are assigned a 'default RIDX'. If no RIDX is defined in a job, then this 'default RIDX' is used instead.
 
-#### Complex Result Sets
+#### [Complex Result Sets](complex-results.md)
 
 ChEMBL has the ability to store more complex result sets than has hitherto been possible. Supporting Raw data, Multiple Result Types, Properties, etc can all be captured.
 
-This subject is dealt with in more detail [:ref:\`here &lt;crsx&gt;\`]() and examples exist in the 'Examples' link above.
-
-System Message: ERROR/3 \(basicDepo.rst, line 63\); [_backlink_]()
-
- Unknown interpreted text role "ref".
-
-#### Depositing Activity Data against other depositors' entities
+#### [Depositing Activity Data against other depositors' entities](untitled-1.md)
 
 Some depositors wish to deposit bioactivity data obtained using either assays \(AIDXs\) or compounds \(CIDXs\) defined by other depositors. In order to do this, these AIDX and CIDXs must already have been deposited within ChEMBL by their respective owners, and when citing these AIDXs and CIDXs in the Activity load file, the depositor must add an extra column to the file, giving the src\_id of the owner of these IDs.
-
-This subject is dealt with in more detail here [:ref:\`opd\`]() and examples exist in the 'Examples' link above.
-
-System Message: ERROR/3 \(basicDepo.rst, line 72\); [_backlink_]()
-
- Unknown interpreted text role "ref".
 
 ## Testing your files.
 
