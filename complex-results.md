@@ -33,7 +33,7 @@ Suppose that an assay is used to generate Result Values of a particular type, bu
 
 These Property data are captured and stored in an ACTIVITY\_PROPERTY file/table. Records in the ACTIVITY and ACTIVITY\_PROPERTY files must be tied together using the ACT\_ID, which must always be a positive integer, and only has meaning within the load job \(so 1,2,3, etc, can be re-used between load jobs\). In the ACTIVITY file, the ACT\_ID must be unique for each record, although not all records need have a value \(since some Activities may not have properties associated with them\). In the ACTIVITY\_PROPERTY file, each ACT\_ID can occur multiple times, but must match an ACT\_ID in the ACTIVITY file in the same deposition. All records in ACTIVITY\_PROPERTY must contain an ACT\_ID.
 
-Sometimes, it is debatable as to whether a result \(such as slope, for example\) should be considered a property \(in ACTIVITY\_PROPERTY\) or a result type \(in ACTIVITY\) in its own right. There is no hard and fast rule to make this distinction, but as a rule of thumb, the Activity values should be restricted to higher level result types which will have use to a wider audience when integrated into ChEMBL **\[reword this\]** Also precedents for given types of assays \(in 'Examples'\) should also be followed ... **reword this too**
+Sometimes, it is debatable as to whether a result \(such as slope, for example\) should be considered a property \(in ACTIVITY\_PROPERTY\) or a result type \(in ACTIVITY\) in its own right. There is no hard and fast rule to make this distinction, but as a rule of thumb, the Activity values should be the main variable mesures in the assay, and ACTIVITY properties should be derived data or data specific to the single assay in question.
 
 ## Supplementary data
 
