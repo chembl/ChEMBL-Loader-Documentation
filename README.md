@@ -30,19 +30,13 @@ Load files must be ascii or UTF-8 encoded, and named and formatted as described 
 
 Currently, ChEMBL only accepts data formatted into tsv \(tab-separated variable\) files, but alternative formats will be available in the future..
 
-## Complex Result Sets
+## [Complex Result Sets](complex-results.md)
 
 Activity data that is more complicated than a simple 'cpdX has affinity Y nM against target Z' can now be accommodated in ChEMBL.
 
-## Compound Normalization
+## [Compound Normalization](untitled-12.md)
 
 A Compound Normalization procedure is run separately from loading processes, and now includes an assassment of the quality of the drawn structures.
-
-Full details elsewhere. see [:ref:\`cpdNorm\`]()
-
-System Message: ERROR/3 \(intro.rst, line 62\); [_backlink_]()
-
- Unknown interpreted text role "ref".
 
 ## Depositors
 
@@ -50,23 +44,11 @@ A depositor is equivalent to a src\_id. In practice, multiple individuals within
 
 Every src\_id is also assigned a 'default RIDX' which is used as the RIDX if the load files do not specify an alternative RIDX.
 
-## Embargoing
+## [Embargoing](embargo-tagging.md)
 
 Embargoing is managed by administrators by appending a '-E date' option when loading a job.
 
-Full details elsewhere. see [:ref:\`embargo\`]()
-
-System Message: ERROR/3 \(intro.rst, line 78\); [_backlink_]()
-
- Unknown interpreted text role "ref".
-
-## Tagging and Freezing
+## [Tagging and Freezing](embargo-tagging.md)
 
 Tagging and Freezing of 'sets' of deposition job\_id is achieved with the loader, but the process is dealt with separately from the loading process itself.
-
-Full details elsewhere. see [:ref:\`tagging\`]()
-
-System Message: ERROR/3 \(intro.rst, line 86\); [_backlink_]()
-
- Unknown interpreted text role "ref".
 
