@@ -5,6 +5,8 @@
 * [Requirements for 'BioActivity' Loading](untitled-10.md)
 * [The Loader Model](loader-model.md)
 * [Running The Loader](running-loader.md)
+* [Example Load Dataset](example.md)
+* [Common data issues](common-data-issues.md)
 * [The Assay Parameters table](the-assay-parameters-table.md)
 * [Complex Results Sets](complex-results.md)
 * [Embargo and Tagging](embargo-tagging.md)
