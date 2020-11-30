@@ -1,6 +1,6 @@
 # The Loader Model
 
-Here we descibe the model used by the loader.
+Here we describe the model used by the loader.
 
 ## Jobs.
 
@@ -21,14 +21,16 @@ Depositors may use upto 200 characters to define \*IDX’s. Depositors are free 
 ### RIDX
 
 * An RIDX may refer to the results from a given publication, or a single unpublished dataset.
-* RIDXs must be unique within a source.
+* RIDXs must be unique within a source. Where a source contains submissions from multiple datasets or sites, using a unique RIDX for each one will make it possible to distinguish between them in ChEMBL.
 * It is possible to deposit additional data for an existing RIDX.
 * ‘Documents’ may include URLs, or simply text descriptions of the collection of data referred to by the reference.
 * RIDXs map 1:1 to an internal DOC\_ID field. This is enforced by DOC\_ID being the PK on the DOCS table, and by a unique constraint enabled for the “RIDX / SRC\_ID ” combination on this table. This means that a DOC\_ID can never be shared between SRC\_IDs.
 
-Relations to compounds and assays
+**Relations to compounds and assays**
 
-* Each CIDX or AIDX defined by a depositor can only be assigned to a SINGLE RIDX, although the same RIDX may be assigned to multiple CIDX’s and AIDX’s. A depositor may only assign RIDX’s defined by themselves, and may only assign them to their own CIDX’s and AIDX’s. A depositor may also assign their own RIDX’s \(but not others’ RIDX’s\) to their own Activity records, even when the activity record uses AIDS and CIDS defined by other depositors.
+* Each CIDX or AIDX defined by a depositor can only be assigned to a SINGLE RIDX, although the same RIDX may be assigned to multiple CIDX’s and AIDX’s. 
+* A depositor may only assign RIDX’s defined by themselves, and may only assign them to their own CIDX’s and AIDX’s. 
+* A depositor may also assign their own RIDX’s \(but not others’ RIDX’s\) to their own Activity records, even when the activity record uses AIDXs and CIDXs defined by other depositors.
 
 #### Default DOC\_IDs and RIDXs
 
