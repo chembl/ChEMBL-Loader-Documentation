@@ -36,6 +36,9 @@ This file provides a brief description of the assay, along with the target organ
 * **RIDX** is optional, but if included it must be an RIDX owned by the depositor. Either one in this set of files or one already loaded into ChEMBL.
 * This table describes what the assay is and what it targets.
 
+#### **AIDX Definition**
+
+* 
 ### ASSAY\_PARAM.tsv
 
 ```text
@@ -91,12 +94,14 @@ ACT_ID	TYPE	RELATION	TEXT_VALUE	UNITS
 ```
 
 _Not a mandatory file, and omitted from the simple test set._  
-Can be used to supply additional activity information, for example the Hill slope of a curve. 
+Can be used to supply additional activity information, for example the Hill slope of a curve.   
+Should contain information that is neccessary for interpretation of the ACTIVITY table data. Raw results and other supporting information belongs in 
 
 * **ACT\_ID** and **TYPE** are mandatory. 
 * **TYPE** descripes the type of measurement. 
   * Depositors can set their own categories for TYPE, but should not use the same TYPE value for different sorts of data. 
   * E.g. PB\_HILL\_SLOPE __and PB\_R\_SQUARED would be valid, but storing both Hill slope and R-Squared data as PB would not be. Even if they had different UNITS or COMMENTS.
+* Can contain dependent or independent variables. If RESULT\_FLAG is set to 1, it shows the record is a dependent variable/result \(e.g., slope\) rather than an independent variable/parameter.
 
 ### ACTIVITY\_SUPP
 
@@ -109,9 +114,13 @@ COMMENTS	REGID	RELATION	SAMID	TEXT_VALUE	TYPE	UNITS	VALUE
 ```
 
 _Not a mandatory file, and omitted from the simple test set._  
-This contains supplementary data on the **ACTIVITY** file. In this case, it shows the treatment group for each sample. And for any sample where a side effect on the cells was recorded, it notes this.
+This contains supplementary data on the **ACTIVITY** file. 
 
-### ACTIVITY\_SUPP\_MAP
+* It is not necessary to supply, for example, all the points on a curve. 
+* It is more useful with datasets such as _in vivo_ studies where animal-level data is submitted.
+* In this case, it shows the treatment group for each sample. And for any sample where a side effect on the cells was recorded, it notes this.
+
+### ACTIVITY\_SUPP\_MAP.
 
 ```text
 ACT_ID	SAMID
