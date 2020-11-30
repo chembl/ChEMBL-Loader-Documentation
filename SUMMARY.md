@@ -4,6 +4,7 @@
 * [Basic Deposition and Overview](untitled.md)
 * [Requirements for 'BioActivity' Loading](untitled-10.md)
 * [The Loader Model](loader-model/README.md)
+  * [Loader files](loader-model/loader-files.md)
   * [Example Load Dataset](loader-model/example.md)
   * [The Assay Parameters table](loader-model/the-assay-parameters-table.md)
 * [Running The Loader](running-loader.md)
