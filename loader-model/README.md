@@ -20,13 +20,15 @@ Depositors may use upto 200 characters to define \*IDX’s. Depositors are free 
 
 ### RIDX
 
-Depositor-defined Reference ID \(RIDX\) is used to define what was previously referred to as a Reference\_ID in deposited literature-bioactivity data files, although here we propose it’s definition is widened to accommodate all forms of deposited data in ChEMBL. We propose that the mapping of a reference\_id \(now RIDx\) to a document\_id be kept, but this therefore requires that the current definition of the document\_id should also be widened: ‘Documents’ may include URLs, or simply text descriptions of the collection of data referred to by the reference.
+* An RIDX may refer to the results from a given publication, or a single unpublished dataset.
+* RIDXs must be unique within a source.
+* It is possible to deposit additional data for an existing RIDX.
+* ‘Documents’ may include URLs, or simply text descriptions of the collection of data referred to by the reference.
+* RIDXs map 1:1 to an internal DOC\_ID field. This is enforced by DOC\_ID being the PK on the DOCS table, and by a unique constraint enabled for the “RIDX / SRC\_ID ” combination on this table. This means that a DOC\_ID can never be shared between SRC\_IDs.
 
-Also, the mapping of a RIDX to a DOC\_ID must be constrained to a 1:1 relationship. This is enforced by DOC\_ID being the PK on the DOCS table, and by a unique constraint enabled for the “RIDX / SRC\_ID ” combination on this table. This means that a DOC\_ID can never be shared between SRC\_IDs.
+Relations to compounds and assays
 
-Within the LoadType definition for RIDX, constraints would be placed on the required fields to enable the depositor to either cite a literature reference, or populate other fields which would describe the ‘project’ or ‘batch’ of the data set. For example, if the ‘journal’ field is not populated, for one LoadType, then perhaps a ‘Depositor Summary of the Study’ would be required instead, or perhaps an ‘experimental batch\_id’ could be quoted. In this way, the doc\_id may serve several purposes other than its traditional role of simply identifying a ‘literature reference’.
-
-Each CIDX or AIDX defined by a depositor can only be assigned to a SINGLE RIDX, although the same RIDX may be assigned to multiple CIDX’s and AIDX’s. A depositor may only assign RIDX’s defined by themselves, and may only assign them to their own CIDX’s and AIDX’s. A depositor may also assign their own RIDX’s \(but not others’ RIDX’s\) to their own Activity records, even when the activity record uses AIDS and CIDS defined by other depositors.
+* Each CIDX or AIDX defined by a depositor can only be assigned to a SINGLE RIDX, although the same RIDX may be assigned to multiple CIDX’s and AIDX’s. A depositor may only assign RIDX’s defined by themselves, and may only assign them to their own CIDX’s and AIDX’s. A depositor may also assign their own RIDX’s \(but not others’ RIDX’s\) to their own Activity records, even when the activity record uses AIDS and CIDS defined by other depositors.
 
 #### Default DOC\_IDs and RIDXs
 
