@@ -42,11 +42,18 @@ The DOCS table requires that a unique constraint of a ‘SRC\_ID / RIDX’ combi
 
 ### CIDX
 
-Depositor-defined Compound IDs \(CIDXs\) are defined in COMPOUND\_RECORD deposition files. Currently this file has only one mandatory field: CIDx. In other words, a depositor may simply deposit a series of CIDx values and nothing else \(no structures, compound\_name, compound\_key, nothing\)\] Compounds with structures must have their structures defined separately in the secondary depostion file: COMPOUND\_CTAB. All CIDx identifiers in secondary files \(incl the sdf file\) must either exist within the COMPOUND.txt in the same deposition set, or have been deposited in a previous deposition set \(in a COMPOUND\_RECORD file\) by the same depositor.
+* Depositor-defined Compound IDs \(CIDXs\) are defined in COMPOUND\_RECORD deposition files. 
+* The CIDX string should be menaingful to the depositor, for example the identifier, name or abbreviations used in the publication. 
+* Currently this file has only one mandatory field: CIDx.  A depositor may simply deposit a series of CIDx values and nothing else.
+* Compounds with structures must have their structures defined separately in the secondary depostion file: COMPOUND\_CTAB. 
+* All CIDx identifiers in secondary files \(incl the sdf file\) must either exist within the COMPOUND.txt in the same deposition set, or have been deposited in a previous deposition set \(in a COMPOUND\_RECORD file\) by the same depositor.
 
 ### AIDX
 
-Depositor-defined ASSAY IDs \(AIDXs\) are defined in ASSAY deposition files.
+* Depositor-defined ASSAY IDs \(AIDXs\) are defined in ASSAY deposition files.
+* An assay record records information on the protocol used for the experiment. 
+* Each assay can only have a single target.
+* In the case of a panel assay, there will need to be one Assay record per target.
 
 ## Deposition files.
 
