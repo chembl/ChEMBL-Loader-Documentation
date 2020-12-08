@@ -44,11 +44,11 @@ A depositor is equivalent to a src\_id. In practice, multiple individuals within
 
 Every src\_id is also assigned a 'default RIDX' which is used as the RIDX if the load files do not specify an alternative RIDX.
 
-## [Embargoing](embargo-tagging.md)
+## [Embargoing](design-specification-and-internal-docs/embargo-tagging.md)
 
 Embargoing is managed by administrators by appending a '-E date' option when loading a job.
 
-## [Tagging and Freezing](embargo-tagging.md)
+## [Tagging and Freezing](design-specification-and-internal-docs/embargo-tagging.md)
 
 Tagging and Freezing of 'sets' of deposition job\_id is achieved with the loader, but the process is dealt with separately from the loading process itself.
 
