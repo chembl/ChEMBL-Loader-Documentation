@@ -16,17 +16,50 @@ The '-h' option details all command line options available.
 
 Rules are applied during the load process, and other processes controlled by the laoder application, to test whether the data conforms to certain expectations. Each rule has associated with it a single 'Penalty Score' value. The Penalty Scores range from 0 to 9 inclusive. The higher the score, the more serious the problem. Depending upon the Penalty Scores accrued during an attempted load, one or more of the deposition load files may be assigned the status of 'invalid'. If one or more files in the load are 'invalid' then the entire load is aborted. Rules may either be applied to each individual record in a file \(eg: 'Field X must contain an integer'\), or, to the file as a whole \(eg: 'The filename must have a particular spelling or case', or 'field names must all match a list of permitted field names'\).
 
-The highest Penalty Scores are termed 'Critical Errors'. A Score greater than or equal to the 'Threshold for Critical Errors' is classified as a 'Critical Error'. One or more  'Critical Errors' associated with a file will render the file invalid. By default, the 'Threshold for Critical Errors'is set to a value of 7, However, this value may be manually adjusted for each job at load time \(by use of the '-T' command line option\) to any value from \(but NOT including\) the 'Threshold for Alerts becoming Warnings' \(see below\), up to and including '9'.
+### Critical Errors
 
-Penalty scores greater than 0, upto and including the 'Threshold for Alerts becoming Warnings' are termed 'Alerts' and have no effect on loading but are considered to be worthy of being logged. Currently the 'Threshold for Alerts becoming Warnings' default value is 2, but this value may be adjusted using the -H command line option from \(and including\) 1 up to \(but NOT including\) the 'Threshold for Critical Errors' \(see above\). Penalty scores greater than the 'Threshold for Alerts becoming Warnings' but less than the 'Threshold for Critical Errors' are termed 'Warnings'. For rules applied separately to each individual record in a file, if more than a certain percentage \(Known as the 'Cumulative Warnings Threshold'\) of records in a file contains one or more Warnings, then the file is marked as invalid. Currently the Cumulative Warnings Threshold default value is 20, but this value may be adjusted using the -W command line option to anywhere between 0 and 100. For rules applied to files as a whole, a Warning behaves as an Alert \(ie: is not included in the cumulative warning calculation for a file\). Note that a Penalty Score of 0 represents a 'Rule OFF', as it has no effect at all on loading \(like an Alert\), and is not even logged for the users attention. Thus, editing a Penalty Score for a Rule to 0 is an effective way of 'turning off' the rule without having to alter the code implementing the rule.
+The highest Penalty Scores are termed 'Critical Errors'. 
 
-Note also that setting the 'Threshold for Alerts becoming Warnings' to a value 1 less than the 'Threshold for Critical Errors' means that NONE of the Penalty Scores are treated as Warnings \(they are all either 'rule OFF's, 'Alerts' or 'Critical Errors'\).
+* A Score greater than or equal to the 'Threshold for Critical Errors' is classified as a 'Critical Error'. 
+* One or more  'Critical Errors' associated with a file will render the file invalid.
+*  By default, the 'Threshold for Critical Errors'is set to a value of 7.
+* The Threshold may be manually adjusted for each job at load time \(by use of the '-T' command line option\)
+* The Threshold for Critical Errors must be no larger than 9, and must not be greater than the 'Threshold for Alerts becoming Warnings' \(see below\).
 
-Note that Penalty Scores of 9 are usually associated with rules which ensure data integrity \(eg: a CIDX in an ACTIVITY file is not defined elsewhere in the load or in the DB\), as data with these sorts of errors must never be loaded under any circumstances. Notice therefore that '9's can never be adjusted to 'Warnings' or 'Alerts' because the 'Threshold for Critical Errors' can never be set to greater than '9'. For this reason the '9' Penalty Score is termed a 'Fatal Error' Penalty Score as it will always lead to an invalid file whatever adjustements are made to the thresholds.
+### Alerts
 
-Lastly, note that a Penalty Scores of '6' or above, have additional meaning in the context of 'checking structures': Regardless of whether a score &gt;= 6 is classified as an Alert, Warning or Error, a score of &gt;=6 against a deposited structure in the COMPOUND\_CTAB file indicates that this particular CTAB should not be used during the compound Normalization procedures, and instead the 'structure' should be assigned an 'empty structure' molregno.
+* Penalty scores greater than 0, upto and including the 'Threshold for Alerts becoming Warnings' are termed 'Alerts'.
+* These have no effect on loading but are considered to be worthy of being logged. 
+* The 'default Threshold for Alerts becoming Warnings is 2
+* This value may be adjusted using the -H command line option from \(and including\) 1 up to \(but NOT including\) the 'Threshold for Critical Errors' \(see above\).
 
-During the load process \(which may be lengthy\), any Penalty Scores of '9' are sent to STDERR to alert the user that 'Fatal Errors' have already been detected, so you may wish to abort immediately \(but you may wish to wait to the end to view all such errors\). The '-U' command line option may be set to any number between 1 and 8 to give similar ongoing STDERR output for any Penalty Scores equal to or greater than the -U value.
+### Warnings
+
+* Penalty scores greater than the 'Threshold for Alerts becoming Warnings' but less than the 'Threshold for Critical Errors' are termed 'Warnings'. 
+* If more than a certain percentage \(Known as the 'Cumulative Warnings Threshold'\) of records in a file contain Warnings, then the file is marked as invalid. 
+* For ules applied line by line, The Cumulative Warnings Threshold default value is 20. This value may be adjusted using the -W command line option to anywhere between 0 and 100. 
+* For rules applied to files as a whole, a Warning behaves as an Alert \(ie: is not included in the cumulative warning calculation for a file\). 
+* Note that a Penalty Score of 0 represents a 'Rule OFF', as it has no effect at all on loading \(like an Alert\), and is not even logged for the users attention. Thus, editing a Penalty Score for a Rule to 0 is an effective way of 'turning off' the rule without having to alter the code implementing the rule.
+* If the Threshold for Alerts becoming Warnings is 1 less than the Threshold for Critical Errors, NONE of the Penalty Scores are treated as Warnings.
+
+### Specific Penalty Scores
+
+**Fatal Error Scores \(9\)**
+
+* Penalty Scores of 9 are usually associated with rules which ensure data integrity, eg: a CIDX in an ACTIVITY file is not defined elsewhere in the load or in the DB.
+* Data with these sorts of errors must never be loaded under any circumstances. 
+* Penalty Scores of 9 can never be adjusted to 'Warnings' or 'Alerts' because the 'Threshold for Critical Errors' can never be set to greater than '9'. 
+* The '9' Penalty Score is termed a 'Fatal Error' Penalty Score ,as it will always lead to an invalid file no matter te penalty thresholds.
+
+**Structure Checks \(6+\)**
+
+* Penalty Scores of '6' or above, have additional meaning in the context of 'checking structures': 
+* Regardless of whether a score &gt;= 6 is classified as an Alert, Warning or Error, a score of &gt;=6 against a deposited structure in the COMPOUND\_CTAB file indicates that this particular CTAB should not be used during the compound Normalization procedures.
+* Instead, the 'structure' should be assigned an 'empty structure' molregno.
+
+**Error log level, and loader script termination**
+
+During the load process \(which may be lengthy\), any Penalty Scores of '9' are sent to STDERR to alert the user that 'Fatal Errors' have already been detected. The '-U' command line option may be set to any number between 1 and 8 to give similar ongoing STDERR output for any Penalty Scores equal to or greater than the -U value.
 
 Towards the end of the load process, when all deposited data has been processed and Penalty Scores are shown to the user, the user is told whether the numbers of errors etc has exceeded the thresholds for an acceptable data set to load. If ANY '9's were detected then the job will automatcially terminate. However, if no '9's were detected, but the load still did not meet quality criteria, then the user will be asked if they wish to attempt to load anyway. The default answer for this user question is 'no' \(so if '-a' is used, such data will not proceed to loading\). If the user answers 'yes', then the loader will attempt to load the data, and will reset '-H' to 8 and '-T' to 9 \(and record these values in the DEPOSIT\_JOB table against the current JOB\_ID\).
 
