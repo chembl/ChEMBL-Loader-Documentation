@@ -14,6 +14,7 @@
 * [Compound Normalization](untitled-12.md)
 * [Depositing Activities against other Depositors Entities](untitled-1.md)
 * [Design Specification and Internal Docs](design-specification-and-internal-docs/README.md)
+  * [Verbosity and debugging](design-specification-and-internal-docs/verbosity-and-debugging.md)
   * [Embargo and Tagging](design-specification-and-internal-docs/embargo-tagging.md)
   * [List of requirements for ChEMBL](design-specification-and-internal-docs/requirements.md)
 * [FAQs](faq.md)
