@@ -21,6 +21,7 @@ Depositors may use upto 200 characters to define \*IDX’s. Depositors are free 
 ### RIDX
 
 * An RIDX may refer to the results from a given publication, or a single unpublished dataset.
+* Should be a string that is meaningful to the depositor, and must be unique within the given source.
 * RIDXs must be unique within a source. Where a source contains submissions from multiple datasets or sites, using a unique RIDX for each one will make it possible to distinguish between them in ChEMBL.
 * It is possible to deposit additional data for an existing RIDX.
 * ‘Documents’ may include URLs, or simply text descriptions of the collection of data referred to by the reference.
