@@ -24,53 +24,14 @@
 
 ###  Headers and Fields \(or 'Cells'\) associated with the above files...
 
-#### AIDX
-
-&lt;!--table  
-	{mso-displayed-decimal-separator:"\.";  
-	mso-displayed-thousand-separator:"\,";}  
-@page  
-	{margin:.75in .7in .75in .7in;  
-	mso-header-margin:.3in;  
-	mso-footer-margin:.3in;}  
-tr  
-	{mso-height-source:auto;}  
-col  
-	{mso-width-source:auto;}  
-br  
-	{mso-data-placement:same-cell;}  
-td  
-	{padding-top:1px;  
-	padding-right:1px;  
-	padding-left:1px;  
-	mso-ignore:padding;  
-	color:black;  
-	font-size:12.0pt;  
-	font-weight:400;  
-	font-style:normal;  
-	text-decoration:none;  
-	font-family:Calibri, sans-serif;  
-	mso-font-charset:0;  
-	mso-number-format:General;  
-	text-align:general;  
-	vertical-align:bottom;  
-	border:none;  
-	mso-background-source:auto;  
-	mso-pattern:auto;  
-	mso-protection:locked visible;  
-	white-space:nowrap;  
-	mso-rotate:0;}  
-.xl65  
-	{font-weight:700;}  
---&gt;  
-
+#### ASSAY
 
 | Header | Description | Existence | Existence PS | DataType in database | Datatype rule | Datatype rule PS | Pattern | Pattern PS | Depend | Depend PS |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| AIDX | The AIDX cited by the depositorA Primary Key defined header | Mandatory | 9 | VARCHAR2\(200 BYTE\) NOT NULL ENABLE | Any character upto a length of 200 | 9 | Content | Content | Content | Content |
+| **AIDX** | The AIDX cited by the depositorA Primary Key defined header | **Mandatory** | 9 | VARCHAR2\(200 BYTE\) NOT NULL ENABLE | Any character upto a length of 200 | 9 | Content | Content | Content | Content |
 | RIDX | The RIDX cited by the depositor. A Self-Referencing field. MUST be owned by depositor \[ie: Not a PK Identifier, but a FK to an identifier owned by the depositor\] | Optional | 0 | VARCHAR2\(200 BYTE\) | Any character upto a length of 200 | 9 | Content | Content | Content | Content |
-| ASSAY\_DESCRIPTION | A Description of the assay | Mandatory | 9 | VARCHAR2\(4000 BYTE\) | Any character upto a length of 4000 | 9 | Content | Content | Content | Content |
-| ASSAY\_TYPE | The type of the assay. B,F or A | Mandatory | 9 | VARCHAR2\(1 BYTE\) | Any character upto a length of 1 | 9 | gp019 Accepted Assay types \[case Ins\] | 5 | gd2 A shrot desc of gd2 targ fld:ASSAY\_TAX\_ID | 0 |
+| **ASSAY\_DESCRIPTION** | A Description of the assay | **Mandatory** | 9 | VARCHAR2\(4000 BYTE\) | Any character upto a length of 4000 | 9 | Content | Content | Content | Content |
+| **ASSAY\_TYPE** | The type of the assay. B,F or A | **Mandatory** | 9 | VARCHAR2\(1 BYTE\) | Any character upto a length of 1 | 9 | gp019 Accepted Assay types \[case Ins\] | 5 | gd2 A shrot desc of gd2 targ fld:ASSAY\_TAX\_ID | 0 |
 | ASSAY\_TEST\_TYPE | The type of assay test. in vitro, in vivo or ex vivo | Optional | 0 | VARCHAR2\(20 BYTE\) | Any character upto a length of 20 | 9 | gp018 Accepted Assay test types \[case Ins\] | 0 | Content | Content |
 | ASSAY\_ORGANISM | The assay organism | Optional | 0 | VARCHAR2\(250 BYTE\) | Any character upto a length of 250 | 9 | Content | Content | Content | Content |
 | ASSAY\_STRAIN | The strain of the assay organism | Optional | 0 | VARCHAR2\(200 BYTE\) | Any character upto a length of 200 | 9 | Content | Content | Content | Content |
@@ -84,6 +45,30 @@ td
 | TARGET\_ACCESSION | The accession number of the target \(eg: UniProt Acc, NCBI tax ID\) | Optional | 0 | VARCHAR2\(255 BYTE\) | Any character upto a length of 255 | 9 | gp024 An integer or a UniProt ID | 2 | Content | Content |
 | TARGET\_ORGANISM | The target organism | Optional | 0 | VARCHAR2\(100 BYTE\) | Any character upto a length of 100 | 9 | Content | Content | Content | Content |
 | TARGET\_TAX\_ID | The NCBI taxonomy ID of the target organism | Optional | 0 | NUMBER\(11,0\) | Any integer upto a length of 11 | 9 | gp003 Positive integer or '0' \(regex='^\d\*$'\) | 9 | Content | Content |
+
+### ASSAY\_PARAM
+
+| Header | Description | Existence | Existence PS | DataType in database | Datatype rule | Datatype rule PS | Pattern | Pattern PS | Depend | Depend PS |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **AIDX** | The AIDX cited by the depositor A Self-Referencing field. MUST be owned by depositor \[ie: Not a PK Identifier, but a FK to an identifier owned by the depositor\] | **Mandatory** | 9 | VARCHAR2\(200 BYTE\) NOT NULL ENABLE | Any character upto a length of 200 | 9 | Content | Content | Content | Content |
+| **TYPE** | The type of parameter. Must be unique within an AIDX | **Mandatory** | 9 | VARCHAR2\(250 BYTE\) | Any character upto a length of 250 | 9 | Content | Content | Content | Content |
+| RELATION | Symbol indicating relationship between the Type and the Value \(permitted: '&gt;','&lt;','=','~','&lt;=','&gt;=','&lt;&lt;','&gt;&gt;'\) | Optional | 0 | VARCHAR2\(50 BYTE\) | Any character upto a length of 50 | 9 | gp022 relation symbol \(=,&gt;,etc\). | 2 | Content | Content |
+| VALUE | The numerical value of the parameter. | Optional | 0 | NUMBER | Any number \(incl decimals, negatives and sci Notn\) | 9 | gp005 Any Number. Decimal, Sci Notn, +/- | 9 | Content | Content |
+| UNITS | The units of the parameter measurement | Optional | 0 | VARCHAR2\(100 BYTE\) | Any character upto a length of 100 | 9 | Content | Content | Content | Content |
+| TEXT\_VALUE | The text value of non-numerical values | Optional | 0 | VARCHAR2\(4000 BYTE\) | Any character upto a length of 4000 | 9 | Content | Content | Content | Content |
+| COMMENTS | A comment on the parameter. | Optional | 0 | VARCHAR2\(4000 BYTE\) | Any character upto a length of 4000 | 9 | Content | Content | Content | Content |
+
+#### COMPOUND
+
+| File | Header | Description | Existence | Existence PS | DataType in database | Datatype rule | Datatype rule PS | Pattern | Pattern PS | Depend | Depend PS |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **COMPOUND\_RECORD** | CIDX | The CIDX cited by the depositorA Primary Key defined header | **Mandatory** | 9 | VARCHAR2\(200 BYTE\) NOT NULL ENABLE | Any character upto a length of 200 | 9 | Content | Content | Content | Content |
+| COMPOUND\_RECORD | RIDX | The RIDX cited by the depositor A Self-Referencing field. MUST be owned by depositor \[ie: Not a PK Identifier, but a FK to an identifier owned by the depositor\] | Optional | 0 | VARCHAR2\(200 BYTE\) | Any character upto a length of 200 | 9 | Content | Content | Content | Content |
+| COMPOUND\_RECORD | COMPOUND\_KEY | The local synonym used for this CIDX in the RIDX quoted | Optional | 0 | VARCHAR2\(250 BYTE\) | Any character upto a length of 250 | 9 | Content | Content | Content | Content |
+| COMPOUND\_RECORD | COMPOUND\_NAME | The name used for this CIDX in the RIDX quoted | Optional | 0 | VARCHAR2\(4000 BYTE\) | Any character upto a length of 4000 | 9 | Content | Content | Content | Content |
+| COMPOUND\_RECORD | COMPOUND\_SOURCE | The source of this CIDX in the RIDX quoted | Optional | 0 | VARCHAR2\(400 BYTE\) | Any character upto a length of 400 | 9 | Content | Content | Content | Content |
+| **COMPOUND\_CTAB** | CIDX | The CIDX cited by the depositor \[but, note that an alternative header label can be set using the -C option\] | **Mandatory** | 9 | VARCHAR2\(200 BYTE\) NOT NULL ENABLE | Any character upto a length of 200 | 9 | Content | Content | Content | Content |
+| COMPOUND\_CTAB | CTAB | The CTAB \(Connection table\) assigned to this CIDX | Optional | 0 | CLOB | A very large text field | 9 | Content | Content | Content | Content |
 
 | Summary of Pattern and Dependency Rules... |
 | :--- |
