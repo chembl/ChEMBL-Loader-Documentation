@@ -49,7 +49,7 @@ This loader behaviour is designed to minimize the risk of inadvertently deleting
 
 #### Tertiary Files
 
-Files which in some way define relationships between primary identifiers are termed tertiary files \(ACTIVITY, ACTIVITY\_PARAMETERS, ACTIVITY\_SUPP, etc\) A requirement for such files is that referential integrity must be maintained wrt the three \*IDXs that are required to define an activity record: AIDX, CIDX and RIDX. Updating of tertiary files can only be acheived byt a wipe and replace process. The process requires that all ACTIVITY data assigned to a particular JOB\_ID is wiped \(but not primary and secondary file data for the same JOB\_ID\) and the updated ACTIVITY data then re-loaded. The complexities of loading ACTIVITY and more complex data is dealt with [here](../complex-results.md).
+Files which in some way define relationships between primary identifiers are termed tertiary files \(ACTIVITY, ACTIVITY\_PARAMETERS, ACTIVITY\_SUPP, etc\) A requirement for such files is that referential integrity must be maintained wrt the three \*IDXs that are required to define an activity record: AIDX, CIDX and RIDX. Updating of tertiary files can only be acheived byt a wipe and replace process. The process requires that all ACTIVITY data assigned to a particular JOB\_ID is wiped \(but not primary and secondary file data for the same JOB\_ID\) and the updated ACTIVITY data then re-loaded. The complexities of loading ACTIVITY and more complex data is dealt with [here](../design-specification-and-internal-docs/complex-results.md).
 
 ## 
 

@@ -51,7 +51,7 @@ However, the RIDX is not mandatory, and so for most simple depositions it can ig
 
 Note that all src\_ids, when first created by the ChEMBL administrator, are assigned a 'default RIDX'. If no RIDX is defined in a job, then this 'default RIDX' is used instead.
 
-#### [Complex Result Sets](complex-results.md)
+#### [Complex Result Sets](design-specification-and-internal-docs/complex-results.md)
 
 ChEMBL has the ability to store more complex result sets than has hitherto been possible. Supporting Raw data, Multiple Result Types, Properties, etc can all be captured.
 

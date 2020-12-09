@@ -30,11 +30,11 @@ Load files must be ascii or UTF-8 encoded, and named and formatted as described 
 
 Currently, ChEMBL only accepts data formatted into tsv \(tab-separated variable\) files, but alternative formats will be available in the future..
 
-## [Complex Result Sets](complex-results.md)
+## [Complex Result Sets](design-specification-and-internal-docs/complex-results.md)
 
 Activity data that is more complicated than a simple 'cpdX has affinity Y nM against target Z' can now be accommodated in ChEMBL.
 
-## [Compound Normalization](untitled-12.md)
+## [Compound Normalization](design-specification-and-internal-docs/untitled-12.md)
 
 A Compound Normalization procedure is run separately from loading processes, and now includes an assassment of the quality of the drawn structures.
 
