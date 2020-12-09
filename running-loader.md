@@ -112,11 +112,13 @@ To alter this normal behaviour of the loader, the '-Skip' option may be used. Th
 
 ## LoadTypes \(-L\)
 
-When loading, the ChEMBL administrator may have a particular understanding or expectation of the result of loading a particular job, based on their knowledge of the nature and load history of the source. Thus, for example, some sources might be considered to usually only provide data where the load would not be expected to update any entities previously deposited in the DB \(but to simply incrementally add more entities\), and for the referential integrity to be fully defined within the job itself \(ie: with no reference to previously deposited entities\). An example of such a source would be molcon literature data, where each load is usually from a new collection of research papers that have not been loaded before, and where 'up dates' to previously deposited data are rare. Sources such as these are termed 'Cumulative Load with job-defined referential integrity', or LOADTYPE '2'.
+When loading, the ChEMBL administrator may have a particular understanding or expectation of the result of loading a particular job, based on their knowledge of the nature and load history of the source. Thus, for example, some sources might be considered to usually only provide data where the load would not be expected to update any entities previously deposited in the DB, and for the referential integrity to be fully defined within the job itself \(ie: with no reference to previously deposited entities\). 
+
+An example of such a source would be molconn literature data. Each load is usually from a new collection of research papers that have not been loaded before, and where updates to previously deposited data are rare. Sources such as these are termed 'Cumulative Load with job-defined referential integrity', or LOADTYPE '2'.
 
 When a a source is first created, a LOADTYPE may be defined in the SOURCES table. This may be null, or an integer defined as a PK of the SOURCE\_LOADTYPE table.
 
-At load time, the value of the LOADTYPE for the source is obtained from the SOURCE\_LOADTYPE table, and the weighting of warnings and Errors are adjusted accordingly, in order to highlight and emphasize deviations from the differently anticipated result of the load. If a 'null' exists for the source, then the default LOADTYPE \(currently set as 1 in globalVars.py\) is used instead. If the command line option '-L' is used \(which takes an integer\) then this overides any of the above.
+At load time, the value of the LOADTYPE for the source is obtained from the SOURCE\_LOADTYPE table, and the weighting of warnings and Errors are adjusted accordingly. If a 'null' exists for the source, then the default LOADTYPE \(currently set as 1 in globalVars.py\) is used instead. If the command line option '-L' is used \(which takes an integer\) then this overides any of the above.
 
 A LOADTYPE of '1' is considered the norm, but With LOADTYPE set to '2', the following changes are made...
 
