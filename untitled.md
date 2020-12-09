@@ -61,9 +61,9 @@ Some depositors wish to deposit bioactivity data obtained using either assays \(
 
 ## Testing your files.
 
-Visit the Gateway link above, choose the files you wish to test, and then hit 'upload and process'
+Visit the [Gateway](https://wwwdev.ebi.ac.uk/chembl/gateway/gateway/) website, choose the files you wish to test, and then hit 'upload and process'
 
-## Submitting the files for loading.
+## Submitting your files for loading.
 
-Once you are confident your files pass the formatting tests above, then create a tarball of your files, and email it to us. If you are a registered depositor then we will load the file, and send you back a load report. If you are not a registered depositor, then we will consider whether your data is appropriate for ChEMBL, and be in contact with you shortly.
+Once you are confident thatyour files pass the formatting tests above, then create a zip or tar archive of your files, and email it to us. If you are a registered depositor then we will load the file, and send you back a load report. If you are not a registered depositor, then we will consider whether your data is appropriate for ChEMBL, and be in contact with you shortly.
 
