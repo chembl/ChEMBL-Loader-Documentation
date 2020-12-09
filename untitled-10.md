@@ -75,8 +75,6 @@ The 'rules' referred to are summarized in table form at the end of this page.
 | COMPOUND\_RECORD | COMPOUND\_KEY | The local synonym used for this CIDX in the RIDX quoted | Optional | 0 | VARCHAR2\(250 BYTE\) | Any character upto a length of 250 | 9 | Content | Content | Content | Content |
 | COMPOUND\_RECORD | COMPOUND\_NAME | The name used for this CIDX in the RIDX quoted | Optional | 0 | VARCHAR2\(4000 BYTE\) | Any character upto a length of 4000 | 9 | Content | Content | Content | Content |
 | COMPOUND\_RECORD | COMPOUND\_SOURCE | The source of this CIDX in the RIDX quoted | Optional | 0 | VARCHAR2\(400 BYTE\) | Any character upto a length of 400 | 9 | Content | Content | Content | Content |
-| **COMPOUND\_CTAB** | CIDX | The CIDX cited by the depositor \[but, note that an alternative header label can be set using the -C option\] | **Mandatory** | 9 | VARCHAR2\(200 BYTE\) NOT NULL ENABLE | Any character upto a length of 200 | 9 | Content | Content | Content | Content |
-| COMPOUND\_CTAB | CTAB | The CTAB \(Connection table\) assigned to this CIDX | Optional | 0 | CLOB | A very large text field | 9 | Content | Content | Content | Content |
 
 ### REFERENCE 
 
