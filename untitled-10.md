@@ -15,12 +15,14 @@
 | ACTIVITY\_PROPERTIES | Optional | not defined | - | - | - |
 | ACTIVITY\_SUPP | Optional | not defined | - | - | - |
 | ACTIVITY\_SUPP\_MAP | Optional | not defined | - | - | - |
-| INFO | Irrelevant | not defined | - | - | - |
+| _INFO_ | _Irrelevant_ | _not defined_ | - | - | - |
 
- File: All filenames must also have a 3 letter extension \(eg: '.txt', '.tsv', '.sdf', etc\).  
- Existence: Irrelevant - May exist, but will be ingored if it does. Optional - May exist, and will be used if it does.  
-  
+ **File:** All filenames must also have a 3 letter extension \(eg: '.txt', '.tsv', '.sdf', etc\).  
+ **Existence:** 
 
+* _Irrelevant_ - May exist, but will be ingored if it does. 
+* Optional - May exist, and will be used if it does.
+* **Mandatory** - Must exist, and the dataset will not load if it does not.
 
 ##  Headers and Fields \(or 'Cells'\) associated with the above files...
 
