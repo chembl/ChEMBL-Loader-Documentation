@@ -17,7 +17,19 @@ Identifiers for key entities such as Compounds and Assays are defined within the
 * Give a meaningful unique identifier to for each compound and assay in their datasets.
 * Update sets later with additional data.
 
-Currently, the CIDX and AIDX fields are the only Depositor-Defined Identifiers. Depositor-Defined Identifiers must consist of a string of between 1 and 200 visible characters \[UTF-8 encoding required\].
+Depositor-defined Identifiers are used for Compounds/Substances, Assays and References, and are called CIDX, AIDX and RIDX, respectively.
+
+* Depositors may use any UniCode characters to define these identifiers.
+* Identifiers must consist of a string of between 1 and 200 visible characters.
+* DDIs are 'owned' by the depositor. In other words, a given identifier is defined by the depositor when a deposition is first made with the identifier.
+* Subsequent use of the same identifier in future ChEMBL loads will result in the updating of the data that was originally associated with this identfier when it was first loaded.
+
+## JOBS
+
+The loading of a collection of files for a single deposition is called a job and given a 'job\_id' if loading is successful.
+
+* The job\_id associated with a Depositor defined ID in ChEMBL is always the job\_id when the Depositor defined ID _was first defined_. 
+* Updating the definition of a Depositor defined ID by including the Depositor defined ID in a subsequent deposition job will _not change_ the job\_id associated with this Depositor defined ID.
 
 **Updating exisitng ChEMBL data using DDIs**
 

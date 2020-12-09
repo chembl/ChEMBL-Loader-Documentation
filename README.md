@@ -12,21 +12,6 @@ A depositor is equivalent to a src\_id. In practice, multiple individuals within
 
 Every src\_id is also assigned a 'default RIDX' which is used as the RIDX if the load files do not specify an alternative RIDX.
 
-## Depositor-Defined Identifiers: CIDX, AIDX and RIDX
-
-Depositor-defined Identifiers are used for Compounds/Substances, Assays and References, and are called CIDX, AIDX and RIDX, respectively.
-
-* Depositors may use any UniCode characters to define these identifiers.
-* The most important aspect of these identifiers that depositors must understand is that they are 'owned' by the depositor. In other words, a given identifier is defined by the depositor when a deposition is first made with the identifier.
-* Subsequent use of the same identifier in future ChEMBL loads will result in the updating of the data that was originally associated with this identfier when it was first loaded.
-
-## JOBS
-
-The loading of a collection of files for a single deposition is called a job and given a 'job\_id' if loading is successful.
-
-* The job\_id associated with a Depositor defined ID in ChEMBL is always the job\_id when the Depositor defined ID _was first defined_. 
-* Updating the definition of a Depositor defined ID by including the Depositor defined ID in a subsequent deposition job will _not change_ the job\_id associated with this Depositor defined ID.
-
 ## Load files
 
 Load files must be ascii or UTF-8 encoded, and named and formatted as described in the 'Requirements' link above. Within these files, column headers such as 'CIDX', 'AIDX' and 'RIDX' are used to indicate the column position of the Depositor defined IDs. Depositor defined IDs may be consist of a string of upto 200 UniCode characters
