@@ -68,13 +68,20 @@ The 'rules' referred to are summarized in table form at the end of this page.
 
 ### COMPOUND
 
-| File | Header | Description | Existence | Existence PS | DataType in database | Datatype rule | Datatype rule PS | Pattern | Pattern PS | Depend | Depend PS |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **COMPOUND\_RECORD** | CIDX | The CIDX cited by the depositorA Primary Key defined header | **Mandatory** | 9 | VARCHAR2\(200 BYTE\) NOT NULL ENABLE | Any character upto a length of 200 | 9 | Content | Content | Content | Content |
-| COMPOUND\_RECORD | RIDX | The RIDX cited by the depositor A Self-Referencing field. MUST be owned by depositor \[ie: Not a PK Identifier, but a FK to an identifier owned by the depositor\] | Optional | 0 | VARCHAR2\(200 BYTE\) | Any character upto a length of 200 | 9 | Content | Content | Content | Content |
-| COMPOUND\_RECORD | COMPOUND\_KEY | The local synonym used for this CIDX in the RIDX quoted | Optional | 0 | VARCHAR2\(250 BYTE\) | Any character upto a length of 250 | 9 | Content | Content | Content | Content |
-| COMPOUND\_RECORD | COMPOUND\_NAME | The name used for this CIDX in the RIDX quoted | Optional | 0 | VARCHAR2\(4000 BYTE\) | Any character upto a length of 4000 | 9 | Content | Content | Content | Content |
-| COMPOUND\_RECORD | COMPOUND\_SOURCE | The source of this CIDX in the RIDX quoted | Optional | 0 | VARCHAR2\(400 BYTE\) | Any character upto a length of 400 | 9 | Content | Content | Content | Content |
+| Header | Description | Existence | Existence PS | DataType in database | Datatype rule | Datatype rule PS | Pattern | Pattern PS | Depend | Depend PS |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **CIDX** | The CIDX cited by the depositorA Primary Key defined header | **Mandatory** | 9 | VARCHAR2\(200 BYTE\) NOT NULL ENABLE | Any character upto a length of 200 | 9 | Content | Content | Content | Content |
+| RIDX | The RIDX cited by the depositor A Self-Referencing field. MUST be owned by depositor \[ie: Not a PK Identifier, but a FK to an identifier owned by the depositor\] | Optional | 0 | VARCHAR2\(200 BYTE\) | Any character upto a length of 200 | 9 | Content | Content | Content | Content |
+| COMPOUND\_KEY | The local synonym used for this CIDX in the RIDX quoted | Optional | 0 | VARCHAR2\(250 BYTE\) | Any character upto a length of 250 | 9 | Content | Content | Content | Content |
+| COMPOUND\_NAME | The name used for this CIDX in the RIDX quoted | Optional | 0 | VARCHAR2\(4000 BYTE\) | Any character upto a length of 4000 | 9 | Content | Content | Content | Content |
+| COMPOUND\_SOURCE | The source of this CIDX in the RIDX quoted | Optional | 0 | VARCHAR2\(400 BYTE\) | Any character upto a length of 400 | 9 | Content | Content | Content | Content |
+
+### COMPOUND\_CTAB
+
+| Header | Description | Existence | Existence PS | DataType in database | Datatype rule | Datatype rule PS | Pattern | Pattern PS | Depend | Depend PS |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **CIDX** | The CIDX cited by the depositor \[but, note that an alternative header label can be set using the -C option\] | **Mandatory** | 9 | VARCHAR2\(200 BYTE\) NOT NULL ENABLE | Any character upto a length of 200 | 9 | Content | Content | Content | Content |
+| CTAB | The CTAB \(Connection table\) assigned to this CIDX | Optional | 0 | CLOB | A very large text field | 9 | Content | Content | Content | Content |
 
 ### REFERENCE 
 
