@@ -14,9 +14,9 @@ Every src\_id is also assigned a 'default RIDX' which is used as the RIDX if the
 
 ## Load files
 
-Load files must be ascii or UTF-8 encoded, and named and formatted as described in the 'Requirements' link above. Within these files, column headers such as 'CIDX', 'AIDX' and 'RIDX' are used to indicate the column position of the Depositor defined IDs. Depositor defined IDs may be consist of a string of upto 200 UniCode characters
+Load files must be ascii or UTF-8 encoded, and named and formatted as described in the 'Requirements' section. Within these files, column headers such as 'CIDX', 'AIDX' and 'RIDX' are used to indicate the column position of the Depositor defined IDs. Depositor defined IDs may consist of a string of up to 200 UniCode characters
 
-* For each of these three key entities a single \('primary'\) file is used to define \(or redefine\) them, as shown in the 'Requirements' link above.
+* For each of these three key entities a single \('primary'\) file is used to define \(or redefine\) them, as shown in the 'Requirements' section.
 * Other \(secondary\) files may define or redefine properties of existing Depositor defined IDs \(ie: which either exist in the corresponding primary file in the same deposition job, or already exist in the database\).
 * Activity files must also cite only existing Depositor defined IDs.
 
@@ -32,7 +32,7 @@ Activity data that is more complicated than a simple 'cpdX has affinity Y nM aga
 
 ### [Compound Normalization](design-specification-and-internal-docs/untitled-12.md)
 
-A Compound Normalization procedure is run separately from loading processes, and now includes an assassment of the quality of the drawn structures.
+A Compound Normalization procedure is run separately from loading processes, and now includes an assessment of the quality of the drawn structures.
 
 ### [Embargoing](design-specification-and-internal-docs/embargo-tagging.md)
 

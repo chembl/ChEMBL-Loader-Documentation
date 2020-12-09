@@ -26,7 +26,7 @@ The 'rules' referred to are summarized in table form at the end of this page.
  **File:** All filenames must also have a 3 letter extension \(eg: '.txt', '.tsv', '.sdf', etc\).  
  **Existence:** 
 
-* _Irrelevant_ - May exist, but will be ingored if it does. 
+* _Irrelevant_ - May exist, but will be ignored if it does. 
 * Optional - May exist, and will be used if it does.
 * **Mandatory** - Must exist, and the dataset will not load if it does not.
 
@@ -38,7 +38,7 @@ The 'rules' referred to are summarized in table form at the end of this page.
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | **AIDX** | The AIDX cited by the depositor. A Primary Key defined header | **Mandatory** | 9 | VARCHAR2\(200 BYTE\) NOT NULL ENABLE | Any character upto a length of 200 | 9 | Content | Content | Content | Content |
 | RIDX | The RIDX cited by the depositor. A Self-Referencing field. MUST be owned by depositor \[ie: Not a PK Identifier, but a FK to an identifier owned by the depositor\] | Optional | 0 | VARCHAR2\(200 BYTE\) | Any character upto a length of 200 | 9 | Content | Content | Content | Content |
-| **ASSAY\_DESCRIPTION** | A Description of the assay | **Mandatory** | 9 | VARCHAR2\(4000 BYTE\) | Any character upto a length of 4000 | 9 | Content | Content | Content | Content |
+| **ASSAY\_DESCRIPTION** | A description of the assay | **Mandatory** | 9 | VARCHAR2\(4000 BYTE\) | Any character upto a length of 4000 | 9 | Content | Content | Content | Content |
 | **ASSAY\_TYPE** | The type of the assay. B,F or A | **Mandatory** | 9 | VARCHAR2\(1 BYTE\) | Any character upto a length of 1 | 9 | gp019 Accepted Assay types \[case Ins\] | 5 | gd2 A shrot desc of gd2 targ fld:ASSAY\_TAX\_ID | 0 |
 | ASSAY\_TEST\_TYPE | The type of assay test. in vitro, in vivo or ex vivo | Optional | 0 | VARCHAR2\(20 BYTE\) | Any character upto a length of 20 | 9 | gp018 Accepted Assay test types \[case Ins\] | 0 | Content | Content |
 | ASSAY\_ORGANISM | The assay organism | Optional | 0 | VARCHAR2\(250 BYTE\) | Any character upto a length of 250 | 9 | Content | Content | Content | Content |
@@ -58,7 +58,7 @@ The 'rules' referred to are summarized in table form at the end of this page.
 
 | Header | Description | Existence | Existence PS | DataType in database | Datatype rule | Datatype rule PS | Pattern | Pattern PS | Depend | Depend PS |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **AIDX** | The AIDX cited by the depositor A Self-Referencing field. MUST be owned by depositor \[ie: Not a PK Identifier, but a FK to an identifier owned by the depositor\] | **Mandatory** | 9 | VARCHAR2\(200 BYTE\) NOT NULL ENABLE | Any character upto a length of 200 | 9 | Content | Content | Content | Content |
+| **AIDX** | The AIDX cited by the depositor. A Self-Referencing field. MUST be owned by depositor \[ie: Not a PK Identifier, but a FK to an identifier owned by the depositor\] | **Mandatory** | 9 | VARCHAR2\(200 BYTE\) NOT NULL ENABLE | Any character upto a length of 200 | 9 | Content | Content | Content | Content |
 | **TYPE** | The type of parameter. Must be unique within an AIDX | **Mandatory** | 9 | VARCHAR2\(250 BYTE\) | Any character upto a length of 250 | 9 | Content | Content | Content | Content |
 | RELATION | Symbol indicating relationship between the Type and the Value \(permitted: '&gt;','&lt;','=','~','&lt;=','&gt;=','&lt;&lt;','&gt;&gt;'\) | Optional | 0 | VARCHAR2\(50 BYTE\) | Any character upto a length of 50 | 9 | gp022 relation symbol \(=,&gt;,etc\). | 2 | Content | Content |
 | VALUE | The numerical value of the parameter. | Optional | 0 | NUMBER | Any number \(incl decimals, negatives and sci Notn\) | 9 | gp005 Any Number. Decimal, Sci Notn, +/- | 9 | Content | Content |
@@ -70,8 +70,8 @@ The 'rules' referred to are summarized in table form at the end of this page.
 
 | Header | Description | Existence | Existence PS | DataType in database | Datatype rule | Datatype rule PS | Pattern | Pattern PS | Depend | Depend PS |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **CIDX** | The CIDX cited by the depositorA Primary Key defined header | **Mandatory** | 9 | VARCHAR2\(200 BYTE\) NOT NULL ENABLE | Any character upto a length of 200 | 9 | Content | Content | Content | Content |
-| RIDX | The RIDX cited by the depositor A Self-Referencing field. MUST be owned by depositor \[ie: Not a PK Identifier, but a FK to an identifier owned by the depositor\] | Optional | 0 | VARCHAR2\(200 BYTE\) | Any character upto a length of 200 | 9 | Content | Content | Content | Content |
+| **CIDX** | The CIDX cited by the depositor. A Primary Key defined header | **Mandatory** | 9 | VARCHAR2\(200 BYTE\) NOT NULL ENABLE | Any character upto a length of 200 | 9 | Content | Content | Content | Content |
+| RIDX | The RIDX cited by the depositor. A Self-Referencing field. MUST be owned by depositor \[ie: Not a PK Identifier, but a FK to an identifier owned by the depositor\] | Optional | 0 | VARCHAR2\(200 BYTE\) | Any character upto a length of 200 | 9 | Content | Content | Content | Content |
 | COMPOUND\_KEY | The local synonym used for this CIDX in the RIDX quoted | Optional | 0 | VARCHAR2\(250 BYTE\) | Any character upto a length of 250 | 9 | Content | Content | Content | Content |
 | COMPOUND\_NAME | The name used for this CIDX in the RIDX quoted | Optional | 0 | VARCHAR2\(4000 BYTE\) | Any character upto a length of 4000 | 9 | Content | Content | Content | Content |
 | COMPOUND\_SOURCE | The source of this CIDX in the RIDX quoted | Optional | 0 | VARCHAR2\(400 BYTE\) | Any character upto a length of 400 | 9 | Content | Content | Content | Content |
@@ -87,7 +87,7 @@ The 'rules' referred to are summarized in table form at the end of this page.
 
 | Header | Description | Existence | Existence PS | DataType in database | Datatype rule | Datatype rule PS | Pattern | Pattern PS | Depend | Depend PS |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **RIDX** | The RIDX cited by the depositorA Primary Key defined header | **Mandatory** | 9 | VARCHAR2\(200 BYTE\) NOT NULL ENABLE | Any character upto a length of 200 | 9 | Content | Content | Content | Content |
+| **RIDX** | The RIDX cited by the depositor. A Primary Key defined header | **Mandatory** | 9 | VARCHAR2\(200 BYTE\) NOT NULL ENABLE | Any character upto a length of 200 | 9 | Content | Content | Content | Content |
 | PUBMED\_ID | PubMed ID | Optional | 0 | NUMBER\(11,0\) | Any integer upto a length of 11 | 9 | gp006 Positive integer \(regex='^\[1-9\]\d\*$'\) | 1 | Content | Content |
 | JOURNAL\_NAME | Journal name | Optional | 0 | VARCHAR2\(50 BYTE\) | Any character upto a length of 50 | 9 | Content | Content | Content | Content |
 | YEAR | Year of publication | Optional | 0 | NUMBER\(4,0\) | Any integer upto a length of 4 | 9 | gp031 1900 &gt; year &gt; 2050 | 9 | Content | Content |

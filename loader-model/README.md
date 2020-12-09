@@ -4,7 +4,7 @@ Here we describe the model used by the loader.
 
 ## Jobs.
 
-A ‘Job’ is defined as the collection of depostion files loaded together in a single run of the loader. A successful deposition results in the assignment of a ‘job\_id’ to the entire operation and the data associated with it \(see Embargo, Tagging and Freezing section later for more on job\_ids\). A ‘deposition’ represents the atomic transaction loading event: a ‘deposition’ either completely succeeds to load, or it completely fails.
+A ‘Job’ is defined as the collection of deposition files loaded together in a single run of the loader. A successful deposition results in the assignment of a ‘job\_id’ to the entire operation and the data associated with it \(see Embargo, Tagging and Freezing section later for more on job\_ids\). A ‘deposition’ represents the atomic transaction loading event: a ‘deposition’ either completely succeeds to load, or it completely fails.
 
 ## Depositor-Defined IDs
 
@@ -16,7 +16,7 @@ The use of identifiers for key entities, created and maintained by the source to
 | CIDX | Depositor-defined Compound ID | COMPOUND\_RECORD |
 | RIDX | Depositor-defined Reference ID | REFERENCE |
 
-Depositors may use upto 200 characters to define \*IDX’s. Depositors are free to use whatever UniCode characters they wish to use \(but non-visible characters will be stripped from both ends\). All deposited files must be ascii or UTF-8 encoded.
+Depositors may use up to 200 characters to define \*IDX’s. Depositors are free to use whatever UniCode characters they wish to use \(but non-visible characters will be stripped from both ends\). All deposited files must be ascii or UTF-8 encoded.
 
 ### RIDX
 
@@ -44,9 +44,9 @@ The DOCS table requires that a unique constraint of a ‘SRC\_ID / RIDX’ combi
 ### CIDX
 
 * Depositor-defined Compound IDs \(CIDXs\) are defined in COMPOUND\_RECORD deposition files. 
-* The CIDX string should be menaingful to the depositor, for example the identifier, name or abbreviations used in the publication. 
+* The CIDX string should be meaningful to the depositor, for example the identifier, name or abbreviations used in the publication. 
 * Currently this file has only one mandatory field: CIDx.  A depositor may simply deposit a series of CIDx values and nothing else.
-* Compounds with structures must have their structures defined separately in the secondary depostion file: COMPOUND\_CTAB. 
+* Compounds with structures must have their structures defined separately in the secondary deposition file: COMPOUND\_CTAB. 
 * All CIDx identifiers in secondary files \(incl the sdf file\) must either exist within the COMPOUND.txt in the same deposition set, or have been deposited in a previous deposition set \(in a COMPOUND\_RECORD file\) by the same depositor.
 
 ### AIDX
