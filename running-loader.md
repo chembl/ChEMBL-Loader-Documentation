@@ -101,15 +101,14 @@ The verbosity of the output is set with the '-v' option \(an integer\). The load
 
 ## Skip undefined CIDXs \(-Skip\)
 
-SD files \(like the COMPOUND\_CTAB deposition file\), in contrast to tsv files \(like all other deposition files\), can sometimes be awkward to edit and parse for some users. For this reason, an additional '-Skip' option has been added to the loader, which enables undefined CIDXs to be Skipped \(ie: ignored\) during loading.
+SD files \(like the COMPOUND\_CTAB deposition file\) can sometimes be awkward to edit and parse for some users. For this reason, an additional '-Skip' option has been added to the loader, which enables undefined CIDXs to be Skipped \(ie: ignored\) during loading.
 
 Under normal operation, the loader will issue a fatal error \(penalty score = 9\) if a CIDX in the COMPOUND\_CTAB does not exist in either the accompanying COMPOUND\_RECORD file or in the database. This ensures data integrity, and signals to depositors that a CIDX that they believe they already 'own', is, in fact undefined.
 
-To alter this normal behaviour of the loader, the '-Skip' option may be used. This option accepts either a '1' or a '2'. These two possibilities have slightly different meaningings, which administrators should be aware of...
+To alter this normal behaviour of the loader, the '-Skip' option may be used. This option accepts either a '1' or a '2':
 
-1 = Skip all CIDXs in COMPOUND\_CTAB deposition file that are ABSENT from the accompanying CR \(COMPOUND\_RECORD\) file, regardless of whether they are in the DB or not.
-
-2 = Skip all CIDXs in COMPOUND\_CTAB deposition file that are ABSENT from the accompanying CR \(COMPOUND\_RECORD\) file AND ABSENT from the database.
+1. Skip all CIDXs in COMPOUND\_CTAB deposition file that are ABSENT from the accompanying CR \(COMPOUND\_RECORD\) file, regardless of whether they are in the DB or not.
+2. Skip all CIDXs in COMPOUND\_CTAB deposition file that are ABSENT from the accompanying CR \(COMPOUND\_RECORD\) file AND ABSENT from the database.
 
 ## LoadTypes \(-L\)
 
