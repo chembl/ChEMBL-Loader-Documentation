@@ -1,6 +1,12 @@
 # Requirements for 'BioActivity' Loading
 
- This page describes all aspects of the requirements for loading BioActivity data: including the permitted file names and column headers, and the permitted content of the cells \(or 'fields'\) within these files. The 'rules' referred to are summarized in table form at the end of this page. Rules are applied when validating the files, and each rule is associated with a single ‘Penalty Score’ \(PS\) value, which can range from 0 to 9 inclusive. The higher the score, the more serious the problem. See 'Help' for more information on Penalty Scores.
+This page describes all aspects of the requirements for loading BioActivity data, including the permitted file names and column headers, and the permitted content of the cells \(or 'fields'\) within these files. 
+
+The 'rules' referred to are summarized in table form at the end of this page. 
+
+* Rules are applied when validating the file.
+* Each rule is associated with a single ‘Penalty Score’ \(PS\) value, which can range from 0 to 9 inclusive.
+* The higher the score, the more serious the problem. Scores of 9 cause an automatic load failure.
 
 ##  Files associated with loading BioActivity data...
 
