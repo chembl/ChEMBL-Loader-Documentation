@@ -28,7 +28,7 @@ The highest Penalty Scores are termed 'Critical Errors'.
 
 ### Alerts
 
-* Penalty scores greater than 0, upto and including the 'Threshold for Alerts becoming Warnings' are termed 'Alerts'.
+* Penalty scores greater than 0, up to and including the 'Threshold for Alerts becoming Warnings' are termed 'Alerts'.
 * These have no effect on loading but are considered to be worthy of being logged. 
 * The 'default Threshold for Alerts becoming Warnings is 2
 * This value may be adjusted using the -H command line option from \(and including\) 1 up to \(but NOT including\) the 'Threshold for Critical Errors' \(see above\).
@@ -36,8 +36,8 @@ The highest Penalty Scores are termed 'Critical Errors'.
 ### Warnings
 
 * Penalty scores greater than the 'Threshold for Alerts becoming Warnings' but less than the 'Threshold for Critical Errors' are termed 'Warnings'. 
-* If more than a certain percentage \(Known as the 'Cumulative Warnings Threshold'\) of records in a file contain Warnings, then the file is marked as invalid. 
-* For ules applied line by line, The Cumulative Warnings Threshold default value is 20. This value may be adjusted using the -W command line option to anywhere between 0 and 100. 
+* There is a Cumulative Warnings Threshold \(default = 20\). If more than this percentage of records in a file contain Warnings, then the file is marked as invalid. 
+* For rules applied line by line, The Cumulative Warnings Threshold default value is 20. This value may be adjusted using the -W command line option to anywhere between 0 and 100. 
 * For rules applied to files as a whole, a Warning behaves as an Alert \(ie: is not included in the cumulative warning calculation for a file\). 
 * Note that a Penalty Score of 0 represents a 'Rule OFF', as it has no effect at all on loading \(like an Alert\), and is not even logged for the users attention. Thus, editing a Penalty Score for a Rule to 0 is an effective way of 'turning off' the rule without having to alter the code implementing the rule.
 * If the Threshold for Alerts becoming Warnings is 1 less than the Threshold for Critical Errors, NONE of the Penalty Scores are treated as Warnings.
@@ -57,22 +57,32 @@ The highest Penalty Scores are termed 'Critical Errors'.
 * Regardless of whether a score &gt;= 6 is classified as an Alert, Warning or Error, a score of &gt;=6 against a deposited structure in the COMPOUND\_CTAB file indicates that this particular CTAB should not be used during the compound Normalization procedures.
 * Instead, the 'structure' should be assigned an 'empty structure' molregno.
 
-**Error log level, and loader script termination**
+**Error log level**
 
-During the load process \(which may be lengthy\), any Penalty Scores of '9' are sent to STDERR to alert the user that 'Fatal Errors' have already been detected. The '-U' command line option may be set to any number between 1 and 8 to give similar ongoing STDERR output for any Penalty Scores equal to or greater than the -U value.
+* During the load process \(which may be lengthy\), any Penalty Scores of '9' are sent to STDERR to alert the user that 'Fatal Errors' have already been detected. 
+* The '-U' command line option may be set to any number between 1 and 8 to give similar ongoing STDERR output for any Penalty Scores equal to or greater than the -U value.
 
-Towards the end of the load process, when all deposited data has been processed and Penalty Scores are shown to the user, the user is told whether the numbers of errors etc has exceeded the thresholds for an acceptable data set to load. If ANY '9's were detected then the job will automatcially terminate. However, if no '9's were detected, but the load still did not meet quality criteria, then the user will be asked if they wish to attempt to load anyway. The default answer for this user question is 'no' \(so if '-a' is used, such data will not proceed to loading\). If the user answers 'yes', then the loader will attempt to load the data, and will reset '-H' to 8 and '-T' to 9 \(and record these values in the DEPOSIT\_JOB table against the current JOB\_ID\).
+**Loader Script termination and quality checking**
 
-| PENALTY SCORE | CLASS OF PENALTY SCORE | SHOW IN LOAD REPORT? | LOG TO DB ON SUCCESSFUL LOAD? | COMMENTS |
-| :--- | :--- | :--- | :--- | :--- |
-| 0 | Rule OFF | No | No | Rule 'ignorred', or 'switched off' |
-| 1 ...to... The 'Threshold for Alerts becoming Warnings' \[ default = '2', alter with -H \] | Alerts | Yes | Yes | No effect on loading. |
-| ... to ... | Warnings | Yes | Yes | The 'Cumulative Warnings Threshold' \[ default = '20'\] The % records in a file with 1 or more warnings, above which a 'Critical Errors' is triggered. |
-| The'Threshold for Critical Errors' \[ default = '7', alter with -T \] ... to ... 9 \[ ... a 'fatal error' \] | Critical Errors | Yes | - | Loading aborted if 1 or more such scores incurred. |
+* Towards the end of the load process, Penalty Scores are shown to the user. The user is told whether the numbers of errors etc have exceeded the thresholds for an acceptable data set to load. 
+* If ANY '9's were detected then the job will automatcially terminate. 
+* However, if no '9's were detected, but the load still did not meet quality criteria, then the user will be asked if they wish to attempt to load anyway. 
+* The default answer for this user question is 'no' \(so if '-a' is used, such data will not proceed to loading\). 
+* If the user answers 'yes', then the loader will attempt to load the data, and will reset '-H' to 8 and '-T' to 9 \(and record these values in the DEPOSIT\_JOB table against the current JOB\_ID\).
+
+**Summary table of Warnings, Alerts and Errors**
+
+| PENALTY SCORE lower bound | PENALTY SCORE upper bound | CLASS OF PENALTY SCORE | SHOW IN LOAD REPORT? | LOG TO DB ON SUCCESSFUL LOAD? | COMMENTS |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 0 | 0 | Rule OFF | No | No | Rule ignored, or switched off. |
+| 1 | 2 \(default\) | Alerts | Yes | Yes | No effect on loading. Upper bound is Threshold for Alerts Becoming Warnings. |
+| 3 | 6 \(default\) | Warnings | Yes | Yes | If the Cumulative Warnings Threshold % is exceeded, a Critical Error is thrown. |
+| 7 \(default\) | 9 | Critical Errors | Yes | - | Loading aborted if 1 or more such scores incurred. |
 
 ## Loading ‘Modes’ \(-m option\)
 
-The loading utility \(-u 1\) is executable in different ‘modes’ \(set with –m option, \[1 unless specified\]\), as shown below. Four modes are available \(1-4\). Selecting a particular mode will run all modes up to the selected number \(ie: selecting ‘-m 3’, runs 1, then 2, then 3, then stops\).
+* The loading utility \(-u 1\) is executable in different modes, which can be set with the –m option \(Default is -m 1\).
+*  Four modes are available \(1-4\). Selecting a particular mode will run all modes up to the selected number \(ie: selecting ‘-m 3’, runs 1, then 2, then 3, then stops\).
 
 | Mode | Description |
 | :--- | :--- |
@@ -83,7 +93,7 @@ The loading utility \(-u 1\) is executable in different ‘modes’ \(set with �
 
 Note that all modes require a DB connection except mode 1. If mode 1 is run without a DB connection then data integrity checks can only be run on deposited sets \(so penalty scores are set lower if integrity rules are broken, as the missing data may exist within the DB\).
 
-## verbosity \(-v\) and De-bugging etc.
+## Verbosity \(-v\) and debugging etc.
 
 All output from the loader is managed by the function 'verb', the second argument of which is called the 'level' \(an integer\). A verb call with a level of '0' always gives output. These calls are reserved for information such as 'loader started' etc. Levels from 1 - 9 are reserved for similar such programme flow information of lesser importance \(the higher the level, the less important the info is generally considered\).
 
