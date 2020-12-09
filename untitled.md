@@ -12,11 +12,20 @@ All deposited data in ChEMBL must be associated with a source that has been regi
 
 ## Depositor-Defined Identifiers
 
-Identifiers for key entities such as Compounds and Assays are defined within the deposition job files by using 'Depositor-Defined Identifiers', called CIDX and AIDX respectvely. Depositor-Defined Identifiers must consist of a string of between 1 and 200 visible characters \[UTF-8 encoding required\].
+Identifiers for key entities such as Compounds and Assays are defined within the deposition job files by using 'Depositor-Defined Identifiers'. These identifiers are created and maintained by depositors themselves, and provide a way for depositors to:
 
-As the term implies, these identifiers are created and maintained by depositors themselves, and provide a straightforward mechanism for depositors to update or correct previously deposited data. In other words, if a depositor uses a CIDX of, say, 'XYZ\_123' to define a particular chemical structure, but after loading to ChEMBL they subsequently discover that their structure is incorrect, then they can 'edit' the deposited structure simply by re-depositing XYZ\_123 with the new correct structure. Clearly, a depositor can only edit data relating to their own identifiers: Thus, in the example above, if another depositor from a different src\_id owns a CIDX of 'XYZ\_123', then this will remain unaltered by the edits undertaken by the first depositor.
+* Give a meaningful unique identifier to for each compound and assay in their datasets.
+* Update sets later with additional data.
 
-The names of Depositor-Defined Identifiers are always four letters, with the last three as 'IDX'. The 'X' is intended to indicate that the Identifier is an eXternal identifier, not an identifier internal to ChEMBL.
+Currently, the CIDX and AIDX fields are the only Depositor-Defined Identifiers. Depositor-Defined Identifiers must consist of a string of between 1 and 200 visible characters \[UTF-8 encoding required\].
+
+**Updating ChEMBLdata using DDIs**
+
+For example, a depositor uses a CIDX of, say, 'XYZ\_123' to define a particular chemical structure, but after loading to ChEMBL they subsequently discover that their structure is incorrect.
+
+ They can 'edit' the deposited structure by re-depositing XYZ\_123 with the new correct structure. A depositor can only edit data relating to their own identifiers. Thus, in the example above, if another depositor from a different src\_id owns a CIDX of 'XYZ\_123', then this will remain unaltered by the edits undertaken by the first depositor.
+
+The field names of Depositor-Defined Identifiers are always four letters, with the last three as 'IDX'. The 'X' is intended to indicate that the Identifier is an eXternal identifier, not an identifier internal to ChEMBL.
 
 ## Creating Load files.
 
