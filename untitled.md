@@ -19,7 +19,7 @@ Identifiers for key entities such as Compounds and Assays are defined within the
 
 Currently, the CIDX and AIDX fields are the only Depositor-Defined Identifiers. Depositor-Defined Identifiers must consist of a string of between 1 and 200 visible characters \[UTF-8 encoding required\].
 
-**Updating ChEMBLdata using DDIs**
+**Updating exisitng ChEMBL data using DDIs**
 
 For example, a depositor uses a CIDX of, say, 'XYZ\_123' to define a particular chemical structure, but after loading to ChEMBL they subsequently discover that their structure is incorrect.
 
