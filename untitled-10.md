@@ -22,9 +22,9 @@
   
 
 
-###  Headers and Fields \(or 'Cells'\) associated with the above files...
+##  Headers and Fields \(or 'Cells'\) associated with the above files...
 
-#### ASSAY
+### ASSAY
 
 | Header | Description | Existence | Existence PS | DataType in database | Datatype rule | Datatype rule PS | Pattern | Pattern PS | Depend | Depend PS |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -58,7 +58,7 @@
 | TEXT\_VALUE | The text value of non-numerical values | Optional | 0 | VARCHAR2\(4000 BYTE\) | Any character upto a length of 4000 | 9 | Content | Content | Content | Content |
 | COMMENTS | A comment on the parameter. | Optional | 0 | VARCHAR2\(4000 BYTE\) | Any character upto a length of 4000 | 9 | Content | Content | Content | Content |
 
-#### COMPOUND
+### COMPOUND
 
 | File | Header | Description | Existence | Existence PS | DataType in database | Datatype rule | Datatype rule PS | Pattern | Pattern PS | Depend | Depend PS |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -70,7 +70,7 @@
 | **COMPOUND\_CTAB** | CIDX | The CIDX cited by the depositor \[but, note that an alternative header label can be set using the -C option\] | **Mandatory** | 9 | VARCHAR2\(200 BYTE\) NOT NULL ENABLE | Any character upto a length of 200 | 9 | Content | Content | Content | Content |
 | COMPOUND\_CTAB | CTAB | The CTAB \(Connection table\) assigned to this CIDX | Optional | 0 | CLOB | A very large text field | 9 | Content | Content | Content | Content |
 
-#### REFERENCE 
+### REFERENCE 
 
 | Header | Description | Existence | Existence PS | DataType in database | Datatype rule | Datatype rule PS | Pattern | Pattern PS | Depend | Depend PS |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -89,7 +89,7 @@
 | ABSTRACT | The abstract of the article | Optional | 0 | CLOB | A very large text field | 9 | Content | Content | Content | Content |
 | AUTHORS | A list of the authors of the publication | Optional | 0 | VARCHAR2\(4000 BYTE\) | Any character upto a length of 4000 | 9 | Content | Content | Content | Content |
 
-#### ACTIVITY 
+### ACTIVITY 
 
 | Header | Description | Existence | Existence PS | DataType in database | Datatype rule | Datatype rule PS | Pattern | Pattern PS | Depend | Depend PS |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -113,7 +113,18 @@
 | TEOID | TEst Occasion ID, grouping together related Activity records. Depositor defined. | Optional | 0 | NUMBER\(11,0\) | Any integer upto a length of 11 | 9 | Content | Content | Content | Content |
 | **TYPE** | The type of measurement | **Mandatory** | 9 | VARCHAR2\(250 BYTE\) | Any character upto a length of 250 | 9 | Content | Content | Content | Content |
 
-#### 
+### ACTIVITY\_PROPERITIES
+
+| Header | Description | Existence | Existence PS | DataType in database | Datatype rule | Datatype rule PS | Pattern | Pattern PS | Depend | Depend PS |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| ACT\_ID | FK to the ACTIVITY file. Depositor defined. | Mandatory | 9 | NUMBER\(11,0\) | Any integer upto a length of 11 | 9 | Content | Content | Content | Content |
+| TYPE | The type of property measurement. Must be unique within an ACT\_ID | Mandatory | 9 | VARCHAR2\(250 BYTE\) | Any character upto a length of 250 | 9 | Content | Content | Content | Content |
+| RELATION | Symbol indicating relationship between the Type and the Value \(permitted: '&gt;','&lt;','=','~','&lt;=','&gt;=','&lt;&lt;','&gt;&gt;'\) | Optional | 0 | VARCHAR2\(50 BYTE\) | Any character upto a length of 50 | 9 | gp022 relation symbol \(=,&gt;,etc\). | 2 | Content | Content |
+| VALUE | The numerical value of the property measurment | Optional | 0 | NUMBER | Any number \(incl decimals, negatives and sci Notn\) | 9 | gp005 Any Number. Decimal, Sci Notn, +/- | 9 | Content | Content |
+| UNITS | The units of the property measurement | Optional | 0 | VARCHAR2\(100 BYTE\) | Any character upto a length of 100 | 9 | Content | Content | Content | Content |
+| TEXT\_VALUE | The text value of non-numerical values | Optional | 0 | VARCHAR2\(1000 BYTE\) | Any character upto a length of 1000 | 9 | Content | Content | Content | Content |
+| COMMENTS | A comment on the property | Optional | 0 | VARCHAR2\(4000 BYTE\) | Any character upto a length of 4000 | 9 | Content | Content | Content | Content |
+| RESULT\_FLAG | A flag to indicate, if set to 1, that this type is a dependent variable/result \(e.g., slope\) rather than an independent variable/parameter \(0, the default\). | Optional | 0 | NUMBER\(1,0\) | Any integer upto a length of 1 | 9 | gp001 0 or 1 \(regex='^\(0\|1\)\*$'\) | 9 | Content | Content |
 
 | Summary of Pattern and Dependency Rules... |
 | :--- |
