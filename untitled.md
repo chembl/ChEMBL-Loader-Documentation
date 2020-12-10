@@ -10,6 +10,10 @@ Below we provide a basic introduction to how BioActivity data should be formatte
 
 All deposited data in ChEMBL must be associated with a source that has been registered in ChEMBL. Once such a source has been registered \(and a src\_id \[a number\] assigned\), then depositors representing this source may submit data to the ChEMBL team who will load the data. The very first step to depositing data in ChEMBL, therefore, is to contact the ChEMBL team who will discuss your data with you and decide whether a new src\_id should be created for you to deposit your data against.
 
+### Sources
+
+All that is is required for a Source is a name and a short description. 
+
 ## Depositor-Defined Identifiers
 
 Identifiers for key entities such as Compounds and Assays are defined within the deposition job files by using 'Depositor-Defined Identifiers' \(DDIs\). These identifiers are created and maintained by depositors themselves, and provide a way for depositors to:
@@ -24,7 +28,13 @@ Depositor-defined Identifiers are used for Compounds/Substances, Assays and Refe
 * DDIs are 'owned' by the depositor. In other words, a given identifier is defined by the depositor when a deposition is first made with the identifier.
 * Subsequent use of the same identifier in future ChEMBL loads will result in the updating of the data that was originally associated with this identifier when it was first loaded.
 
-## JOBS
+### Sources with multiple depositors
+
+* It is possible for a source to have multiple depositors, for example a large study that tests the same panel of drugs at several labs on several sites. 
+* The depositors can share a RIDXs and CIDXs, but the AIDX must be unique for each assay deposited.
+* To avoid duplication within a source, we recommend that each site, research group etc adds a prefix to the AIDX. The AIDX field is a 200-character field, so this can easily be a name. 
+
+## Jobs
 
 The loading of a collection of files for a single deposition is called a job and given a 'job\_id' if loading is successful.
 
