@@ -11,31 +11,60 @@ In the loader, the normal operation for loading data and normalizing cpds is to 
 
 A full description of the data model is explained elsewhere  Here, are some details of the model relevant to the Normalization procedure.
 
-A job, from a given depositor 'S', may include either one, or both, or neither, of the files: COMPOUND\_RECORD.txt and COMPOUND\_CTAB.sdf. Deposited data from these files is stored, unchanged in tables DEP\_COMPOUND\_RECORD and DEP\_COMPOUND\_CTAB, respectively.
+A job, from a given depositor 'S', may include either one, or both, or neither, of the files: 
+
+A Job may include compound data. If it does, these data are supplied in the files:
+
+* COMPOUND\_RECORD.sdf. This file is loaded to the DEP\_COMPOUND\_RECORD table.
+* COMPOUND\_CTAB.sdf. This file is loaded to the DEP\_COMPOUND\_CTAB table.
+
+### COMPOUND\_RECORD
 
 Records in COMPOUND\_RECORD.txt are keyed on a combination of CIDX and RIDX \(composite primary key\). Each record in this file either creates a new record in COMOUND\_RECORDS table \('CR'\), or, if the CIDX/RIDX combination for this depositor already exists in COMPOUND\_RECORDS, then updates the existing CR record.
+
+### COMPOUND\_CTAB
 
 Records in the COMPOUND\_CTAB.sdf file are keyed on CIDX. A job will fail if a COMPOUND\_CTAB.sdf contains CIDX's which are not in the accompanying COMPOUND\_RECORD.txt file \(if it exists\) or in the DB already. All deposited CTABs in the COMPOUND\_CTAB.sdf are run through the InChI generation software, and the InChI, if successfully created, is stored in the DEP\_COMPOUND\_CTAB file.
 
 Three new fields have been added to CR for use by the new loader: MOLREGNO\_FIXED, MOLREGNO\_COMMENTS and MOLREGNO\_SV. These are required for the normalization process.
 
+**MOLREGNO\_FIXED**
+
 A '1' in MOLREGNO\_FIXED indicates the MOLREGNO, MOLREGNO\_FIXED and MOLREGNO\_COMMENTS fields must NOT be changed by any automatic normalization process. A '1' in this field typically arises from a curator who has decided that the molregno for this record should be assigned manually, perhaps because they know that the structure referred to has actually been drawn incorrectly by the depositor. Records with a 'null' in MOLREGNO\_FIXED, may have the MOLREGNO and MOLREGNO\_COMMENTS fields updated automtically by the normalization process described below.
+
+**MOLREGNO\_COMMENTS**
 
 The MOLREGNO\_COMMENTS field is a free text field, and is used to explain why a particular normalization has occurred. If a curator has entered a '1' in the MOLREGNO\_FIXED field, then they are encouraged to also populate the MOLREGNO\_COMMENTS field with a reason for their manual assignment. If a curator subsequently decides that their manual normalization is incorrect, then they can EITHER update the MOLREGNO, and the MOLREGNO\_COMMENTS, but leaving the MOLREGNO\_FIXED field as '1', OR, set all these three fields to null and let the automatic process populate these fields overnight.
 
-The 'Standardization' process refers to the process of re-formatting the CTAB into a consistent appearance, and correcting errors of chemistry representation where possible. The 'Standardization' process occurs as part of the Normalization process via a web service. The MOLREGNO\_SV field is available to capture the Version of the Standardizer software used returned by the web-service along with the data for each structure queried, as detailed below in rules 2 and 3.
+The 'Standardization' process refers to the process of re-formatting the CTAB into a consistent appearance, and correcting errors of chemistry representation where possible. The 'Standardization' process occurs as part of the Normalization process via a web service. 
+
+#### MOLREGNO\_SV
+
+The MOLREGNO\_SV field is available to capture the Version of the Standardizer software used returned by the web-service along with the data for each structure queried, as detailed below in rules 2 and 3.
 
 ## Stage 1: Loading a job \(util1 in 'cloader.py'\)
 
-This involves setting certain cr.MOLREGNO fields to 'null', depending upon what has been loaded in the job, as described below. This stage also involves an assessment of the quality of each deposited structure using a 'structure checker' web service. This service is described elsewhere \(link required here\), but in essence returns a list of comments on the quality of each structure, and a 'Penalty Score' for each \(see [Running the Loader](https://app.gitbook.com/@chembl/s/chembl-loader/~/drafts/-LvpPM2s7ephYXEXdJAX/running-loader#rules-alerts-warnings-and-errors) for more info on Penalty Scores\). These scores are not used during stage 1, but are stored in the DEP\_COMPOUND\_CTAB\_LOG table for later use in 'Stage 2' \(further below\). No other Standardization/Normalization' steps are carried out at this stage.
+This involves setting certain cr.MOLREGNO fields to 'null', depending upon what has been loaded in the job, as described below. This stage also involves an assessment of the quality of each deposited structure using a 'structure checker' web service. 
 
-If a COMPOUND\_RECORD.txt contains a new CIDX/RIDX combination, a new record is loaded to CR, with cr.MOLREGNO set to 'null', and cr.MOLREGNO\_COMMENT set to 'new record'
+This service returns a list of comments on the quality of each structure, and a 'Penalty Score' for each \(see [Running the Loader](https://app.gitbook.com/@chembl/s/chembl-loader/~/drafts/-LvpPM2s7ephYXEXdJAX/running-loader#rules-alerts-warnings-and-errors) for more info on Penalty Scores\). These scores are not used during stage 1, but are stored in the DEP\_COMPOUND\_CTAB\_LOG table for later use in 'Stage 2' \(further below\). No other Standardization/Normalization' steps are carried out at this stage.
 
-If a COMPOUND\_RECORD.txt contains a CIDX/RIDX update, the relevant fields are updated \(eg: COMPOUND\_KEY, etc\), but none of the cr.MOLREGNO\* fields are updated.
+#### CIDX/RDX 
 
-For new CIDXs in COMPOUND\_CTAB.sdf, if a valid InChIKey is not created, then do nothing. However, if the deposited CTAB generated a valid InChIKey, then for ALL CR records containing CIDX for 'S' \(regardless of the RIDX in the record\) the cr.MOLREGNO is set to 'null' \(and cr.MOLREGNO\_COMMENT set to 'new structure'\), apart from those records which also have a '1' in the MOLREGNO\_FIXED field.
+* If a COMPOUND\_RECORD.txt contains a **new** CIDX/RIDX combination, a new record is loaded to CR, with cr.MOLREGNO set to 'null', and cr.MOLREGNO\_COMMENT set to 'new record'
+* If a COMPOUND\_RECORD.txt contains a CIDX/RIDX **update**, the relevant fields are updated \(eg: COMPOUND\_KEY, etc\), but none of the cr.MOLREGNO\* fields are updated.
 
-For CIDXs which already contain a record in the DEP\_COMPOUND\_CTAB table, if the InChIKey for the new structure is different to the InChIKey for the previously deposited structure for this CIDX \(This includes InChIKey -&gt; no InChIKey, no InChIKey -&gt; InChIKey, InChIKey1 -&gt; InChIKey2\) then for ALL CR records containing CIDX for 'S' \(regardless of the RIDX in the record\) the cr.MOLREGNO is updated to 'null' \(and cr.MOLREGNO\_COMMENT updated to 'updated structure'\), except for those records where cr.MOLREGNO\_FIXED is not null. However, if the InChIKey has not changed, then do nothing.
+#### InChI Keys
+
+* For new CIDXs in COMPOUND\_CTAB.sdf, if a valid InChIKey is not created, then do nothing. 
+* If the deposited CTAB generated a valid InChIKey, then:
+  *  For ALL CR records containing CIDX for 'S' \(regardless of the RIDX in the record\) the cr.MOLREGNO is set to 'null' \(and cr.MOLREGNO\_COMMENT set to 'new structure'\), 
+  * Those records which also have a '1' in the MOLREGNO\_FIXED field are left unchanged.
+* For CIDXs which already contain a record in the DEP\_COMPOUND\_CTAB table, If the InChIKey for the new structure is different to the InChIKey for the previously deposited structure for this CIDX then:
+  * For ALL CR records containing CIDX for 'S' \(regardless of the RIDX in the record\) the cr.MOLREGNO is updated to 'null'.
+  * cr.MOLREGNO\_COMMENT is updated to 'updated structure'\), 
+  * This update applies when an InChI Key has been updated, removed, or added.
+  * Records where cr.MOLREGNO\_FIXED is not null are ignored by this update. 
+  * If the InChIKey has not changed, nothing will be updated.
 
 For all the above possibilities, MOLREGNO\_SV is always set, or updated to, 'null'.
 
