@@ -1,6 +1,11 @@
 # Compound Normalization
 
-In the loader, the normal operation for loading data and normalizing cpds is to run these two operations in 2 separate stages \(using different utilities of the same loader script\). The first stage \('Loading a Job'\) is run manually during the day. Multiple 'Loading a Job' runs may be done in one day. The second stage \('Normalization'\) is kicked off nightly with cron. The second of these two stages is the focus of this document, although some information on the first stage is also included, as this is required for a full understanding of the second stage. Before describing these processes, however, it is useful to describe some general aspects of the data model that are directly relevant to compound normalization.
+In the loader, the normal operation for loading data and normalizing cpds is to run these two operations in 2 separate stages \(using different utilities of the same loader script\). 
+
+* The first stage \('Loading a Job'\) is run manually during the day. Multiple 'Loading a Job' runs may be done in one day. 
+* The second stage \('Normalization'\) is kicked off nightly with cron.
+
+ The second of these two stages is the focus of this document, although some information on the first stage is also included, as this is required for a full understanding of the second stage. Before describing these processes, however, it is useful to describe some general aspects of the data model that are directly relevant to compound normalization.
 
 ## Normalization aspects of the data model.
 
