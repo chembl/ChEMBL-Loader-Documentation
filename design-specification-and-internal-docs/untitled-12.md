@@ -80,15 +80,19 @@ Each normalization process that is started is assigned a record in the NORMALIZA
 
 ### The Process.
 
-The first step in the normalization process is to retrieve a non-redundant list of all CIDX's \(for each SRC\_IDs\) from CR where molregno is 'null' \(and where JOB\_ID &gt; 0, as this process will not be used for data loaded with the old loader. This 'where clause' filter applies to all subsequent steps below too.
-
-Then for each CIDX, apply the following rules, in this order, until a molregno is assigned. Once assigned \(ie: a rule is 'passed'\), carry out the 'Action' required by the rule, and then proceed to the next CIDX. 
+* All normalization steps apply only to records where molregno is null and JOB\_ID &gt;0. This ensures that data that have already been processed, and data that were loaded with the old loader are ignored. 
+* Retrieve a non-redundant list of all CIDX's \(for each SRC_IDs\) from_ COMPOUND\_RECORDS.
+* For each CIDX, apply the following rules, in order, until a molregno is assigned. Once a molregno is assigned, carry out the 'Action' required by the rule, and then proceed to the next CIDX. 
 
 Note that the update statements generated for all rules below will update ALL records for the CIDX's to the molregno selected by the rule \(regardless of the RIDX, or whether cr.molregno is null or not\), and will include the where clause 'where cr.MOLREGNO\_FIXED is null and JOB\_ID &gt; '0'.'
 
 Note also that CIDX/SRC\_ID combinations which have one or more records with a Penalty Score of 6 or more in the DEP\_COMPOUND\_CTAB\_LOG table \(as generated in stage 1, above\) are excluded from rules 2 and 3. This is to prevent any structures with particular problems, identified during loading by the structure checker, from being loaded into ChEMBL. These CIDX/SRC\_ID combinations are assigned a molregno only on the basis of rules 1, 4 and 5.
 
-For several rules below, the MOLREGNO\_COMMENT field may be updated with text to describe the rule employed. In these cases, in addition to the text described below, the text 'insert' or 'match' is also be appended. This describes whether the molregno assignment in this case was achieved by 'matching' to an existing iKey within ChEMBL, or whether no such iKey currently exists, and so a new molregno, and iKey, was 'inserted' into ChEMBL. This information is required for the 'scanForCleanerStructures' process which may be run after normalization. See "[Scanning for cleaner structures"](scan-clean.md) for more information on this.
+For several rules below, the MOLREGNO\_COMMENT field may be updated with text to describe the rule employed. 
+
+* In these cases, in addition to the text described below, the text 'insert' or 'match' is also be appended. 
+* This describes whether the molregno assignment in this case was achieved by 'matching' to an existing iKey within ChEMBL, or whether no such iKey currently exists, and so a new molregno, and iKey, was 'inserted' into ChEMBL. T
+* his information is required for the 'scanForCleanerStructures' process which may be run after normalization. See "[Scanning for cleaner structures"](scan-clean.md) for more information on this**.**
 
 #### Rule 1
 
