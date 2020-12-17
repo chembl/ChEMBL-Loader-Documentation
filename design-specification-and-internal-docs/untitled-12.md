@@ -181,6 +181,12 @@ No CTAB has been deposited for this CIDX \(ie: No record exists for this CIDX in
 
 **Action**: Update MOLREGNO, also setting MOLREGNO\_SV to ‘null’ and MOLREGNO\_COMMENT to **‘no structure’**.
 
+**Checking for existing Molregnos**
+
+* If rules 2,3,4 or 5 apply, then use the InChI key to look for an existing molregno \(getMolregnoForStructure\). 
+* If no molregno exists, create a new molregno and structure in ChEMBL
+* If the InChI Key is empty, or represents an empty molfile, then create a NEW molregno representing an EMPTY structure
+
 ### Some observations on this process.
 
 #### Logging noteworthy normalization events for curator verification.
@@ -207,15 +213,42 @@ These log messages are timestamped and FK'ed to the record\_ids which are affect
 
 Periodically, the 'web standardization protocol' may be updated \(The protocol is 'versioned' to indicate that changes have been made\). Occassionally, these updates to the standardization protocol may be large enough to warrant the re-normalization of all \('new-loader'\) ChEMBL data using this new version.
 
-This is achieved by running utility number 12. This util first captures a list of all CIDX's \(and SRC\_IDs\) with MOLREGNO\_SV's lower then the current version \(excluding CR records where MOLREGNO\_FIXED is not null, and using the normal JOB\_ID filter to apply only to new loader data\). Starting with the 'oldest' MOLREGNO\_SV, each CIDX is run through rules 1 and 2 above, but \(for rule 1\) copying only from records where MOLREGNO\_SV is equal to the current version of the standardizer. If, using rule 2, the new version of the standardizer fails to standardize a CIDX that had previously been standardized using an earlier version of the standardizer, then no updates are carried out for this CIDX, but this failure is logged to the curators log.
+This is achieved by running utility number 12. 
+
+* This util first captures a list of all CIDX's \(and SRC\_IDs\) with MOLREGNO\_SV's lower then the current version.
+  * It excludes CR records where MOLREGNO\_FIXED is not null, and uses the normal JOB\_ID filter to apply only to new loader data. 
+* Starting with the 'oldest' MOLREGNO\_SV, each CIDX is run through rules 1 and 2 above, but \(for rule 1\) copying only from records where MOLREGNO\_SV is equal to the current version of the standardizer. 
+* If, using rule 2, the new version of the standardizer fails to standardize a CIDX that had previously been standardized using an earlier version of the standardizer, then no updates are carried out for this CIDX, but this failure is logged to the curator's log.
 
 #### Batch operation of the Normalization Process.
 
-The normal operation for the 'Compound Normalization' utility in the loader is to first run a DB query to identify all CIDX/SRC\_ID combinations requiring normalization. Then, process these in batches of 10 through a normalization process \(described in detail by util11\) and commit at the end of each batch. The commit step requires a response from the user, although if the '-a' option is used then the default is used instead \('yes, commit' in this case\). Processing of batches will continue until all CIDX/SRC\_IDs have been normalized.
+The normal operation for the 'Compound Normalization' utility in the loader is to:
 
-However, if the user wishes to change the batch size from 10, then they can do this with the '-y' \(lower case\) option \(which takes an integer\). Also, if the user wishes to limit the total number of CIDX/SRC\_IDs processed in one run of the script, then this may be altered in a similar way by using the '-Y' option \(uppercase\). Thus, for example, running with the options ' -y 20 -Y 502 ' will result in the processing of 502 CIDX/SRC\_IDs, 20 at a time \(ie: 26 batches, with 20 CIDX/SRC\_IDs in all but the last batch, which would contain 2 CIDX/SRC\_IDs\).
+* Run a DB query to identify all CIDX/SRC\_ID combinations requiring normalization.  
+* Process these in batches of 10 through a normalization process \(described in detail by util11\)
+* Commit at the end of each batch. 
 
-The standardization process included in rule 2 involves the calling of a ‘standardization web service’. This service is designed to always ‘succeed’ \(according to the three criteria, a, b and c in Rule 2 above\), even if the query CTAB is an empty string, or an invalid CTAB. If the service should fail for some reason, then CIDX’s which should be ‘standardized’ will be marked as ‘non-standardized’, with a molregno\_SV set to ‘0’. Failure of the service may be due to either 1. The attempted processing of a string which it cannot handle \[hopefully unlikely\], or, 2. The service becoming unavailable \(web server failure, network problems, etc\). Currently, the entire normalization process will abort if two successive queries fail. This behavior is intended to prevent the inadvertent assignment of incorrectly ‘non-standardized’ records in the event of a service failure for reason 2, but not reason 1. Aborting the process results in the program exiting with non-zero exit status, which can be used as a signal to the user that a problem has occurred. Setting -Y and -y to reasonably low numbers \(and perhaps stringing together multiple script runs consecutively on the LSF\) mitigates the risk of network interruptions resulting in the 'loss' of large numbers of normalizations before they can be committed. However, the cost of setting -Y and -y too low, is that: 1. Each run of the Normalization process requires a full query of the CR table to assess which CIDX/SRC\_IDs currently require normalization, and 2. Each batch requires a single run of the InChI generation software \(it is far more efficient to run this for multiple structures simultaneously.\)
+The commit step requires a response from the user, although if the '-a' option is used then the default is used instead \('yes, commit' in this case\). Processing of batches will continue until all CIDX/SRC\_IDs have been normalized.
+
+_Command-line options_
+
+* If the user wishes to change the batch size from 10, then they can do this with the '-y' \(lower case\) option \(which takes an integer\). 
+* If the user wishes to limit the total number of CIDX/SRC\_IDs processed in one run of the script, then this may be altered in a similar way by using the '-Y' option \(uppercase\). 
+* For example, running with the options ' -y 20 -Y 502 ' will result in the processing of 502 CIDX/SRC\_IDs, 20 at a time \(ie: 26 batches, with 20 CIDX/SRC\_IDs in all but the last batch, which would contain 2 CIDX/SRC\_IDs\).
+
+The standardization process included in rule 2 involves the calling of a ‘standardization web service’. 
+
+* This service is designed to always ‘succeed’ \(according to the three criteria, a, b and c in Rule 2 above\), even if the query CTAB is an empty string, or an invalid CTAB. 
+* If the service should fail, then CIDX’s which should be ‘standardized’ will be marked as ‘non-standardized’, with a molregno\_SV set to ‘0’. 
+* Failure of the service may be due to either 
+  * 1. The attempted processing of a string which it cannot handle \[hopefully unlikely\]. 
+  * 2. The service becoming unavailable \(web server failure, network problems, etc\). 
+* Currently, the entire normalization process will abort if two successive queries fail. This behavior is intended to prevent the inadvertent assignment of incorrectly ‘non-standardized’ records in the event of a service failure for reason 2, but not reason 1. 
+* Aborting the process results in the program exiting with non-zero exit status, which can be used as a signal to the user that a problem has occurred. 
+* Setting -Y and -y to reasonably low numbers \(and perhaps stringing together multiple script runs consecutively on the LSF\) mitigates the risk of network interruptions resulting in the 'loss' of large numbers of normalizations before they can be committed. 
+* However, the cost of setting -Y and -y too low, is that: 
+  * 1. Each run of the Normalization process requires a full query of the CR table to assess which CIDX/SRC\_IDs currently require normalization, and 
+  * 2. Each batch requires a single run of the InChI generation software \(it is far more efficient to run this for multiple structures simultaneously.\)
 
 #### Additional Processes of interest.
 
