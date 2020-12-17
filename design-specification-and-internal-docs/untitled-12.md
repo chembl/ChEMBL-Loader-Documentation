@@ -98,7 +98,7 @@ For several rules below, the MOLREGNO\_COMMENT field may be updated with text to
 
 **Has this CIDX already been automatically normalized to a molregno ?**
 
-This rule involves identifying an existing single CR record for this CIDX where cr.MOLREGNO is not null, and cr.MOLREGNO\_FIXED is null. This represents a molregno which will have been assigned automatically to the CIDX on a previous run of the normalizer, and which can therefore be used again. Compound normalization fields \(eg: MOLREGNO, MOLREGNO\_SV, etc\) can be 'copied' from this single record.
+This rule involves identifying an existing single CR record for this CIDX and source, where cr.MOLREGNO is not null, and cr.MOLREGNO\_FIXED is null. This represents a molregno which will have been assigned automatically to the CIDX on a previous run of the normalizer, and which can therefore be used again. Compound normalization fields \(eg: MOLREGNO, MOLREGNO\_SV, etc\) can be 'copied' from this single record.
 
 In the event that there is more than one CR record where cr.MOLREGNO\_FIXED is null for this CIDX, then use the following 'single CR-selection process' to select just one CR record from which to copy values from...
 
