@@ -72,15 +72,19 @@ For all the above possibilities, MOLREGNO\_SV is always set, or updated to, 'nul
 
 ### Introduction.
 
-'Normalization' refers to the process of assigning an appropriate molregno to a CR record. 'Standardization' refers to the process of taking a CTAB and applying a number of rules to it, and returning a redrawn, 'cleaner' CTAB. The aim is to produce more consistently drawn strcutures in the DB and correct some errors of chemistry. Obviously, standardization is a key component of the normalization process. The standardization process uses a web-service-based protocol. This service accepts a CTAB and returns a standardized form of the CTAB. The 'version' of the standardization protocol used behind this web-service is also available from this web call and is used to populate the cr.MOLREGNO\_SV field, as detailed below in rules 2 and 3.
+'Normalization' refers to the process of assigning an appropriate molregno to a CR record. 'Standardization' refers to the process of taking a CTAB and applying a number of rules to it, and returning a redrawn, 'cleaner' CTAB. 
+
+The aim is to produce more consistently drawn structures in the DB and correct some errors of chemistry. The standardization process uses a web-service-based protocol. This service accepts a CTAB and returns a standardized form of the CTAB. The 'version' of the standardization protocol used behind this web-service is also available from this web call and is used to populate the cr.MOLREGNO\_SV field, as detailed below in rules 2 and 3.
 
 Each normalization process that is started is assigned a record in the NORMALIZATION\_CPD table. During the normalization process, an number of operations are considered worthy of 'flagging' to curators, such as normalizations where some CR records have 'fixed' molregnos for the same CIDX. These are written to the NORMALIZATION\_CPD\_LOG table \(with FKs to the PK of the NORMALIZATION\_CPD table\) after every batch commit \(see 'Batch operation of the Normalization Process' below\). For more information on these logs see 'Logging normalizations for curator verification.' below.
 
 ### The Process.
 
-The first step in the normalization process is to retrieve a non-redundant list of all CIDX's \(for each SRC\_IDs\) from CR where molregno is 'null' \(and where JOB\_ID &gt; 0, as this process will not be used for data loaded with the old loader \[this 'where clause' filter applies to all subsequent steps below too\]\).
+The first step in the normalization process is to retrieve a non-redundant list of all CIDX's \(for each SRC\_IDs\) from CR where molregno is 'null' \(and where JOB\_ID &gt; 0, as this process will not be used for data loaded with the old loader. This 'where clause' filter applies to all subsequent steps below too.
 
-Then for each CIDX, apply the following rules, in this order, until a molregno is assigned. Once assigned \(ie: a rule is 'passed'\), carry out the 'Action' required by the rule, and then proceed to the next CIDX. Note that the update statements generated for all rules below will update ALL records for the CIDX's to the molregno selected by the rule \(regardless of the RIDX, or whether cr.molregno is null or not\), and will include the where clause 'where cr.MOLREGNO\_FIXED is null and JOB\_ID &gt; '0'.'
+Then for each CIDX, apply the following rules, in this order, until a molregno is assigned. Once assigned \(ie: a rule is 'passed'\), carry out the 'Action' required by the rule, and then proceed to the next CIDX. 
+
+Note that the update statements generated for all rules below will update ALL records for the CIDX's to the molregno selected by the rule \(regardless of the RIDX, or whether cr.molregno is null or not\), and will include the where clause 'where cr.MOLREGNO\_FIXED is null and JOB\_ID &gt; '0'.'
 
 Note also that CIDX/SRC\_ID combinations which have one or more records with a Penalty Score of 6 or more in the DEP\_COMPOUND\_CTAB\_LOG table \(as generated in stage 1, above\) are excluded from rules 2 and 3. This is to prevent any structures with particular problems, identified during loading by the structure checker, from being loaded into ChEMBL. These CIDX/SRC\_ID combinations are assigned a molregno only on the basis of rules 1, 4 and 5.
 
@@ -99,9 +103,11 @@ In the event that there is more than one CR record where cr.MOLREGNO\_FIXED is n
 * Of these, select the record\(s\) with lower molregno value.
 * Of these, select the record with the highest record\_id.
 
-Action: Update MOLREGNO, also setting MOLREGNO\_SV and MOLREGNO\_COMMENT to the values found in the single selected CR record.
+**Action**: Update MOLREGNO, also setting MOLREGNO\_SV and MOLREGNO\_COMMENT to the values found in the single selected CR record.
 
-NB: At this stage, in the same DB query, it is also useful to identify if there are ANY CR records where MOLREGNO\_FIXED is '1', and then tag this CIDX as 'previously manually fixed'. In other words, a CIDX tagged in this way indicates that there is at least 1 CR record for this CIDX where the MOLREGNO\_FIXED is '1'. This information is, in itself, of no use for assigning a molregno if the CIDX passes this rule, but may be useful for future reference in subsequent rule testing \(see below\), and is also important for the generation of the 'NORMALIZATION\_CPD\_LOG', which is designed to log normalization steps which may require verification by curators \(see later below\).
+NB: At this stage, in the same DB query, it is also useful to identify if there are ANY CR records where MOLREGNO\_FIXED is '1', and then tag this CIDX as 'previously manually fixed'. In other words, a CIDX tagged in this way indicates that there is at least 1 CR record for this CIDX where the MOLREGNO\_FIXED is '1'. 
+
+This information is, in itself, of no use for assigning a molregno if the CIDX passes this rule, but may be useful for future reference in subsequent rule testing \(see below\), and is also important for the generation of the 'NORMALIZATION\_CPD\_LOG', which is designed to log normalization steps which may require verification by curators \(see later below\).
 
 #### Rule 2
 
@@ -109,18 +115,20 @@ NB: At this stage, in the same DB query, it is also useful to identify if there 
 
 For rule 2, a CIDX is assessed according to the following 3 criteria, each tested in turn…
 
-1. The CIDX has a deposited structure \(ie: a record in DEP\_COMPOUND\_CTAB\) which is not associated with a penalty score of 6 or more in the DEP\_COMPOUND\_CTAB\_LOG table.
-2. The ‘standardization web service’ executes successfully when queried with the deposited CTAB for this CDIX. ‘Success’ of the ‘standardization web service’ occurs if the following are ALL True...
-   1. The return code is '200'.
-   2. The UPDATEDCTAB key exists.
-   3. The VERSION key exists and the associated value is a number.
-3. The value associated with the UPDATEDCTAB key from the ‘standardization web service’ can subsequently be used successfully to obtain a valid standard InChI using the InChI generation software.
+* The CIDX has a deposited structure \(ie: a record in DEP\_COMPOUND\_CTAB\) which is not associated with a penalty score of 6 or more in the DEP\_COMPOUND\_CTAB\_LOG table.
+* The ‘standardization web service’ executes successfully when queried with the deposited CTAB for this CDIX. ‘Success’ of the ‘standardization web service’ occurs if the following are ALL True:
+  1. The return code is '200'.
+  2. The UPDATEDCTAB key exists.
+  3. The VERSION key exists and the associated value is a number.
+* The value associated with the UPDATEDCTAB key from the ‘standardization web service’ can subsequently be used successfully to obtain a valid standard InChI using the InChI generation software.
 
 The CIDX passes rule 2 only if ALL three criteria of the above are True. If, at any stage, a criterion is not satisfied, then the rule fails immediately, and no further criteria are assessed for that CIDX.
 
-Note, therefore, that the ‘standardization web service’ may completely succeed \(ie: pass criteria a, b, and c\), but if the subsequent InChI generation of the retrieved CTAB fails \(step 3\) then the CIDX has failed rule 2. This may occur, for example, if the ‘CTAB’ associated with the CIDX is an empty string, or a string which is not a valid CTAB \(This is the expected behavior of the ‘standardization web service’: for a, b and c to all succeed whatever the service is queried with\). However, also note that this circumstance is unlikely to occur, as such a ‘structure’ is unlikely to have passed criterion ‘1’.
+Note, therefore, that the ‘standardization web service’ may completely succeed \(ie: pass criteria a, b, and c\), but if the subsequent InChI generation of the retrieved CTAB fails \(step 3\) then the CIDX has failed rule 2. This may occur, for example, if the ‘CTAB’ associated with the CIDX is an empty string, or a string which is not a valid CTAB 
 
-Action: Update MOLREGNO, then MOLREGNO\_SV is set to the version number of the ‘standardization web service’ \(2c above\), and the MOLREGNO\_COMMENT is set to **‘standardized structure’**.
+The expected behavior of the ‘standardization web service' is for a, b and c to all succeed whatever the service is queried with\) However, also note that this circumstance is unlikely to occur, as such a ‘structure’ is unlikely to have passed criterion ‘1’.
+
+**Action**: Update MOLREGNO, then MOLREGNO\_SV is set to the version number of the ‘standardization web service’ \(2c above\), and the MOLREGNO\_COMMENT is set to **‘standardized structure’.**
 
 #### Rule 3
 
@@ -128,16 +136,20 @@ Action: Update MOLREGNO, then MOLREGNO\_SV is set to the version number of the �
 
 For rule 3, a CIDX is assessed according to the following 2 criteria, tested in turn…
 
-1. The CIDX has a deposited structure \(ie: a record in DEP\_COMPOUND\_CTAB\) which is not associated with a penalty score of 6 or more in the DEP\_COMPOUND\_CTAB\_LOG table.
-2. The CTAB from the above record can be used successfully to obtain a valid standard InChI using the InChI generation software.
+* The CIDX has a deposited structure \(ie: a record in DEP\_COMPOUND\_CTAB\) which is not associated with a penalty score of 6 or more in the DEP\_COMPOUND\_CTAB\_LOG table.
+* The CTAB from the above record can be used successfully to obtain a valid standard InChI using the InChI generation software.
 
 The CIDX passes rule 3 only if BOTH of the above criteria are True.
 
-Action: Update MOLREGNO, MOLREGNO\_COMMENT is set to **‘non-standardized structure’**. MOLREGNO\_SV is set to the ‘version’ number obtained if this CIDX was assessed by rule 2.
+**Action**: Update MOLREGNO, MOLREGNO\_COMMENT is set to **‘non-standardized structure’**. MOLREGNO\_SV is set to the ‘version’ number obtained if this CIDX was assessed by rule 2.
 
-Note that all CIDXs that are assessed by rule 3 will have previously been assessed by rule 2 \[and so sent to the ‘standardization web service’, as per step 2 of the previous rule\]. If rule 3 has been passed, then it is informative to capture the version number of the ‘standardization web service’ that was used when testing this CIDX with rule 2 \(if it was captured successfully\), and to populate the MOLREGNO\_SV with this value. In this way, the version of the standardization protocol that failed to process the structure to a valid, standardized, CTAB is captured.
+Note that all CIDXs that are assessed by rule 3 will have previously been assessed by rule 2 \[and so sent to the ‘standardization web service’, as per step 2 of the previous rule\]. If rule 3 has been passed, then it is informative to capture the version number of the ‘standardization web service’ that was used when testing this CIDX with rule 2 \(if it was captured successfully\), and to populate the MOLREGNO\_SV with this value. 
 
-If, when rule 2 failed, the version was not successfully captured, then MOLREGNO\_SV is set to ‘0’. Note therefore, that for this rule, a MOLREGNO\_SV of ‘0’ means that: “The structure was sent to the ‘standardization web service’ during an assessment of rule2, but rule 2 failed. One of the reasons for failing was that the version number could not be retrieved from the data returned from the ‘standardization web service’ call.”. The corollary of this is that a MOLREGNO\_SV &gt; 0 means: “The structure was sent to the ‘standardization web service’, and this version of the standardization protocol was run, but rule 2 failed. Rule 2 failed either because the standardization web service failed \[according to either criteria a or b above\], or the retrieved CTAB failed to generate a valid InChI”.
+In this way, the version of the standardization protocol that failed to process the structure to a valid, standardized, CTAB is captured.
+
+If, when rule 2 failed, the version was not successfully captured, then MOLREGNO\_SV is set to ‘0’. Note therefore, that for this rule, a MOLREGNO\_SV of ‘0’ means that: “The structure was sent to the ‘standardization web service’ during an assessment of rule2, but rule 2 failed. One of the reasons for failing was that the version number could not be retrieved from the data returned from the ‘standardization web service’ call.”. 
+
+The corollary of this is that a MOLREGNO\_SV &gt; 0 means: “The structure was sent to the ‘standardization web service’, and this version of the standardization protocol was run, but rule 2 failed. Rule 2 failed either because the standardization web service failed \[according to either criteria a or b above\], or the retrieved CTAB failed to generate a valid InChI”.
 
 #### Rule 4
 
@@ -145,7 +157,7 @@ If, when rule 2 failed, the version was not successfully captured, then MOLREGNO
 
 The data for this will have been retrieved from the DB during rule 1 testing \(see above\). In the event that there is more than one other CR record where cr.MOLREGNO\_FIXED is not null for this CIDX, then use the 'single CR-selection process' described above to identify a single record.
 
-Action: Update MOLREGNO, also setting MOLREGNO\_SV to 'null' and MOLREGNO\_COMMENT to 'copy of fixed structure'.
+**Action**: Update MOLREGNO, also setting MOLREGNO\_SV to 'null' and MOLREGNO\_COMMENT to 'copy of fixed structure'.
 
 #### Rule 5
 
@@ -155,7 +167,7 @@ In this case, the ‘deposited structure’ will have already failed rules 2 and
 
 If a CIDX passes rule 5, then a new ‘empty structure’ molregno is created, with a structure type of ‘NONE’ in the Molecule\_Dictionary, and the MOLREGNO field assigned this value.
 
-Action: Update MOLREGNO, also setting MOLREGNO\_SV to ‘null’ and MOLREGNO\_COMMENT to **‘invalid structure’**
+**Action**: Update MOLREGNO, also setting MOLREGNO\_SV to ‘null’ and MOLREGNO\_COMMENT to **‘invalid structure’**
 
 #### Rule 6
 
@@ -163,7 +175,7 @@ Action: Update MOLREGNO, also setting MOLREGNO\_SV to ‘null’ and MOLREGNO\_C
 
 No CTAB has been deposited for this CIDX \(ie: No record exists for this CIDX in the DEP\_COMPOUND\_CTAB table\). In this case, a new ‘empty structure’ molregno is created, with a structure type of ‘NONE’ in the Molecule\_Dictionary, and the MOLREGNO field assigned this value.
 
-Action: Update MOLREGNO, also setting MOLREGNO\_SV to ‘null’ and MOLREGNO\_COMMENT to **‘no structure’**.
+**Action**: Update MOLREGNO, also setting MOLREGNO\_SV to ‘null’ and MOLREGNO\_COMMENT to **‘no structure’**.
 
 ### Some observations on this process.
 
@@ -183,7 +195,9 @@ These log messages are timestamped and FK'ed to the record\_ids which are affect
 
 #### Possibility of molregnos changing for empty structures.
 
-If, over a series of jobs, a depositor sends multiple updates for the same CIDX, all of which are invalid CTABs, then the same 'empty' molregno will stay assigned to the CIDX. However, note that if a CIDX has no structure when first deposited, but then subsequently the depositor provides a valid structure, and then on a third deposition provides an invalid structure, then the molregno that was given to the CIDX on first deposition cannot be 'reused' for the third deposition. This can result in the molregno for a given CIDX changing over time, although this scenario is considered rare.
+* If, over a series of jobs, a depositor sends multiple updates for the same CIDX, all of which are invalid CTABs, then the same 'empty' molregno will stay assigned to the CIDX. 
+* If a CIDX has no structure when first deposited, subsequently the depositor provides a valid structure, and then on a third deposition thet provide an invalid structure, then the original molregno cannot be 'reused' for the third deposition. 
+* This can result in the molregno for a given CIDX changing over time, although this scenario is considered rare.
 
 #### Applying a new 'version' of the standardization protocol \(util12 in 'cloader.py'\)
 
