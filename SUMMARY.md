@@ -11,6 +11,7 @@
 * [Common data issues](common-data-issues.md)
 * [Depositing Activities against other Depositors Entities](untitled-1.md)
 * [Design Specification and Internal Docs](design-specification-and-internal-docs/README.md)
+  * [List of Loader Utiities](design-specification-and-internal-docs/list-of-loader-utiities.md)
   * [Running The Command-Line Loader](design-specification-and-internal-docs/running-loader.md)
   * [Complex Results Sets](design-specification-and-internal-docs/complex-results.md)
   * [Compound Normalization](design-specification-and-internal-docs/untitled-12.md)
