@@ -77,7 +77,7 @@ Show the report on a load for a single JOB\_ID \(-J\). Requires -d
 
 ### 25: Show content report \(Jobs or AIDXs\)
 
- Show a report of the content assigned to JOB\_ID\(s\) \(-J, eg: -J '1-4,6,8-9'\), or a list of AIDXs present in a text file, location '-f'. Requires -d, -s
+Show a report of the content assigned to JOB\_ID\(s\) \(-J, eg: -J '1-4,6,8-9'\), or a list of AIDXs present in a text file, location '-f'. Requires -d, -s
 
 ## 41 to 60 : Set management 
 
