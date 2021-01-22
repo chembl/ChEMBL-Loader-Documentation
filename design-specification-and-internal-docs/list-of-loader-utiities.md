@@ -40,9 +40,11 @@ Thus, for example, running with the options ' -y 20 -Y 502 ' will result in the 
   * 1. Each run of the Normalization process requires a full query o f the CR table to assess which CIDX/SRC\_IDs currently require normalization**.**
   * 2. Each batch req uires a single run of the InChI generation software \(it is far more efficient to run this for multiple structures simultaneously.\)
 
-### 14: Scan for Cleaner Structures 
+### 14: Scan for Cleaner Structures \(tested\)
 
 Run a search for deposited structures which have lower penalty scores \(from the 'structure checker' web service\) than the current ChEMBL CTAB for the same InChIKey
+
+* Requires -J
 
 ### 17: Delete Activities
 
@@ -59,11 +61,11 @@ The owner of the AIDX's or JOB\_ID's, must also be specified.
 
 ## 21 to 40 : Job management
 
-### 21: Show jobs
+### 21: Show jobs \(tested\)
 
 Show all jobs. Filter to show only for one source if '-s' option used. Requires -d. add -v for all fields. Use -J to limit to a range of JOBIDs
 
-### 22: Report job\(s\) in sets 
+### 22: Report job\(s\) in sets \(tested\)
 
 Show all the jobs, and the sets they belong to, for either a single job \(as -J int\), a list of jobs \(as -J in a hyphen separated list\), or a single set \(as -Set int\). Requires -J or -Set. Ifquerying with a single set, then CHEMBLID may be used instead of set\_id. Note that in the resultsshown, a single job will be listed more than once if it belongs to muliple sets.
 
