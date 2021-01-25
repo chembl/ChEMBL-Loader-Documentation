@@ -77,7 +77,7 @@ Export all data for either a single job \(as -J int\), a list of jobs \(as -J in
 
 Show the report on a load for a single JOB\_ID \(-J\). Requires -d
 
-### 25: Show content report \(Jobs or AIDXs\)
+### 25: Show content report \(Jobs or AIDXs\) \(Tested\)
 
 Show a report of the content assigned to JOB\_ID\(s\) \(-J, eg: -J '1-4,6,8-9'\), or a list of AIDXs present in a text file, location '-f'. Requires -d, -s
 
