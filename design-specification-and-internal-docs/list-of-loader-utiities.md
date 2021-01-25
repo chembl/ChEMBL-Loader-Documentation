@@ -73,7 +73,7 @@ Show all the jobs, and the sets they belong to, for either a single job \(as -J 
 
 Export all data for either a single job \(as -J int\), a list of jobs \(as -J in a hyphen separated list\) or a single set \(as -Set int\). If single set, then CHEMBLID may be used instead of set\_id. Requires -J or -Set, and -O \[a valid directory, or, to print to screen, use one of either '-','none' or 'screen'\]. If separate files required for separate jobs, then use the -M option, to create subdirs named 'jobID\d+' in -O
 
-### 24: Show job load report
+### 24: Show job load report \(tested\)
 
 Show the report on a load for a single JOB\_ID \(-J\). Requires -d
 
