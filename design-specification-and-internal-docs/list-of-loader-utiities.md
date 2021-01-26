@@ -83,11 +83,12 @@ Show a report of the content assigned to JOB\_ID\(s\) \(-J, eg: -J '1-4,6,8-9'\)
 
 ## 41 to 60 : Set management 
 
-### 41: Create a set
+### 41: Create a set **\(Bugged\)**
 
-Create a set. Requires -d and -J \(hyphen separated list of Job\_ids\)
+Create a set. Requires -d and -J \(hyphen separated list of Job\_ids\)  
+**WARNING: FAILS IF GIVEN MULTIPLE JOB IDS. CREATE WITH ONE&lt; THEN ADD**
 
-### 42: Edit a set
+### 42: Edit a set \[CURRENTLY UNAVAILABLE\]
 
 Add or Remove a single JOB\_ID to/from an existing set. Requires -d, -J and -Set
 
