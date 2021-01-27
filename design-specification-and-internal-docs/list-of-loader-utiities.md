@@ -100,7 +100,7 @@ Show all sets. Optionally, use -s \[int\] to filter and show data for only one s
 
 Switch the 'Public' flag to '1' for this set, so that it may be Published in the future. Requires -Set \[int\] and -d
 
-### 53: Freeze a set \[NOT FULLY TESTED\]
+### 53: Freeze a set \[NOT FULLY TESTED\] \(tested\)
 
 Freeze an existing set. Requires -Set \[int\] and -d
 
@@ -108,7 +108,7 @@ Freeze an existing set. Requires -Set \[int\] and -d
 
 Thaw a frozen set. Requires -Set \[int\] and -d
 
-### 55: Export a set  \[NOT FULLY TESTED\]
+### 55: Export a set  \[NOT FULLY TESTED\] \(tested\)
 
  Export a set. Destination determined by public and freeze flags for particular set. Requires -Set \[int\] and -d.
 
