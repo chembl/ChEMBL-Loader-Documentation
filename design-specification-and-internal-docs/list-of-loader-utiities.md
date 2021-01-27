@@ -116,7 +116,11 @@ Thaw a frozen set. Requires -Set \[int\] and -d
 
 ### 81: Run a schedule
 
-Run a schedule. Requires -d and -N82= Show a schedule... Show a schedule. Requires -d and -N
+Run a schedule. Requires -d and -N
+
+### 82: Show a schedule
+
+ Show a schedule. Requires -d and -N
 
 ## 121 to 140 : Sources 
 
