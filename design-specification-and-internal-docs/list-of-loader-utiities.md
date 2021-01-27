@@ -114,11 +114,11 @@ Thaw a frozen set. Requires -Set \[int\] and -d
 
 ## 81 to 120 : Schedules 
 
-### 81: Run a schedule
+### 81: Run a schedule \[CURRENTLY UNAVAILABLE\]
 
 Run a schedule. Requires -d and -N
 
-### 82: Show a schedule
+### 82: Show a schedule \[CURRENTLY UNAVAILABLE\]
 
  Show a schedule. Requires -d and -N
 
