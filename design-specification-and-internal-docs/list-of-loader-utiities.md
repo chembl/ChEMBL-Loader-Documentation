@@ -178,7 +178,7 @@ Print Activity data for a list of Activity\_ids or a Job\_ids \(Requires -d, -p 
 
 ## 901 to 950 : Tests, Debugging, Dev, etc.
 
-###  902 :Command line options
+### 902 :Command line options \(tested\)
 
 Show command line options \[or use -h\], but include all available and as yet unused single letter options \[a-z,A-Z\] No options required
 
@@ -186,7 +186,7 @@ Show command line options \[or use -h\], but include all available and as yet un
 
  Confirm that code is sychronized with the DB. Requires -d
 
-### 90: Show Export Settings
+### 904: Show Export Settings
 
 Display the locations for all export types, and their current contents
 
