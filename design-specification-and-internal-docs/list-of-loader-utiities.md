@@ -126,7 +126,9 @@ Run a schedule. Requires -d and -N
 
 ### 121 Create a new Source:
 
- Create a new SRC\_ID. Requires -d, -s \(new src\_id\), -n \(new name\), -Z \(new description\),, -y \(year\)
+Create a new SRC\_ID. Requires -d, -s \(new src\_id\), -n \(new name\), -Z \(new description\),-y \(year\)
+
+Will NOT work on CHEMLDT as that database has no CHEMBL\_ID\_LOOKUP table
 
 ## 141 to 160 : Processing, Analysis, etc. 
 
