@@ -4,6 +4,12 @@ description: List of loader utilities for cloader.py
 
 # List of Loader Utilities
 
+Utils are marked as \(tested\) if James has run them to check they generate apparently valid output.
+
+Utils are marked as \[CURRENTLY UNAVAILABLE\] if they are broken or not yet implemented.
+
+Utils are marked as \[NOT FULLY TESTED\] if Jon did not finish testing them before he left in 2018.
+
 ## 1 to 20 : Process deposition data 
 
 ### 1: Load
@@ -98,7 +104,9 @@ _Example:_ python manage/cloader.py -d 137 -u 25 -v 5 -a -J 29 -s 95
 ### 41: Create a set **\(Bugged\)**
 
 Create a set. Requires -d and -J \(hyphen separated list of Job\_ids\)  
-**WARNING: FAILS IF GIVEN MULTIPLE JOB IDS. CREATE WITH ONE&lt; THEN ADD**
+**WARNING: FAILS IF GIVEN MULTIPLE JOB IDS. CREATE WITH ONE ID, THEN ADD**
+
+_Example:_ ****python manage/cloader.py -d 137 -u 41 -v 5 -a -J 29 -s 94
 
 ### 42: Edit a set \[CURRENTLY UNAVAILABLE\]
 
@@ -112,7 +120,9 @@ _Example:_ python manage/cloader.py -d 137 -u 51 -v 5 -a -s 94
 
 ### 52: Flag a set as public \[NOT FULLY TESTED\]
 
-Switch the 'Public' flag to '1' for this set, so that it may be Published in the future. Requires -Set \[int\] and -d
+Switch the 'Public' flag to '1' for this set, so that it may be Published in the future. Requires -Set \[int\] and -d.
+
+_Example:_ python manage/cloader.py -d 137 -u 52 -v 5 -a -s 94 -Set 1
 
 ### 53: Freeze a set \[NOT FULLY TESTED\] \(tested\)
 
