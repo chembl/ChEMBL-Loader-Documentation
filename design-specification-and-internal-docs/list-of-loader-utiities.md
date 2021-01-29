@@ -186,7 +186,7 @@ Show command line options \[or use -h\], but include all available and as yet un
 
  Confirm that code is sychronized with the DB. Requires -d
 
-### 904: Show Export Settings
+### 904: Show Export Settings \(tested\)
 
 Display the locations for all export types, and their current contents
 
