@@ -101,7 +101,7 @@ _Example:_ python manage/cloader.py -d 137 -u 25 -v 5 -a -J 29 -s 95
 
 ## 41 to 60 : Set management 
 
-### 41: Create a set **\(Bugged\)**
+### 41: Create a set **\(Bugged\) \(tested\)**
 
 Create a set. Requires -d and -J \(hyphen separated list of Job\_ids\)  
 **WARNING: FAILS IF GIVEN MULTIPLE JOB IDS. CREATE WITH ONE ID, THEN ADD**
@@ -136,6 +136,8 @@ Thaw a frozen set. Requires -Set \[int\] and -d
 
  Export a set. Destination determined by public and freeze flags for particular set. Requires -Set \[int\] and -d.
 
+_Example:_ python manage/cloader.py -d 137 -u 55 -v 5 -a -s 94 -Set 1
+
 ## 81 to 120 : Schedules 
 
 ### 81: Run a schedule \[CURRENTLY UNAVAILABLE\]
@@ -154,9 +156,11 @@ Create a new SRC\_ID. Requires -d, -s \(new src\_id\), -n \(new name\), -Z \(new
 
 Will NOT work on CHEMLDT as that database has no CHEMBL\_ID\_LOOKUP table
 
+_Example:_ python manage/cloader.py -d 137 -u 121 -s 99 -n TEST -Z TESTING -y 2021
+
 ## 141 to 160 : Processing, Analysis, etc. 
 
-### 141: Get Activity Data \[NOT FULLY TESTED\]
+### 141: Get Activity Data \[NOT FULLY TESTED\] \(BUGGED, something to do with the args\)
 
 Print Activity data for a list of Activity\_ids or a Job\_ids \(Requires -d, -p and -J or -A\).
 
@@ -200,11 +204,15 @@ Print Activity data for a list of Activity\_ids or a Job\_ids \(Requires -d, -p 
     * Use '-K' \[boo\] merge M3U \(Matrix 3 using 'U' query\) INTO a copy of kLol\(from '-k' above\), and show as another separate matrix \(requires '-k'\).
     * Note : it is inadvisable to select AS and Z unless 'G' is true \[ie: Full Granular Mapping curation has been carried out\].Otherwise, if very many A records are each mapped many or all S records, then theACT matrix could be very large indeed, as there will be a separate row for each A -to- S combination.
 
+
+
 ## 901 to 950 : Tests, Debugging, Dev, etc.
 
 ### 902 :Command line options \(tested\)
 
 Show command line options \[or use -h\], but include all available and as yet unused single letter options \[a-z,A-Z\] No options required
+
+_Example:_ python manage/cloader.py -u 902
 
 ### 903: Confirm synch \[CURRENTLY UNAVAILABLE\]:
 
@@ -214,46 +222,64 @@ Show command line options \[or use -h\], but include all available and as yet un
 
 Display the locations for all export types, and their current contents
 
+_Example:_ python manage/cloader.py -u 904
+
 ### 908: Print Job Supporting Data \[NOT FULLY TESTED\]
 
-Print to the console a 2D-matrix of all supporting data \(from ACTIVITYSUPP\) that is associated with a Job \(Requires -d and -J\)
+Print to the console and outfile a 2D-matrix of all supporting data \(from ACTIVITYSUPP\) that is associated with a Job \(Requires  -O -d and -J\). -O dir must alredy be created.
+
+_Example:_ python manage/cloader.py -d 137 -u 908 -J 29 -O /nfs/panda/chembl/chembl\_loader/cloader\_example\_output/util908
 
 ### 910: Loader Rules
 
-A dump of the 'loader object', detailing loader rules and requirements. No options required
+A dump of the 'loader object', detailing loader rules and requirements. No options required. Prints as a dict of dicts without formatting.
+
+_Example:_ python manage/cloader.py -u 910
 
 ### 911: Header definitions
 
-Print dataframe Header definitions. No options required
+Print dataframe Header definitions. No options required. Prints neatly formatted.
 
-### 912: UC Activities for job
+_Example:_ python manage/cloader.py -u 911
 
-Normalize' Activity, Activity\_supp and Activity\_property data 
+### 912: UC Activities for job \(BUGGED\)
+
+'Normalize' Activity, Activity\_supp and Activity\_property data 
 
 * Use -p 'APS\|\|' to update all3\] for a given \[-J\] JOB\_ID, by UPPERCASING everything - this is just a debug method to help generate some normalized fields quickly - DONT EVER RUN ON PRODUCTION !!!! 
 * No options required
 
-### 913: Get TID
+Error: cx\_Oracle.DatabaseError: ORA-00904: "T"."PUBLISHED\_UNITS": invalid identifier
 
-Testing for Target Dictionary lookup.
+_Example:_ python manage/cloader.py -u 912 -J 29 -d 137 -p APS\|\|
+
+### 913: Get TID \(May be buggy\)
+
+Testing for Target Dictionary lookup. Tests are failing on 137, unsure why. 
+
+_Example:_ python manage/cloader.py -u 913 -d 137
 
 ### 921: Migrate Source \[IN DEV. DO NOT USE. NOT FULLY TESTED\]
 
 * Migrate all data for a source into new loader format. 
 
-### 925: Compare tables
+### 925: Compare tables \(tested\)
 
 Compare two tables in two databases. 
 
 * Table names defined in a comma separated string in '-t'\(ie: 'table1,table2'\). 
 * Database connections for two tables are defined with '-d' and '-y' resp. ie: -d = database1, -y = database2
 
-### 926: Compare list of tables
+_Example:_ python manage/cloader.py -u 925 -d 101 -y 137 -t "ASSAY, DEPOSIT\_JOB"
+
+### 926: Compare list of tables \(tested\)
 
 Compare list of two tables in two databases. 
 
 * Table names defined in a hard coded list. 
 * Database connections for pairs of tables are defined with '-d' and '-y' resp. ie: -d = database1, -y = database2
+
+_Example:_ python manage/cloader.py -u 950 -d 137
 
 ### 931:DELETE DEP data \[IN DEV. DO NOT USE\]
 
@@ -266,9 +292,11 @@ Delete all data in DEP\_tables for a given source \('-s'\).
 
 Testing of code snippets
 
-### 950: Test for 'checkStructure':
+### 950: Test for 'checkStructure': \(tested\)
 
 Testing of code relating to the 'checkStructure' web service.
+
+_Example:_ python manage/cloader.py -u 950 -d 137
 
 Example output for all of these can be found at /nfs/panda/chembl/chembl\_loader/cloader\_example\_output/
 
