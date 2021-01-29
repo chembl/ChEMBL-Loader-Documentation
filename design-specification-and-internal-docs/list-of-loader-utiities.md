@@ -46,6 +46,8 @@ Run a search for deposited structures which have lower penalty scores \(from the
 
 * Requires -J
 
+_Example:_ python manage/cloader.py -d 137 -u 14 -J 29 -v 5 -a
+
 ### 17: Delete Activities
 
 Delete all 'Activities' data relating to a given LIST of EITHER
@@ -65,21 +67,31 @@ The owner of the AIDX's or JOB\_ID's, must also be specified.
 
 Show all jobs. Filter to show only for one source if '-s' option used. Requires -d. add -v for all fields. Use -J to limit to a range of JOBIDs
 
+_Example:_ python manage/cloader.py -d 137 -u 21 -v 5 -a
+
 ### 22: Report job\(s\) in sets \(tested\)
 
-Show all the jobs, and the sets they belong to, for either a single job \(as -J int\), a list of jobs \(as -J in a hyphen separated list\), or a single set \(as -Set int\). Requires -J or -Set. Ifquerying with a single set, then CHEMBLID may be used instead of set\_id. Note that in the resultsshown, a single job will be listed more than once if it belongs to muliple sets.
+Show all the jobs, and the sets they belong to, for either a single job \(as -J int\), a list of jobs \(as -J in a hyphen separated list\), or a single set \(as -Set int\). Requires -J or -Set. Ifquerying with a single set, then CHEMBLID may be used instead of set\_id. Note that in the resultsshown, a single job will be listed more than once if it belongs to multiple sets.
+
+_Example:_ python manage/cloader.py -d 137 -u 22 -v 5 -a -J 29
 
 ### 23: Export job\(s\) \(tested\)
 
 Export all data for either a single job \(as -J int\), a list of jobs \(as -J in a hyphen separated list\) or a single set \(as -Set int\). If single set, then CHEMBLID may be used instead of set\_id. Requires -J or -Set, and -O \[a valid directory, or, to print to screen, use one of either '-','none' or 'screen'\]. If separate files required for separate jobs, then use the -M option, to create subdirs named 'jobID\d+' in -O
 
+_Example:_ python manage/cloader.py -d 137 -u 23 -v 5 -a -J 29 -O /nfs/panda/chembl/chembl\_loader/cloader\_example\_output/util23
+
 ### 24: Show job load report \(tested\)
 
 Show the report on a load for a single JOB\_ID \(-J\). Requires -d
 
+_Example:_ python manage/cloader.py -d 137 -u 24 -v 5 -a -J 29
+
 ### 25: Show content report \(Jobs or AIDXs\) \(Tested\)
 
 Show a report of the content assigned to JOB\_ID\(s\) \(-J, eg: -J '1-4,6,8-9'\), or a list of AIDXs present in a text file, location '-f'. Requires -d, -s
+
+_Example:_ python manage/cloader.py -d 137 -u 25 -v 5 -a -J 29 -s 95
 
 ## 41 to 60 : Set management 
 
@@ -92,9 +104,11 @@ Create a set. Requires -d and -J \(hyphen separated list of Job\_ids\)
 
 Add or Remove a single JOB\_ID to/from an existing set. Requires -d, -J and -Set
 
-### 51: Show sets 
+### 51: Show sets \(tested\)
 
 Show all sets. Optionally, use -s \[int\] to filter and show data for only one source. Requires-d \[-s\]
+
+_Example:_ python manage/cloader.py -d 137 -u 51 -v 5 -a -s 94
 
 ### 52: Flag a set as public \[NOT FULLY TESTED\]
 
@@ -245,4 +259,6 @@ Testing of code snippets
 ### 950: Test for 'checkStructure':
 
 Testing of code relating to the 'checkStructure' web service.
+
+Example output for all of these can be found at /nfs/panda/chembl/chembl\_loader/cloader\_example\_output/
 
