@@ -61,7 +61,7 @@ As can be seen from the 'Requirements' link, very many combinations of files can
 
 The collection of files used in a single deposition is assigned a 'job\_id'. Each deposition job either fails completely or succeeds completely. In other words, either **all** the data from a job is loaded, or **none**.
 
-Using the 'Gateway' link above allows depositors to test if their files are suitability formatted for loading to ChEMBL.
+Using the 'Gateway' link below allows depositors to test if their files are suitability formatted for loading to ChEMBL.
 
 ### Some possible Complexities
 
