@@ -99,45 +99,6 @@ Show a report of the content assigned to JOB\_ID\(s\) \(-J, eg: -J '1-4,6,8-9'\)
 
 _Example:_ python manage/cloader.py -d 137 -u 25 -v 5 -a -J 29 -s 95
 
-## 41 to 60 : Set management 
-
-### 41: Create a set **\(Bugged\) \(tested\)**
-
-Create a set. Requires -d and -J \(hyphen separated list of Job\_ids\)  
-**WARNING: FAILS IF GIVEN MULTIPLE JOB IDS. CREATE WITH ONE ID, THEN ADD**
-
-_Example:_ ****python manage/cloader.py -d 137 -u 41 -v 5 -a -J 29 -s 94
-
-### 42: Edit a set \[CURRENTLY UNAVAILABLE\]
-
-Add or Remove a single JOB\_ID to/from an existing set. Requires -d, -J and -Set
-
-### 51: Show sets \(tested\)
-
-Show all sets. Optionally, use -s \[int\] to filter and show data for only one source. Requires-d \[-s\]
-
-_Example:_ python manage/cloader.py -d 137 -u 51 -v 5 -a -s 94
-
-### 52: Flag a set as public \[NOT FULLY TESTED\]
-
-Switch the 'Public' flag to '1' for this set, so that it may be Published in the future. Requires -Set \[int\] and -d.
-
-_Example:_ python manage/cloader.py -d 137 -u 52 -v 5 -a -s 94 -Set 1
-
-### 53: Freeze a set \[NOT FULLY TESTED\] \(tested\)
-
-Freeze an existing set. Requires -Set \[int\] and -d
-
-### 54: Thaw a set \[CURRENTLY UNAVAILABLE\]
-
-Thaw a frozen set. Requires -Set \[int\] and -d
-
-### 55: Export a set  \[NOT FULLY TESTED\] \(tested\)
-
- Export a set. Destination determined by public and freeze flags for particular set. Requires -Set \[int\] and -d.
-
-_Example:_ python manage/cloader.py -d 137 -u 55 -v 5 -a -s 94 -Set 1
-
 ## 121 to 140 : Sources 
 
 ### 121 Create a new Source:
