@@ -138,16 +138,6 @@ Thaw a frozen set. Requires -Set \[int\] and -d
 
 _Example:_ python manage/cloader.py -d 137 -u 55 -v 5 -a -s 94 -Set 1
 
-## 81 to 120 : Schedules 
-
-### 81: Run a schedule \[CURRENTLY UNAVAILABLE\]
-
-Run a schedule. Requires -d and -N
-
-### 82: Show a schedule \[CURRENTLY UNAVAILABLE\]
-
- Show a schedule. Requires -d and -N
-
 ## 121 to 140 : Sources 
 
 ### 121 Create a new Source:
