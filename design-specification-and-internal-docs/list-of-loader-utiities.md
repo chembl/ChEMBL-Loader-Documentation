@@ -16,7 +16,7 @@ Utils are marked as \[NOT FULLY TESTED\] if Jon did not finish testing them befo
 
 Process deposition data. Requires -m, -L \[-d\]
 
-### 2: Correct \[CURRENTLY UNAVAILABLE\]
+### 2: Correct \[CURRENTLY UNAVAILABLE\] \[Future Work\]
 
 Make a correction to some deposited data. Only 1 file at a time .. update ONLY fields shown.Ie: just TITLE to correct a spelling error in the title ? IGNORE all null or empty fields.
 
