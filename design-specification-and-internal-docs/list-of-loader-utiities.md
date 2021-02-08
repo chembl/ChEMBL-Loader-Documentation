@@ -165,21 +165,11 @@ Show command line options \[or use -h\], but include all available and as yet un
 
 _Example:_ python manage/cloader.py -u 902
 
-### 903: Confirm synch \[CURRENTLY UNAVAILABLE\]:
-
- Confirm that code is sychronized with the DB. Requires -d
-
 ### 904: Show Export Settings \(tested\)
 
 Display the locations for all export types, and their current contents
 
 _Example:_ python manage/cloader.py -u 904
-
-### 908: Print Job Supporting Data \[NOT FULLY TESTED\]
-
-Print to the console and outfile a 2D-matrix of all supporting data \(from ACTIVITYSUPP\) that is associated with a Job \(Requires  -O -d and -J\). -O dir must alredy be created.
-
-_Example:_ python manage/cloader.py -d 137 -u 908 -J 29 -O /nfs/panda/chembl/chembl\_loader/cloader\_example\_output/util908
 
 ### 910: Loader Rules
 
