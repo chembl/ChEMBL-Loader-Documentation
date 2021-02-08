@@ -183,26 +183,11 @@ Print dataframe Header definitions. No options required. Prints neatly formatted
 
 _Example:_ python manage/cloader.py -u 911
 
-### 912: UC Activities for job \(BUGGED\)
-
-'Normalize' Activity, Activity\_supp and Activity\_property data 
-
-* Use -p 'APS\|\|' to update all3\] for a given \[-J\] JOB\_ID, by UPPERCASING everything - this is just a debug method to help generate some normalized fields quickly - DONT EVER RUN ON PRODUCTION !!!! 
-* No options required
-
-Error: cx\_Oracle.DatabaseError: ORA-00904: "T"."PUBLISHED\_UNITS": invalid identifier
-
-_Example:_ python manage/cloader.py -u 912 -J 29 -d 137 -p APS\|\|
-
 ### 913: Get TID \(May be buggy\)
 
 Testing for Target Dictionary lookup. Tests are failing on 137, unsure why. 
 
 _Example:_ python manage/cloader.py -u 913 -d 137
-
-### 921: Migrate Source \[IN DEV. DO NOT USE. NOT FULLY TESTED\]
-
-* Migrate all data for a source into new loader format. 
 
 ### 925: Compare tables \(tested\)
 
@@ -221,17 +206,6 @@ Compare list of two tables in two databases.
 * Database connections for pairs of tables are defined with '-d' and '-y' resp. ie: -d = database1, -y = database2
 
 _Example:_ python manage/cloader.py -u 950 -d 137
-
-### 931:DELETE DEP data \[IN DEV. DO NOT USE\]
-
-Delete all data in DEP\_tables for a given source \('-s'\). 
-
-* CARE over use of this. 
-* Used when developing 'migrate source'. 
-
-### 949: Experimental code
-
-Testing of code snippets
 
 ### 950: Test for 'checkStructure': \(tested\)
 

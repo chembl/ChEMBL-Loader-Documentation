@@ -34,11 +34,11 @@ Activity data that is more complicated than a simple 'cpdX has affinity Y nM aga
 
 A Compound Normalization procedure is run separately from loading processes, and now includes an assessment of the quality of the drawn structures.
 
-### [Embargoing](design-specification-and-internal-docs/embargo-tagging.md)
+### [Embargoing]()
 
 Embargoing is managed by administrators by appending a '-E date' option when loading a job.
 
-### [Tagging and Freezing](design-specification-and-internal-docs/embargo-tagging.md)
+### [Tagging and Freezing]()
 
 Tagging and Freezing of 'sets' of deposition job\_id is achieved with the loader, but the process is dealt with separately from the loading process itself.
 
