@@ -87,7 +87,7 @@ The 'rules' referred to are summarized in table form at the end of this page.
 
 | Header | Description | Existence | Existence PS | DataType in database | Datatype rule | Datatype rule PS | Pattern | Pattern PS | Depend | Depend PS |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **RIDX** | The RIDX cited by the depositor. A Primary Key defined header | **Mandatory** | 9 | VARCHAR2\(200 BYTE\) NOT NULL ENABLE | Any character upto a length of 200 | 9 | Content | Content | Content | Content |
+| **RIDX** | The RIDX cited by the depositor. A Primary Key defined header | **Mandatory** | 9 | VARCHAR2\(200 BYTE\) NOT NULL ENABLE | Any character upto a length of 200. Will warn if this starts with 0 | 9 | Content | Content | Content | Content |
 | PUBMED\_ID | PubMed ID | Optional | 0 | NUMBER\(11,0\) | Any integer upto a length of 11 | 9 | gp006 Positive integer \(regex='^\[1-9\]\d\*$'\) | 1 | Content | Content |
 | JOURNAL\_NAME | Journal name | Optional | 0 | VARCHAR2\(50 BYTE\) | Any character upto a length of 50 | 9 | Content | Content | Content | Content |
 | YEAR | Year of publication | Optional | 0 | NUMBER\(4,0\) | Any integer upto a length of 4 | 9 | gp031 1900 &gt; year &gt; 2050 | 9 | Content | Content |
