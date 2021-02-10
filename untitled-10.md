@@ -95,7 +95,7 @@ The 'rules' referred to are summarized in table form at the end of this page.
 | ISSUE | The issue of the publication | Optional | 0 | VARCHAR2\(50 BYTE\) | Any character upto a length of 50 | 9 | Content | Content | Content | Content |
 | FIRST\_PAGE | The first page of the article | Optional | 0 | VARCHAR2\(50 BYTE\) | Any character upto a length of 50 | 9 | gp006 Positive integer \(regex='^\[1-9\]\d\*$'\) | 4 | Content | Content |
 | LAST\_PAGE | The last page of the article | Optional | 0 | VARCHAR2\(50 BYTE\) | Any character upto a length of 50 | 9 | gp006 Positive integer \(regex='^\[1-9\]\d\*$'\) | 3 | Content | Content |
-| **REF\_TYPE** | The type of reference \(Publication, Deposited\) | **Mandatory** | 9 | VARCHAR2\(50 BYTE\) | Any character upto a length of 50 | 9 | gp032 An accepted reference type \[case ins\] | 2 | Content | Content |
+| **REF\_TYPE** | The type of reference \(Publication, Patent, Dataset, Book\) | **Mandatory** | 9 | VARCHAR2\(50 BYTE\) | Any character upto a length of 50 | 9 | gp032 An accepted reference type \[case ins\] | 2 | Content | Content |
 | TITLE | The title of the reference | Optional | 0 | VARCHAR2\(500 BYTE\) | Any character upto a length of 500 | 9 | Content | Content | Content | Content |
 | DOI | The Digital Object Identifier | Optional | 0 | VARCHAR2\(200 BYTE\) | Any character upto a length of 200 | 9 | gp010 A Digital Object Identifier \(regex='^\(10\.\d\d\d\d+\/.\*\)$'\) | 5 | Content | Content |
 | PATENT\_ID | The Patent Identifier | Optional | 0 | VARCHAR2\(200 BYTE\) | Any character upto a length of 200 | 9 | gp011 A Patent Identifier \(regex='^\(WO\|EP\|US\)\-?\d+.\*$'\) | 5 | Content | Content |
