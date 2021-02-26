@@ -25,10 +25,12 @@ description: >-
 | Definition | Variable Name | Approx. Line |
 | :--- | :--- | :--- |
 | Field Dependency rules | gd1, gd2... | 2788 |
-| Mappings between different tables that store the same data, |  |  |
-| Target fields to use from input files |  |  |
+| Mappings of DEP\_ table fields to ChEMBL table fields | map2C | 583 |
+| Target fields to used to get a target ID | self.TARGET\_... | 199 |
 | Filename patterns to use for input files | self.INFO etc. | 78, at comment "Deposition Files..." |
 | Patterns defining whether the content of a field is valid. | gp001, gp002.... | 2969 |
 | TRVU header label definitiions | getTRVUdics | 1454 |
 | Table headers added during analysis steps | anaD | 319 |
+| ChEMBL tables used by the  loader scripts |  | 184 |
+| ACTIVITY header definitions | self.TYPE... | 62 |
 
