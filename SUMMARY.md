@@ -17,6 +17,7 @@
   * [Compound Normalization](design-specification-and-internal-docs/untitled-12.md)
   * [Verbosity and debugging](design-specification-and-internal-docs/verbosity-and-debugging.md)
   * [List of requirements for ChEMBL](design-specification-and-internal-docs/requirements.md)
+  * [Loader configuration](design-specification-and-internal-docs/loader-configuration.md)
   * [\[IN DEVELOPMENT\] Scan For Cleaner Structures](design-specification-and-internal-docs/scan-clean.md)
 * [FAQs](faq.md)
 * [Glossary](untitled-2.md)
