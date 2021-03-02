@@ -48,6 +48,7 @@ Thus, for example, running with the options ' -y 20 -Y 502 ' will result in the 
 
 ### 14: Scan for Cleaner Structures \(tested\)
 
+**NOTE: This runs, but we need to run a test that ut deifnitely corrects structures. E.g. run against known-bad data with known-good deposited structures from another source.**  
 Run a search for deposited structures which have lower penalty scores \(from the 'structure checker' web service\) than the current ChEMBL CTAB for the same InChIKey
 
 * Requires -J
