@@ -208,6 +208,10 @@ Compare list of two tables in two databases.
 
 _Example:_ python manage/cloader.py -u 950 -d 137
 
+### 927: Print DB list \(tested\)
+
+List the databases described in dbconnect.py. Give their numeric ID, descriptive name and connection string.
+
 ### 950: Test for 'checkStructure': \(tested\)
 
 Testing of code relating to the 'checkStructure' web service.
