@@ -19,7 +19,8 @@ RIDX	PUBMED_ID	JOURNAL_NAME	YEAR	VOLUME	ISSUE	FIRST_PAGE	LAST_PAGE	REF_TYPE	TITL
 
 The Reference file describes the deposition itself. Whether it currently has a published reference, or has been submitted pre-publication or without being associated with a publication. 
 
-* **RIDX** and **REF\_TYPE** are **mandatory**, all other fields are optional. So for example if you do not yet have a DOI, you can leave it blank. It can be added once your data are published.
+* **RIDX, YEAR** and **REF\_TYPE** are **mandatory**, all other fields are optional. So for example if you do not yet have a DOI, you can leave it blank. It can be added once your data are published.
+  * For a depositied dataset, **YEAR** should be the year we recieved the file. 
 * **REF\_TYPE** must be either "Publication" or "Deposited".
 
 ### ASSAY.tsv
@@ -38,7 +39,12 @@ This file provides a brief description of the assay, along with the target organ
 
 #### **AIDX Definition**
 
-* 
+* AIDX should not be duplicated  within a given source. 
+* For example, if one panel of probes is being used on multiple sites, or be multiple collaborators, there should only be a single AIDX for "All experiments using this panel". 
+* Alternatively, each site or group could have one AIDX that refers to "The experiment performed at this location". 
+* Subsequent data that are using the same panel or at the same location should be loaded with the same AIDX.
+* Ideally, an AIDX should be informative, to avoid mixups. e.g. a group leader's initials or a short version of the site name. It's a variable character field up to 200 characters. 
+
 ### ASSAY\_PARAM.tsv
 
 ```text
