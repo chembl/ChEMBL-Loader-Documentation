@@ -55,9 +55,9 @@ AIDX	TYPE	RELATION	VALUE	UNITS	TEXT_VALUE	COMMENTS
 
 This file describes the assay parameters. For example, here the first two records show the concentration of compound used.
 
+* **AIDX** and **TYPE** are both **mandatory.** 
 * It is a many-to-one mapping, so you can store multiple parameters for one assay. 
 * Depositors can set their own **TYPE**, but the type must uniquely match to a data type. For example, you may not use both CONC and CONCENTRATION as TYPEs if they are both referring to the same sort of concentration data. 
-* **AIDX** and **ASSAY\_PARAM** are both **mandatory.** 
 * **AIDX** must match an existing AIDX owned by the depositor.
 
 ### COMPOUND\_RECORD.tsv
@@ -89,6 +89,7 @@ RIDX	CRIDX	CIDX	AIDX	TYPE	RELATION	VALUE	UPPER_VALUE	UNITS	ACTIVITY_COMMENT
 * **CIDX**, **AIDX** and **ACTIVITY** are **mandatory.**
 * It is possible to load data without a CTAB file. If you include a CTAB file or will be loading structure data later, the CIDX fields in the CTAB **must** match the CIDX IDs here.
 * **RIDX** is optional, but if included it must be an RIDX owned by the depositor.
+* **ACT\_ID** is mandatory if providing an ACTIVITY_PROPERTIES or ACTIVITY_SUPPLEMENTARY record that maps to a given line.
 * This table will take non-numerical activity values is submitted in the **ACTIVITY\_COMMENT** field. **CRIDX** should generally be identical to **RIDX.**
 
 ### ACTIVITY\_PROPERTIES.tsv
