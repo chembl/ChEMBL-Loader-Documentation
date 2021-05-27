@@ -1,4 +1,4 @@
-# Requirements for 'BioActivity' Loading
+# Input File structure and requirements
 
 This page describes all aspects of the requirements for loading BioActivity data, including the permitted file names and column headers, and the permitted content of the cells \(or 'fields'\) within these files. 
 

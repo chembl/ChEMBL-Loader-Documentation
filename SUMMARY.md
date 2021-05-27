@@ -2,7 +2,7 @@
 
 * [Introduction to the ChEMBL Loader Gateway](README.md)
 * [Basic Deposition and Overview](deposition-overview.md)
-* [Requirements for 'BioActivity' Loading](untitled-10.md)
+* [Input File structure and requirements](untitled-10.md)
 * [The Loader Model](loader-model/README.md)
   * [Loader files](loader-model/loader-files.md)
   * [Example Load Dataset](loader-model/example.md)
