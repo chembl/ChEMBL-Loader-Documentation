@@ -143,7 +143,6 @@ The 'rules' referred to are summarized in table form at the end of this page.
 
 | Header | Description | Existence | Existence PS | DataType in database | Datatype rule | Datatype rule PS | Pattern | Pattern PS | Depend | Depend PS |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| SAMID | FK to the FK SAMID in ACTIVITY\_SUPP file. Depositor defined. | Optional | 0 | NUMBER\(11,0\) | Any integer upto a length of 11 | 9 | Content | Content | Content | Content |
 | **TYPE** | The type of supplementary measurement | **Mandatory** | 9 | VARCHAR2\(250 BYTE\) | Any character upto a length of 250 | 9 | Content | Content | Content | Content |
 | RELATION | Symbol indicating relationship between the Type and the Value \(permitted: '&gt;','&lt;','=','~','&lt;=','&gt;=','&lt;&lt;','&gt;&gt;'\) | Optional | 0 | VARCHAR2\(50 BYTE\) | Any character upto a length of 50 | 9 | gp022 relation symbol \(=,&gt;,etc\). | 2 | Content | Content |
 | VALUE | The numerical value of the supplementary measurment | Optional | 0 | NUMBER | Any number \(incl decimals, negatives and sci Notn\) | 9 | gp005 Any Number. Decimal, Sci Notn, +/- | 9 | Content | Content |
