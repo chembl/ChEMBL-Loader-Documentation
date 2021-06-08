@@ -34,3 +34,13 @@ description: >-
 | ChEMBL tables used by the  loader scripts |  | 184 |
 | ACTIVITY header definitions | self.TYPE... | 62 |
 
+**settings.py**
+
+| Definition | Variable Name | Approx. Line |
+| :--- | :--- | :--- |
+| List of DBs available for 'internal' administrators. | PERMITTED\_DB_\__LIST\_TUP | 60 |
+| Permitted host addresses for the webapp | ALLOWED\_HOSTS | 93 |
+| DB engine, name, user and password | DATABASES | 154 |
+
+There are lots more settings in the Django settings file, but these are the ones you are most likely to need to change when moving to a new DB or host.
+
