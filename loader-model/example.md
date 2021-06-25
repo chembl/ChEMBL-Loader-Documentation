@@ -102,7 +102,7 @@ ACT_ID	TYPE	RELATION	TEXT_VALUE	UNITS
 
 _Not a mandatory file, and omitted from the simple test set._  
 Can be used to supply additional activity information, for example the Hill slope of a curve.   
-Should contain information that is neccessary for interpretation of the ACTIVITY table data. Raw results and other supporting information belongs in 
+Should contain information that is neccessary for interpretation of the ACTIVITY table data. Raw results and other supporting information belongs in ACTIVITY\_SUPP.
 
 * **ACT\_ID** and **TYPE** are mandatory. 
 * **TYPE** descripes the type of measurement. 
