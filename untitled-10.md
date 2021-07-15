@@ -1,6 +1,12 @@
 # Input File structure and requirements
 
-This page describes all aspects of the requirements for loading BioActivity data, including the permitted file names and column headers, and the permitted content of the cells \(or 'fields'\) within these files. 
+This page describes all aspects of the requirements for loading BioActivity data, including the permitted file names and column headers, and the permitted content of the cells \(or 'fields'\) within these files.
+
+### Simplified input data schema 
+
+![](.gitbook/assets/screenshot-2021-07-15-at-14.21.23.png)
+
+### Rules
 
 The 'rules' referred to are summarized in table form at the end of this page. 
 
