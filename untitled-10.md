@@ -20,7 +20,7 @@ The 'rules' referred to are summarized in table form at the end of this page.
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | ASSAY | Optional | primary | AIDX | \('AIDX',\) | - |
 | ASSAY\_PARAM | Optional | secondary | - | - | AIDX in ASSAY |
-| COMPOUND\_RECORD | Optional | primary | CIDX | \('CIDX', 'RIDX'\) | - |
+| COMPOUND\_RECORD | Optional \(But Mandatory if compound records do not exist for your compounds\) | primary | CIDX | \('CIDX', 'RIDX'\) | - |
 | COMPOUND\_CTAB | Optional | secondary | - | - | CIDX in COMPOUND\_RECORD |
 | REFERENCE | Optional | primary | RIDX | \('RIDX',\) | - |
 | ACTIVITY | Optional | tertiary | - | - | - |
@@ -72,7 +72,7 @@ The 'rules' referred to are summarized in table form at the end of this page.
 | TEXT\_VALUE | The text value of non-numerical values | Optional | 0 | VARCHAR2\(4000 BYTE\) | Any character upto a length of 4000 | 9 | Content | Content | Content | Content |
 | COMMENTS | A comment on the parameter. | Optional | 0 | VARCHAR2\(4000 BYTE\) | Any character upto a length of 4000 | 9 | Content | Content | Content | Content |
 
-### COMPOUND
+### COMPOUND\_RECORD
 
 | Header | Description | Existence | Existence PS | DataType in database | Datatype rule | Datatype rule PS | Pattern | Pattern PS | Depend | Depend PS |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
