@@ -11,6 +11,7 @@
 * [Common data issues](common-data-issues.md)
 * [Depositing Activities against other Depositors Entities](untitled-1.md)
 * [Design Specification and Internal Docs](design-specification-and-internal-docs/README.md)
+  * [How the loader works](design-specification-and-internal-docs/how-the-loader-works.md)
   * [Adding new data to an exisitng set](design-specification-and-internal-docs/adding-new-data-to-an-exisitng-set.md)
   * [Use of run\_loader.pyn](design-specification-and-internal-docs/use-of-run_loader.pyn.md)
   * [List of Loader Utilities](design-specification-and-internal-docs/list-of-loader-utiities.md)
