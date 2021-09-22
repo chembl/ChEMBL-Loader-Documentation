@@ -14,9 +14,75 @@ This actually loads the data. The loader will load to the DEP tables and the vis
 
 ### Validating the data
 
-### Configuration
+The data are read in from the file to the dataframes described in  "\# HEADERS..." section of ldConfigs. A lot of the variables used here are drawn from globalvars.py.
 
-You can see notes on how the loader is configured on the [loader configuration](https://app.gitbook.com/@chembl/s/chembl-loader/~/drafts/-MkD4-12NsOgEWuDeeE4/design-specification-and-internal-docs/loader-configuration) page.
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left">Column</th>
+      <th style="text-align:left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left">Header</td>
+      <td style="text-align:left">Header string for this column in the input file. Used as the header for
+        the dataframe</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">Datatype</td>
+      <td style="text-align:left">First tuple element is the Oracle SQL datatype for the column in the ChEMBL
+        database. Set as a variable in ldConfigs.py. E.g. dV1 = &quot;VARCHAR2(XYZ
+        BYTE)&quot;.
+        <br />Second tuple element is the size of the datatype.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">Existence</td>
+      <td style="text-align:left">First tuple element is the existence definition from the Config class
+        in ldConfigs.py. E.g. e1 = must exist. e4 = must not exist.
+        <br />Second tuple element is the error level to return when a record fails
+        this rule.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">Pattern</td>
+      <td style="text-align:left">
+        <p>First tuple element is the pattern function to use to check that values
+          in this column are valid. This is imported from globalVars.py.</p>
+        <p>Second tuple element is the error level to return when a record fails
+          this rule.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">Dependency</td>
+      <td style="text-align:left">
+        <p>First tuple element is the dependency function to use for this column,
+          which is imported from globalVars.py.</p>
+        <p>Second tuple element is the error level to return when a record fails
+          this rule.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">f</td>
+      <td style="text-align:left">Usually set to f0, which is equal to the string &quot;zero&quot;</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">aSortOrder</td>
+      <td style="text-align:left">aSortOrder determines the order in which column_id is assigned when tables
+        are created, AND the order in which they are presented in the web app</td>
+    </tr>
+  </tbody>
+</table>
+
+### Configuration Overview
+
+You can see full notes on how the loader is configured on the [loader configuration](https://app.gitbook.com/@chembl/s/chembl-loader/~/drafts/-MkD4-12NsOgEWuDeeE4/design-specification-and-internal-docs/loader-configuration) page.
+
+globalVars.py
+
+* globalVars.py has dependency \(gdXX\) and pattern \(gpXX\) functions that check if a field is valid.
+  * Dependency functions check the contents of another column. E.g. "If a Title exists, there must also be a Year"
+  * Pattern functions check the contents of a target column. E.g. "If there is a PubMed ID, it must match this regex for an expected PubMed ID".
+* globalVars.py also defines filenames, headers and table names, which get referenced in ldConfigs.py
 
 
 
