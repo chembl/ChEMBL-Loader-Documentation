@@ -15,7 +15,7 @@ description: >-
 | Self-Referenced Files | SRkeys | 572 |
 | Primary files \(must be present in a load\) | files1 | 528 |
 | Secondary, Tertiary and Quaternary files \(may be present in a load\) | files2, files4 \(files3 does not exist as the only tertiary file is ACTIVITY\) | 540, 550 |
-| Field Definitions and input constrains for input files.  | input\_files | 193 |
+| Field Definitions and input constraints for input files.  | input\_files | 193 |
 | Field Existence constraints to use. | input\_files | 193 |
 | Field Dependency constraints to use, where field A is dependent on field B. | \(d1, d2, d3...\), input\_files | 96, 193 |
 | Other field constraints \(e.g. where 2 columns may not both be NULL\) | fieldConstraintsDict | 338 |
