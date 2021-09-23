@@ -83,7 +83,7 @@ The data are read in from the file to the dataframes described in  "\# HEADERS..
 
 * The file contains an empty column, e.g. because there is a tab at the end of each line. 
 * A CIDX given in the SDFile does not appear in the compound\_records file.
-* There is some form of characterset issue \(e.g. Windows encoding\) though running the files through dos2unix usually fixes that.m
+* There is some form of characterset issue \(e.g. Windows encoding\) though running the files through dos2unix usually fixes that.
 
 ### Configuration Overview
 
