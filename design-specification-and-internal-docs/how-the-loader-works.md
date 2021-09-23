@@ -96,5 +96,11 @@ You can see full notes on how the loader is configured on the [loader configurat
   * Pattern functions check the contents of a target column. E.g. "If there is a PubMed ID, it must match this regex for an expected PubMed ID".
 * globalVars.py also defines filenames, headers and table names, which get referenced in ldConfigs.py
 
+**ldConfigs.py**
 
+* Imports patterns, dependencies, case format and filenames from globalVars.
+* Defines expected structure of input file and additional constraints on the fields.
+* Defines the load order of the files. Are they in the Primary group, the Secondary group or the Quaternary group
+* Defines which keys are self-referenced keys, which must be owned by the same depositor SRC\_ID \(SRKeys dict\)
+* Maps the name of a field in the DEP\_ tables to the name of a field in the main ChEMBL tables.
 
