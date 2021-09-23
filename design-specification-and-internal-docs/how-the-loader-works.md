@@ -4,7 +4,7 @@ You can see a description of how to run under different modes [here](https://app
 
 ### Modes 1-3
 
-These check the data is suitable and show what would be loaded
+These check the data are suitable, and show what would be loaded if mode 4 was run on the input files. They do not make any changes to the database, and are good for validating the input files. 
 
 ### Mode 4
 
