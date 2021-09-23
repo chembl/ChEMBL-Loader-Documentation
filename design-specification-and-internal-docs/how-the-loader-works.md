@@ -79,6 +79,12 @@ The data are read in from the file to the dataframes described in  "\# HEADERS..
   </tbody>
 </table>
 
+**Other common loader issues**
+
+* The file contains an empty column, e.g. because there is a tab at the end of each line. 
+* A CIDX given in the SDFile does not appear in the compound\_records file.
+* There is some form of characterset issue \(e.g. Windows encoding\) though running the files through dos2unix usually fixes that.m
+
 ### Configuration Overview
 
 You can see full notes on how the loader is configured on the [loader configuration](https://app.gitbook.com/@chembl/s/chembl-loader/~/drafts/-MkD4-12NsOgEWuDeeE4/design-specification-and-internal-docs/loader-configuration) page.
