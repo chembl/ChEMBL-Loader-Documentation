@@ -8,7 +8,7 @@ These check the data are suitable, and show what would be loaded if mode 4 was r
 
 ### Mode 4
 
-This actually loads the data. The loader will load to the DEP tables and the visible tables \(e.g. DEP\_ASSAY and ASSAY\) independently.
+This actually loads the data. The loader will load to the DEP tables and the visible tables \(e.g. DEP\_ASSAY and ASSAY\) independently. It uses a mapping stable set in ldconfigs.py to determine what to load to what column in the visible tables. 
 
 ## Loader steps
 
