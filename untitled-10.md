@@ -2,6 +2,8 @@
 
 This page describes all aspects of the requirements for loading BioActivity data, including the permitted file names and column headers, and the permitted content of the cells \(or 'fields'\) within these files.
 
+Files must be supplied as tab-separated text files with UTF-8 encoding \(See examples\). Spreadsheets will not work with the loader.
+
 ### Simplified input data schema 
 
 ![](.gitbook/assets/screenshot-2021-07-15-at-14.21.23.png)
