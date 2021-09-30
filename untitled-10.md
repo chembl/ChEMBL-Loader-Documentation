@@ -52,7 +52,7 @@ The 'rules' referred to are summarized in table form at the end of this page.
 | ASSAY\_ORGANISM | The assay organism | Optional | 0 | VARCHAR2\(250 BYTE\) | Any character upto a length of 250 | 9 | Content | Content | Content | Content |
 | ASSAY\_STRAIN | The strain of the assay organism | Optional | 0 | VARCHAR2\(200 BYTE\) | Any character upto a length of 200 | 9 | Content | Content | Content | Content |
 | ASSAY\_TAX\_ID | NCBI taxonomy ID for the assay organism | Optional | 0 | NUMBER\(11,0\) | Any integer upto a length of 11 | 9 | gp003 Positive integer or '0' \(regex='^\d\*$'\) | 9 | gd3 If populated with an integer, then some text expected in this field targ fld:ASSAY\_ORGANISM | 0 |
-| ASSAY\_SOURCE | The original source of the assay | Optional | 0 | VARCHAR2\(200 BYTE\) | Any character upto a length of 200 | 9 | Content | Content | Content | Content |
+| ASSAY\_SOURCE | The original source of the assay | Optional | 0 | VARCHAR2\(100 BYTE\) | Any character upto a length of 100 | 9 | Content | Content | Content | Content |
 | ASSAY\_TISSUE | The type of tissue used in the assay | Optional | 0 | VARCHAR2\(100 BYTE\) | Any character upto a length of 100 | 9 | Content | Content | Content | Content |
 | ASSAY\_CELL\_TYPE | The cell line | Optional | 0 | VARCHAR2\(100 BYTE\) | Any character upto a length of 100 | 9 | Content | Content | Content | Content |
 | ASSAY\_SUBCELLULAR\_FRACTION | The subcellular fraction used in the assay | Optional | 0 | VARCHAR2\(100 BYTE\) | Any character upto a length of 100 | 9 | Content | Content | Content | Content |
