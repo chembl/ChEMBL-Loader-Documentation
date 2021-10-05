@@ -1,7 +1,9 @@
 # Table of contents
 
 * [Introduction to the ChEMBL Loader Gateway](README.md)
-* [Basic Deposition and Overview](deposition-overview.md)
+* [Basic Deposition and Overview](deposition-overview/README.md)
+  * [Creating Load Files](deposition-overview/creating-load-files.md)
+  * [Depositor-Defined Identifiers](deposition-overview/depositor-defined-identifiers.md)
 * [Input File structure and requirements](untitled-10.md)
 * [Choosing Depositor-Defined IDs](choosing-depositor-defined-ids.md)
 * [The Loader Model](loader-model/README.md)
