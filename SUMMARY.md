@@ -3,6 +3,7 @@
 * [Introduction to the ChEMBL Loader Gateway](README.md)
 * [Basic Deposition and Overview](deposition-overview.md)
 * [Input File structure and requirements](untitled-10.md)
+* [Choosing Depositor-Defined IDs](choosing-depositor-defined-ids.md)
 * [The Loader Model](loader-model/README.md)
   * [Loader files](loader-model/loader-files.md)
   * [Example Load Dataset](loader-model/example.md)
