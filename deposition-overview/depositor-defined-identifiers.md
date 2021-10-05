@@ -7,6 +7,8 @@ Identifiers for key entities such as Compounds and Assays are defined within the
 
 Depositor-defined Identifiers are used for Compounds/Substances, Assays and References, and are called CIDX, AIDX and RIDX, respectively.
 
+They are also used for internal reference betoween records in a dataset. REGID and SAMID are depositor-defined identifiers used to group together supplementary data. SAMID groups supplementary rows that refer to the same activity row
+
 * Depositors may use any UniCode characters to define these identifiers.
 * Identifiers must consist of a string of between 1 and 200 visible characters.
 * DDIs are 'owned' by the depositor. In other words, a given identifier is defined by the depositor when a deposition is first made with the identifier.
