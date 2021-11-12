@@ -16,36 +16,42 @@ The 'rules' referred to are summarized in table form at the end of this page.&#x
 * Each rule is associated with a single ‘Penalty Score’ (PS) value, which can range from 0 to 9 inclusive.
 * The higher the score, the more serious the problem. Scores of 9 cause an automatic load failure.
 
-## &#x20;Files associated with loading BioActivity dat
+## Files that may be included in a CHEMBL deposition
 
-| File                 | Existence                                                                    | Level         | Depositor Defined ID (DDID) defined by this file | Definition of Primary Key | All records in this file must be 'Foreign-Keyed' to... |
-| -------------------- | ---------------------------------------------------------------------------- | ------------- | ------------------------------------------------ | ------------------------- | ------------------------------------------------------ |
-| ASSAY                | Optional                                                                     | primary       | AIDX                                             | ('AIDX',)                 | -                                                      |
-| ASSAY\_PARAM         | Optional                                                                     | secondary     | -                                                | -                         | AIDX in ASSAY                                          |
-| COMPOUND\_RECORD     | Optional (But Mandatory if compound records do not exist for your compounds) | primary       | CIDX                                             | ('CIDX', 'RIDX')          | -                                                      |
-| COMPOUND\_CTAB       | Optional                                                                     | secondary     | -                                                | -                         | CIDX in COMPOUND\_RECORD                               |
-| REFERENCE            | Optional                                                                     | primary       | RIDX                                             | ('RIDX',)                 | -                                                      |
-| ACTIVITY             | Optional                                                                     | tertiary      | -                                                | -                         | -                                                      |
-| ACTIVITY\_PROPERTIES | Optional                                                                     | not defined   | -                                                | -                         | -                                                      |
-| ACTIVITY\_SUPP       | Optional                                                                     | not defined   | -                                                | -                         | -                                                      |
-| ACTIVITY\_SUPP\_MAP  | Optional                                                                     | not defined   | -                                                | -                         | -                                                      |
-| _INFO_               | _Irrelevant_                                                                 | _not defined_ | -                                                | -                         | -                                                      |
+| Filenames                | Existence                                                                    | Level         | Depositor Defined ID (DDID) defined by this file | Definition of Primary Key | All records in this file must be 'Foreign-Keyed' to... |
+| ------------------------ | ---------------------------------------------------------------------------- | ------------- | ------------------------------------------------ | ------------------------- | ------------------------------------------------------ |
+| ASSAY.tsv                | Optional                                                                     | primary       | AIDX                                             | ('AIDX',)                 | -                                                      |
+| ASSAY\_PARAM.tsv         | Optional                                                                     | secondary     | -                                                | -                         | AIDX in ASSAY                                          |
+| COMPOUND\_RECORD.tsv     | Optional (But Mandatory if compound records do not exist for your compounds) | primary       | CIDX                                             | ('CIDX', 'RIDX')          | -                                                      |
+| COMPOUND\_CTAB.sdf       | Optional                                                                     | secondary     | -                                                | -                         | CIDX in COMPOUND\_RECORD                               |
+| REFERENCE.tsv            | Optional                                                                     | primary       | RIDX                                             | ('RIDX',)                 | -                                                      |
+| ACTIVITY.tsv             | Optional                                                                     | tertiary      | -                                                | -                         | -                                                      |
+| ACTIVITY\_PROPERTIES.tsv | Optional                                                                     | not defined   | -                                                | -                         | -                                                      |
+| ACTIVITY\_SUPP.tsv       | Optional                                                                     | not defined   | -                                                | -                         | -                                                      |
+| ACTIVITY\_SUPP\_MAP.tsv  | Optional                                                                     | not defined   | -                                                | -                         | -                                                      |
+| _INFO.txt_               | _Irrelevant_                                                                 | _not defined_ | -                                                | -                         | -                                                      |
 
-&#x20;**File:** All filenames must also have a 3 letter extension (eg: '.txt', '.tsv', '.sdf', etc).\
-** Existence:**&#x20;
+&#x20;**File:** All filenames must  have a 3 letter extension (eg: '.txt', '.tsv', '.sdf', etc).\
+** **
+
+**Existence:**&#x20;
 
 * _Irrelevant_ - May exist, but will be ignored if it does.&#x20;
 * Optional - May exist, and will be used if it does.
 * **Mandatory **- Must exist, and the dataset will not load if it does not.
+*
 
 Some fields will only take certain valid identifiers, for example ASSAY.TEST\_TYPE must be "in vitro", "in vivo", or "ex vivo". Valid datatypes are described in the tables and also summarised [here](untitled-10.md#summary-of-pattern-and-dependency-rules).
 
-## &#x20;Headers and Fields (or 'Cells') associated with the above files...
+## **Field names and data types for the deposited files**
+
+(Existence PS is just the internal error code for if this field is missing. External depositors may ignore this)
 
 ### ASSAY
 
 | Header                       | Description                                                                                                                                                        | Existence     | Existence PS | DataType in database               | Datatype rule                       | Datatype rule PS | Pattern                                                                                                                                | Pattern PS | Depend                                                                                           | Depend PS |
 | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------- | ------------ | ---------------------------------- | ----------------------------------- | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------- | ---------- | ------------------------------------------------------------------------------------------------ | --------- |
+|                              |                                                                                                                                                                    |               |              |                                    |                                     |                  |                                                                                                                                        |            |                                                                                                  |           |
 | **AIDX**                     | The AIDX cited by the depositor. A Primary Key defined header                                                                                                      | **Mandatory** | 9            | VARCHAR2(200 BYTE) NOT NULL ENABLE | Any character upto a length of 200  | 9                | Content                                                                                                                                | Content    | Content                                                                                          | Content   |
 | RIDX                         | The RIDX cited by the depositor. A Self-Referencing field. MUST be owned by depositor \[ie: Not a PK Identifier, but a FK to an identifier owned by the depositor] | Optional      | 0            | VARCHAR2(200 BYTE)                 | Any character upto a length of 200  | 9                | Content                                                                                                                                | Content    | Content                                                                                          | Content   |
 | **ASSAY\_DESCRIPTION**       | A description of the assay                                                                                                                                         | **Mandatory** | 9            | VARCHAR2(4000 BYTE)                | Any character upto a length of 4000 | 9                | Content                                                                                                                                | Content    | Content                                                                                          | Content   |
