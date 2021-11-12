@@ -12,20 +12,20 @@ You can find the full specifications for the files [here](https://wwwdev.ebi.ac.
 
 ### **REFERENCE.tsv**
 
-```text
+```
 RIDX	PUBMED_ID	JOURNAL_NAME	YEAR	VOLUME	ISSUE	FIRST_PAGE	LAST_PAGE	REF_TYPE	TITLE	AUTHORS	ABSTRACT
 1								Dataset	Pathogen Box Compounds Screening 	Bloggs, J; Smith, M	400 compounds from the Pathogen box were screened for inhibitory activity against two human proteins...
 ```
 
-The Reference file describes the deposition itself. Whether it currently has a published reference, or has been submitted pre-publication or without being associated with a publication. 
+The Reference file describes the deposition itself. Whether it currently has a published reference, or has been submitted pre-publication or without being associated with a publication.&#x20;
 
 * **RIDX, YEAR** and **REF\_TYPE** are **mandatory**, all other fields are optional. So for example if you do not yet have a DOI, you can leave it blank. It can be added once your data are published.
-  * For a depositied dataset, **YEAR** should be the year we recieved the file. 
+  * For a depositied dataset, **YEAR **should be the year we recieved the file.&#x20;
 * **REF\_TYPE** must be either "Publication" or "Deposited".
 
 ### ASSAY.tsv
 
-```text
+```
 AIDX	RIDX	ASSAY_DESCRIPTION	ASSAY_TYPE	ASSAY_TEST_TYPE	ASSAY_ORGANISM	ASSAY_STRAIN	ASSAY_TAX_ID	ASSAY_TISSUE	ASSAY_CELL_TYPE	ASSAY_SUBCELLULAR_FRACTION	TARGET_TYPE	TARGET_NAME	TARGET_ACCESSION	TARGET_ORGANISM	TARGET_TAX_ID
 1	1	Compound was evaluated for the inhibition of human FECH at 10uM	B	In vitro	Homo sapiens		9606				PROTEIN	FECH	P22830	Homo sapiens	9606
 2	1	Compound was evaluated for the inhibition of human HMBS at  100uM	B	In vitro	Homo sapiens		9606				PROTEIN	HMBS	P08397	Homo sapiens	9606
@@ -33,21 +33,21 @@ AIDX	RIDX	ASSAY_DESCRIPTION	ASSAY_TYPE	ASSAY_TEST_TYPE	ASSAY_ORGANISM	ASSAY_STRA
 
 This file provides a brief description of the assay, along with the target organism, tissue, cellular fraction etc.
 
-* **AIDX**, **ASSAY\_DESCRIPTION** _and_ **ASSAY\_TYPE** are all **mandatory**. 
+* **AIDX**, **ASSAY\_DESCRIPTION **_and _**ASSAY\_TYPE** are all **mandatory**.&#x20;
 * **RIDX** is optional, but if included it must be an RIDX owned by the depositor. Either one in this set of files or one already loaded into ChEMBL.
 * This table describes what the assay is and what it targets.
 
 #### **AIDX Definition**
 
-* AIDX should not be duplicated  within a given source. 
-* For example, if one panel of probes is being used on multiple sites, or be multiple collaborators, there should only be a single AIDX for "All experiments using this panel". 
-* Alternatively, each site or group could have one AIDX that refers to "The experiment performed at this location". 
+* AIDX should not be duplicated  within a given source.&#x20;
+* For example, if one panel of probes is being used on multiple sites, or be multiple collaborators, there should only be a single AIDX for "All experiments using this panel".&#x20;
+* Alternatively, each site or group could have one AIDX that refers to "The experiment performed at this location".&#x20;
 * Subsequent data that are using the same panel or at the same location should be loaded with the same AIDX.
-* Ideally, an AIDX should be informative, to avoid mixups. e.g. a group leader's initials or a short version of the site name. It's a variable character field up to 200 characters. 
+* Ideally, an AIDX should be informative, to avoid mixups. e.g. a group leader's initials or a short version of the site name. It's a variable character field up to 200 characters.&#x20;
 
 ### ASSAY\_PARAM.tsv
 
-```text
+```
 AIDX	TYPE	RELATION	VALUE	UNITS	TEXT_VALUE	COMMENTS
 1	CONC	=	10	uM		
 2	CONC	=	100	uM		
@@ -55,16 +55,16 @@ AIDX	TYPE	RELATION	VALUE	UNITS	TEXT_VALUE	COMMENTS
 
 This file describes the assay parameters. For example, here the first two records show the concentration of compound used.
 
-* **AIDX** and **TYPE** are both **mandatory.** 
-* It is a many-to-one mapping, so you can store multiple parameters for one assay. 
-* Depositors can set their own **TYPE**, but the type must uniquely match to a data type. For example, you may not use both CONC and CONCENTRATION as TYPEs if they are both referring to the same sort of concentration data. 
+* **AIDX** and **TYPE** are both **mandatory. **
+* It is a many-to-one mapping, so you can store multiple parameters for one assay.&#x20;
+* Depositors can set their own **TYPE**, but the type must uniquely match to a data type. For example, you may not use both CONC and CONCENTRATION as TYPEs if they are both referring to the same sort of concentration data.&#x20;
 * **AIDX** must match an existing AIDX owned by the depositor.
 
 ### COMPOUND\_RECORD.tsv
 
 This is a truncated example showing only the first 3 rows. The full file is available in the "Simple Example Dataset" download.
 
-```text
+```
 CIDX	RIDX	COMPOUND_NAME	COMPOUND_KEY
 MMV010764	1	MMV010764	MMV010764
 MMV026468	1	MMV026468	MMV026468
@@ -72,13 +72,13 @@ MMV011229	1	MMV011229	MMV011229
 ```
 
 * The **CIDX** field is **mandatory.**
-* **RIDX** is optional, but if included it must be an RIDX owned by the depositor. 
+* **RIDX** is optional, but if included it must be an RIDX owned by the depositor.&#x20;
 
 ### ACTIVITY.tsv
 
 This is a truncated example showing only the first 3 rows. The full file is available in the "Simple Example Dataset" download.
 
-```text
+```
 RIDX	CRIDX	CIDX	AIDX	TYPE	RELATION	VALUE	UPPER_VALUE	UNITS	ACTIVITY_COMMENT
 1	1	MMV161996	1	Inhibition		0		%	Not active
 1	1	MMV202458	1	Inhibition		1		%	Not active
@@ -86,33 +86,34 @@ RIDX	CRIDX	CIDX	AIDX	TYPE	RELATION	VALUE	UPPER_VALUE	UNITS	ACTIVITY_COMMENT
 
 ```
 
-* **CIDX**, **AIDX** and **ACTIVITY** are **mandatory.**
+* **CIDX**, **AIDX **and** ACTIVITY **are** mandatory.**
 * It is possible to load data without a CTAB file. If you include a CTAB file or will be loading structure data later, the CIDX fields in the CTAB **must** match the CIDX IDs here.
 * **RIDX** is optional, but if included it must be an RIDX owned by the depositor.
-* **ACT\_ID** is mandatory if providing an ACTIVITY_PROPERTIES or ACTIVITY_SUPPLEMENTARY record that maps to a given line.
-* This table will take non-numerical activity values is submitted in the **ACTIVITY\_COMMENT** field. **CRIDX** should generally be identical to **RIDX.**
+* **ACT\_ID **is mandatory if providing an ACTIVITY_PROPERTIES or ACTIVITY_SUPPLEMENTARY record that maps to a given line.
+* This table will take non-numerical activity values is submitted in the **ACTIVITY\_COMMENT** field.\
+  **CRIDX** should generally be identical to **RIDX.**
 
 ### ACTIVITY\_PROPERTIES.tsv
 
-```text
+```
 ACT_ID	TYPE	RELATION	TEXT_VALUE	UNITS
 1	HILL_SLOPE	=	1.1
 
 ```
 
-_Not a mandatory file, and omitted from the simple test set._  
-Can be used to supply additional activity information, for example the Hill slope of a curve.   
+_Not a mandatory file, and omitted from the simple test set._\
+Can be used to supply additional activity information, for example the Hill slope of a curve. \
 Should contain information that is neccessary for interpretation of the ACTIVITY table data. Raw results and other supporting information belongs in ACTIVITY\_SUPP.
 
-* **ACT\_ID** and **TYPE** are mandatory. 
-* **TYPE** descripes the type of measurement. 
-  * Depositors can set their own categories for TYPE, but should not use the same TYPE value for different sorts of data. 
-  * E.g. PB\_HILL\_SLOPE __and PB\_R\_SQUARED would be valid, but storing both Hill slope and R-Squared data as PB would not be. Even if they had different UNITS or COMMENTS.
-* Can contain dependent or independent variables. If RESULT\_FLAG is set to 1, it shows the record is a dependent variable/result \(e.g., slope\) rather than an independent variable/parameter.
+* **ACT\_ID **and **TYPE** are mandatory.&#x20;
+* **TYPE** descripes the type of measurement.&#x20;
+  * Depositors can set their own categories for TYPE, but should not use the same TYPE value for different sorts of data.&#x20;
+  * E.g. PB\_HILL\_SLOPE_ _and PB\_R\_SQUARED would be valid, but storing both Hill slope and R-Squared data as PB would not be. Even if they had different UNITS or COMMENTS.
+* Can contain dependent or independent variables. If RESULT\_FLAG is set to 1, it shows the record is a dependent variable/result (e.g., slope) rather than an independent variable/parameter.
 
 ### ACTIVITY\_SUPP
 
-```text
+```
 COMMENTS	REGID	RELATION	SAMID	TEXT_VALUE	TYPE	UNITS	VALUE
 	0	=	0		Treatment		1
 	1	=	1		Treatment		1
@@ -120,23 +121,23 @@ COMMENTS	REGID	RELATION	SAMID	TEXT_VALUE	TYPE	UNITS	VALUE
 	2	=	2	Y	Side Effect (Y,N)	Y,N	
 ```
 
-_Not a mandatory file, and omitted from the simple test set._  
-This contains supplementary data on the **ACTIVITY** file. 
+_Not a mandatory file, and omitted from the simple test set._\
+This contains supplementary data on the **ACTIVITY** file.&#x20;
 
-* It is not necessary to supply, for example, all the points on a curve. 
-* It is more useful with datasets such as _in vivo_ studies where animal-level data is submitted.
+* It is not necessary to supply, for example, all the points on a curve.&#x20;
+* It is more useful with datasets such as_ in vivo _studies where animal-level data is submitted.
 * In this case, it shows the treatment group for each sample. And for any sample where a side effect on the cells was recorded, it notes this.
 
 ### ACTIVITY\_SUPP\_MAP.
 
-```text
+```
 ACT_ID	SAMID
 0	0
 1	1
 2	2
 ```
 
-_Not a mandatory file, and omitted from the simple test set._  
+_Not a mandatory file, and omitted from the simple test set._\
 This table maps activity IDs in the **ACTIVITY** file to sample IDs in the **ACTIVITY\_SUPP** file. Both fields are **mandatory**.
 
 ### COMPOUND\_CTAB.sdf
@@ -145,7 +146,7 @@ This is a truncated example showing only the first SDF record. The full file is 
 
 * It is possible to load data without a CTAB file. If you include a CTAB file or will be loading structure data later, the CIDX fields in the CTAB **must** match the CIDX IDs in ACTIVITY.tsv.
 
-```text
+```
 
   Mrv0541 04191616472D          
 
@@ -214,7 +215,5 @@ $$$$
 
 ```
 
-{% file src="../.gitbook/assets/simple\_full\_example.zip" %}
-
-
+{% file src="../.gitbook/assets/simple_full_example.zip" %}
 

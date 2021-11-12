@@ -4,7 +4,7 @@ The ChEMBL Gateway aims to satisfy a number of requirements for loading and stor
 
 Although loading data to ChEMBL will remain by invitation only, and will remain in the complete control of ChEMBL administrators, the external facing 'Gateway' aims to stimulate external requests, and assist depositors in correctly formatting depositions before submission to ChEMBL.
 
-Below are listed some of the basic key concepts used in the new ChEMBL loader. Other documentation pages go into many of these concepts in more detail, and some complex aspects are dealt with by examples \(see 'Examples' above\).
+Below are listed some of the basic key concepts used in the new ChEMBL loader. Other documentation pages go into many of these concepts in more detail, and some complex aspects are dealt with by examples (see 'Examples' above).
 
 ## Depositors
 
@@ -16,11 +16,11 @@ Every src\_id is also assigned a 'default RIDX' which is used as the RIDX if the
 
 Load files must be ascii or UTF-8 encoded, and named and formatted as described in the 'Requirements' section. Within these files, column headers such as 'CIDX', 'AIDX' and 'RIDX' are used to indicate the column position of the Depositor defined IDs. Depositor defined IDs may consist of a string of up to 200 UniCode characters
 
-* For each of these three key entities a single \('primary'\) file is used to define \(or redefine\) them, as shown in the 'Requirements' section.
-* Other \(secondary\) files may define or redefine properties of existing Depositor defined IDs \(ie: which either exist in the corresponding primary file in the same deposition job, or already exist in the database\).
+* For each of these three key entities a single ('primary') file is used to define (or redefine) them, as shown in the 'Requirements' section.
+* Other (secondary) files may define or redefine properties of existing Depositor defined IDs (ie: which either exist in the corresponding primary file in the same deposition job, or already exist in the database).
 * Activity files must also cite only existing Depositor defined IDs.
 
-Currently, ChEMBL only accepts data formatted into tsv \(tab-separated variable\) files, but alternative formats will be available in the future..
+Currently, ChEMBL only accepts data formatted into tsv (tab-separated variable) files, but alternative formats will be available in the future..
 
 ## Advanced features and documentation
 
@@ -34,11 +34,10 @@ Activity data that is more complicated than a simple 'cpdX has affinity Y nM aga
 
 A Compound Normalization procedure is run separately from loading processes, and now includes an assessment of the quality of the drawn structures.
 
-### [Embargoing]()
+### [Embargoing](broken-reference)
 
 Embargoing is managed by administrators by appending a '-E date' option when loading a job.
 
-### [Tagging and Freezing]()
+### [Tagging and Freezing](broken-reference)
 
 Tagging and Freezing of 'sets' of deposition job\_id is achieved with the loader, but the process is dealt with separately from the loading process itself.
-

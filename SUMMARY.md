@@ -4,7 +4,8 @@
 * [Basic Deposition and Overview](deposition-overview/README.md)
   * [Creating Load Files](deposition-overview/creating-load-files.md)
   * [Depositor-Defined Identifiers](deposition-overview/depositor-defined-identifiers.md)
-* [Input File structure and requirements](untitled-10.md)
+* [Input File structure and requirements](untitled-10/README.md)
+  * [Accepted values](untitled-10/accepted-values.md)
 * [Choosing Depositor-Defined IDs](choosing-depositor-defined-ids.md)
 * [The Loader Model](loader-model/README.md)
   * [Loader files](loader-model/loader-files.md)
@@ -16,7 +17,7 @@
 * [Design Specification and Internal Docs](design-specification-and-internal-docs/README.md)
   * [How the loader works](design-specification-and-internal-docs/how-the-loader-works.md)
   * [Adding new data to an exisitng set](design-specification-and-internal-docs/adding-new-data-to-an-exisitng-set.md)
-  * [Use of run\_loader.py](design-specification-and-internal-docs/use-of-run_loader.pyn.md)
+  * [Use of run\_loader.py](design-specification-and-internal-docs/use-of-run\_loader.pyn.md)
   * [List of Loader Utilities](design-specification-and-internal-docs/list-of-loader-utiities.md)
   * [Running The Command-Line Loader](design-specification-and-internal-docs/running-loader.md)
   * [Complex Results Sets](design-specification-and-internal-docs/complex-results.md)
@@ -27,4 +28,3 @@
   * [\[IN DEVELOPMENT\] Scan For Cleaner Structures](design-specification-and-internal-docs/scan-clean.md)
 * [FAQs](faq.md)
 * [Glossary](untitled-2.md)
-
