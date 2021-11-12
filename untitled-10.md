@@ -6,7 +6,7 @@ Files must be supplied as tab-separated text files with UTF-8 encoding (See [exa
 
 ### Simplified input data schema&#x20;
 
-![](../.gitbook/assets/screenshot-2021-07-15-at-14.21.23.png)
+![](.gitbook/assets/screenshot-2021-07-15-at-14.21.23.png)
 
 ### Rules
 
@@ -16,7 +16,7 @@ The 'rules' referred to are summarized in table form at the end of this page.&#x
 * Each rule is associated with a single ‘Penalty Score’ (PS) value, which can range from 0 to 9 inclusive.
 * The higher the score, the more serious the problem. Scores of 9 cause an automatic load failure.
 
-## &#x20;Files associated with loading BioActivity data...
+## &#x20;Files associated with loading BioActivity dat
 
 | File                 | Existence                                                                    | Level         | Depositor Defined ID (DDID) defined by this file | Definition of Primary Key | All records in this file must be 'Foreign-Keyed' to... |
 | -------------------- | ---------------------------------------------------------------------------- | ------------- | ------------------------------------------------ | ------------------------- | ------------------------------------------------------ |
@@ -38,6 +38,8 @@ The 'rules' referred to are summarized in table form at the end of this page.&#x
 * Optional - May exist, and will be used if it does.
 * **Mandatory **- Must exist, and the dataset will not load if it does not.
 
+Some fields will only take certain valid identifiers, for example ASSAY.TEST\_TYPE must be "in vitro", "in vivo", or "ex vivo". Valid datatypes are described in the tables and also summarised [here](untitled-10.md#summary-of-pattern-and-dependency-rules).
+
 ## &#x20;Headers and Fields (or 'Cells') associated with the above files...
 
 ### ASSAY
@@ -56,7 +58,7 @@ The 'rules' referred to are summarized in table form at the end of this page.&#x
 | ASSAY\_TISSUE                | The type of tissue used in the assay                                                                                                                               | Optional      | 0            | VARCHAR2(100 BYTE)                 | Any character upto a length of 100  | 9                | Content                                                                                                                                | Content    | Content                                                                                          | Content   |
 | ASSAY\_CELL\_TYPE            | The cell line                                                                                                                                                      | Optional      | 0            | VARCHAR2(100 BYTE)                 | Any character upto a length of 100  | 9                | Content                                                                                                                                | Content    | Content                                                                                          | Content   |
 | ASSAY\_SUBCELLULAR\_FRACTION | The subcellular fraction used in the assay                                                                                                                         | Optional      | 0            | VARCHAR2(100 BYTE)                 | Any character upto a length of 100  | 9                | Content                                                                                                                                | Content    | Content                                                                                          | Content   |
-| TARGET\_TYPE                 | The type of target                                                                                                                                                 | Optional      | 0            | VARCHAR2(25 BYTE)                  | Any character upto a length of 25   | 9                | <p><a href="accepted-values.md#target_type">Target type list</a></p><p></p>                                                            | 5          | gd1 Type of target restricts kind of accession used. targ fld:TARGET\_ACCESSION                  | 7         |
+| TARGET\_TYPE                 | The type of target                                                                                                                                                 | Optional      | 0            | VARCHAR2(25 BYTE)                  | Any character upto a length of 25   | 9                | [Target type list](untitled-10.md#summary-of-pattern-and-dependency-rules)                                                             | 5          | gd1 Type of target restricts kind of accession used. targ fld:TARGET\_ACCESSION                  | 7         |
 | TARGET\_NAME                 | The name of the target                                                                                                                                             | Optional      | 0            | VARCHAR2(400 BYTE)                 | Any character upto a length of 400  | 9                | Content                                                                                                                                | Content    | Content                                                                                          | Content   |
 | TARGET\_ACCESSION            | The accession number of the target (eg: UniProt Acc, NCBI tax ID)                                                                                                  | Optional      | 0            | VARCHAR2(255 BYTE)                 | Any character upto a length of 255  | 9                | <p>An integer or a UniProt ID</p><p>[gp024]</p>                                                                                        | 2          | Content                                                                                          | Content   |
 | TARGET\_ORGANISM             | The target organism                                                                                                                                                | Optional      | 0            | VARCHAR2(100 BYTE)                 | Any character upto a length of 100  | 9                | Content                                                                                                                                | Content    | Content                                                                                          | Content   |
