@@ -10,3 +10,6 @@ Deposition of bioactivity data to ChEMBL is by invitation only. However, if you 
 
 The current list of ChEMBL sources can be found on the 'Activity Source Filter' on the ChEMBL home page... [https://www.ebi.ac.uk/chembl/](https://www.ebi.ac.uk/chembl/)
 
+## Why can't we accept V3000 molfiles?
+
+The InChI binaries we use currently do not accept V3000 molfiles, and so we cannot accept V3000 InChIs as we need an InChI Key for ChEMBL.
