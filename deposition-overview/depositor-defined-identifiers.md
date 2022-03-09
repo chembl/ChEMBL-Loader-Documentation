@@ -14,7 +14,7 @@ They are also used for internal reference betoween records in a dataset. REGID a
 * DDIs are 'owned' by the depositor. In other words, a given identifier is defined by the depositor when a deposition is first made with the identifier.
 * Subsequent use of the same identifier in future ChEMBL loads will result in the updating of the data that was originally associated with this identifier when it was first loaded.
 
-Other Depositor-defined IDs include SAMID, used to link ACTIVITY\_SUPP records to_ _ACTIVITY rows, and REGID, used to group_ _ACTIVITY\_SUPP data.
+Other Depositor-defined IDs include SAMID, used to link ACTIVITY\_SUPP records to __ ACTIVITY rows, and REGID, used to group __ ACTIVITY\_SUPP data.
 
 ### Sources with multiple depositors
 

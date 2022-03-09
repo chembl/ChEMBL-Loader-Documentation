@@ -8,7 +8,7 @@ description: >-
 
 ## Introduction to the load process
 
-You can find the full specifications for the files [here](../untitled-10.md). This page will cover the mandatory fields, foreign keys, and how the files relate to each other.
+You can find the full specifications for the files [here](../untitled-10/). This page will cover the mandatory fields, foreign keys, and how the files relate to each other.
 
 A simple set of example data files suitable for use as a template are available below:
 

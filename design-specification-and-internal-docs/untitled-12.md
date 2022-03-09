@@ -81,7 +81,7 @@ Each normalization process that is started is assigned a record in the NORMALIZA
 ### The Process.
 
 * All normalization steps apply only to records where molregno is null and JOB\_ID >0. This ensures that data that have already been processed, and data that were loaded with the old loader are ignored.&#x20;
-* Retrieve a non-redundant list of all CIDX's (for each SRC\_ID)_ from _COMPOUND\_RECORDS.
+* Retrieve a non-redundant list of all CIDX's (for each SRC\_ID) _from_ COMPOUND\_RECORDS.
 * For each CIDX, apply the following rules, in order, until a molregno is assigned. Once a molregno is assigned, carry out the 'Action' required by the rule, and then proceed to the next CIDX.&#x20;
 
 Note that the update statements generated for all rules below will update ALL records for the CIDX's to the molregno selected by the rule (regardless of the RIDX, or whether cr.molregno is null or not), and will include the where clause 'where cr.MOLREGNO\_FIXED is null and JOB\_ID > '0'.'

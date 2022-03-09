@@ -55,7 +55,7 @@ Run a search for deposited structures which have lower penalty scores (from the 
 
 * Requires -J
 
-_Example: _python manage/cloader.py -d 137 -u 14 -J 29 -v 5 -a
+_Example:_ python manage/cloader.py -d 137 -u 14 -J 29 -v 5 -a
 
 ### 17: Delete Activities
 
@@ -76,7 +76,7 @@ The owner of the AIDX's or JOB\_ID's, must also be specified.&#x20;
 
 Show all jobs. Filter to show only for one source if '-s' option used. Requires -d. add -v for all fields. Use -J to limit to a range of JOBIDs
 
-_Example: _python manage/cloader.py -d 137 -u 21 -v 5 -a
+_Example:_ python manage/cloader.py -d 137 -u 21 -v 5 -a
 
 ### 22: Report job(s) in sets (tested)
 
@@ -94,13 +94,13 @@ _Example:_ python manage/cloader.py -d 137 -u 23 -v 5 -a -J 29 -O /nfs/panda/che
 
 Show the report on a load for a single JOB\_ID (-J). Requires -d
 
-_Example: _python manage/cloader.py -d 137 -u 24 -v 5 -a -J 29
+_Example:_ python manage/cloader.py -d 137 -u 24 -v 5 -a -J 29
 
 ### 25: Show content report (Jobs or AIDXs) (Tested)
 
 Show a report of the content assigned to JOB\_ID(s) (-J, eg: -J '1-4,6,8-9'), or a list of AIDXs present in a text file, location '-f'. Requires -d, -s
 
-_Example: _python manage/cloader.py -d 137 -u 25 -v 5 -a -J 29 -s 95
+_Example:_ python manage/cloader.py -d 137 -u 25 -v 5 -a -J 29 -s 95
 
 ## 121 to 140 : Sources&#x20;
 
@@ -110,7 +110,7 @@ Create a new SRC\_ID. Requires -d, -s (new src\_id), -n (new name), -Z (new desc
 
 Will NOT work on CHEMLDT as that database has no CHEMBL\_ID\_LOOKUP table
 
-_Example: _python manage/cloader.py -d 137 -u 121 -s 99 -n TEST -Z TESTING -y 2021
+_Example:_ python manage/cloader.py -d 137 -u 121 -s 99 -n TEST -Z TESTING -y 2021
 
 ## 141 to 160 : Processing, Analysis, etc.&#x20;
 
@@ -166,25 +166,25 @@ Print Activity data for a list of Activity\_ids or a Job\_ids (Requires -d, -p a
 
 Show command line options \[or use -h], but include all available and as yet unused single letter options \[a-z,A-Z] No options required
 
-_Example: _python manage/cloader.py -u 902
+_Example:_ python manage/cloader.py -u 902
 
 ### 904: Show Export Settings (tested)
 
 Display the locations for all export types, and their current contents
 
-_Example: _python manage/cloader.py -u 904
+_Example:_ python manage/cloader.py -u 904
 
 ### 910: Loader Rules
 
 A dump of the 'loader object', detailing loader rules and requirements. No options required. Prints as a dict of dicts without formatting.
 
-_Example: _python manage/cloader.py -u 910
+_Example:_ python manage/cloader.py -u 910
 
 ### 911: Header definitions
 
 Print dataframe Header definitions. No options required. Prints neatly formatted.
 
-_Example: _python manage/cloader.py -u 911
+_Example:_ python manage/cloader.py -u 911
 
 ### 913: Get TID (May be buggy)
 
@@ -199,7 +199,7 @@ Compare two tables in two databases.&#x20;
 * Table names defined in a comma separated string in '-t'(ie: 'table1,table2').&#x20;
 * Database connections for two tables are defined with '-d' and '-y' resp. ie: -d = database1, -y = database2
 
-_Example: _python manage/cloader.py -u 925 -d 101 -y 137 -t "ASSAY, DEPOSIT\_JOB"
+_Example:_ python manage/cloader.py -u 925 -d 101 -y 137 -t "ASSAY, DEPOSIT\_JOB"
 
 ### 926: Compare list of tables (tested)
 
@@ -208,7 +208,7 @@ Compare list of two tables in two databases.&#x20;
 * Table names defined in a hard coded list.&#x20;
 * Database connections for pairs of tables are defined with '-d' and '-y' resp. ie: -d = database1, -y = database2
 
-_Example: _python manage/cloader.py -u 950 -d 137
+_Example:_ python manage/cloader.py -u 950 -d 137
 
 ### 927: Print DB list (tested)
 
@@ -218,6 +218,6 @@ List the databases described in dbconnect.py. Give their numeric ID, descriptive
 
 Testing of code relating to the 'checkStructure' web service.
 
-_Example: _python manage/cloader.py -u 950 -d 137
+_Example:_ python manage/cloader.py -u 950 -d 137
 
 Example output for all of these can be found at /nfs/panda/chembl/chembl\_loader/cloader\_example\_output/
