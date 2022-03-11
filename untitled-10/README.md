@@ -6,7 +6,11 @@ Files must be supplied as tab-separated text files with UTF-8 encoding (See [exa
 
 ### Simplified input data schema&#x20;
 
+Please note that unless you are loading additional data to existing assays, RIDX is a **mandatory** field in any file that includes it. Without including your RIDX, records cannot be linked to your references and the load will fail.&#x20;
+
 ![](../.gitbook/assets/screenshot-2021-07-15-at-14.21.23.png)
+
+###
 
 ### Rules
 
