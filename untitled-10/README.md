@@ -97,6 +97,8 @@ For further information on constraints and error scores for the loader, see [thi
 
 ### COMPOUND\_CTAB
 
+This must be in V2000 molfile format The InChI binaries we use currently do not accept V3000 molfiles. We cannot accept V3000 InChIs as we need an InChI Key for ChEMBL.
+
 | Header   | Description                                                                                                  | Existence     | Field type                         | Additional Constraints |
 | -------- | ------------------------------------------------------------------------------------------------------------ | ------------- | ---------------------------------- | ---------------------- |
 | **CIDX** | The CIDX cited by the depositor \[but, note that an alternative header label can be set using the -C option] | **Mandatory** | Any character upto a length of 200 |                        |
