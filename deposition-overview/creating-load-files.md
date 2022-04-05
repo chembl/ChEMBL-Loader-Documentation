@@ -2,9 +2,9 @@
 
 ### Basics
 
-Currently, ChEMBL only accepts data formatted into tsv \(tab-separated variable\) files. The files must be named as described in the 'Requirements' section. Within these files, column headers such as 'CIDX' and 'AIDX' are used to indicate the column position of the Depositor defined IDs. The 'Requirements' link also describes what other fields are required for these files. Some of these fields are mandatory, others optional.
+Currently, ChEMBL only accepts data formatted into tsv (tab-separated variable) files. The files must be named as described in the 'Requirements' section. Within these files, column headers such as 'CIDX' and 'AIDX' are used to indicate the column position of the Depositor defined IDs. The 'Requirements' link also describes what other fields are required for these files. Some of these fields are mandatory, others optional.
 
-Some files are termed 'Primary' deposition files. These files are responsible for defining the key DDIs \(CIDX, AIDX, and RIDX \[see below\]\). 'Secondary' files add extra information about DDIs defined in corresponding Primary files. Thus the ASSAY\_PARAM file can be used to assign a list of parameters to an AIDX \(which must have either been previouslhy deposited in ChEMBL, or be defined in the ASSAY file \[or both\]\).
+Some files are termed 'Primary' deposition files. These files are responsible for defining the key DDIs (CIDX, AIDX, and RIDX \[see below]). 'Secondary' files add extra information about DDIs defined in corresponding Primary files. Thus the ASSAY\_PARAM file can be used to assign a list of parameters to an AIDX (which must have either been previouslhy deposited in ChEMBL, or be defined in the ASSAY file \[or both]).
 
 As can be seen from the 'Requirements' link, very many combinations of files can be used in a single deposition, provided that the referential integrity of DDIs is maintained.
 
@@ -28,13 +28,8 @@ ChEMBL has the ability to store more complex result sets than has hitherto been 
 
 #### [Depositing Activity Data against other depositors' entities](../untitled-1.md)
 
-Some depositors wish to deposit bioactivity data obtained using either assays \(AIDXs\) or compounds \(CIDXs\) defined by other depositors. In order to do this, these AIDX and CIDXs must already have been deposited within ChEMBL by their respective owners, and when citing these AIDXs and CIDXs in the Activity load file, the depositor must add an extra column to the file, giving the src\_id of the owner of these IDs.
-
-## Testing your files.
-
-Visit the [Gateway](https://wwwdev.ebi.ac.uk/chembl/gateway/gateway/) website, choose the files you wish to test, and then hit 'upload and process'
+Some depositors wish to deposit bioactivity data obtained using either assays (AIDXs) or compounds (CIDXs) defined by other depositors. In order to do this, these AIDX and CIDXs must already have been deposited within ChEMBL by their respective owners, and when citing these AIDXs and CIDXs in the Activity load file, the depositor must add an extra column to the file, giving the src\_id of the owner of these IDs.
 
 ## Submitting your files for loading.
 
-Once you are confident that your files pass the formatting tests above, create a zip or tar archive of your files, and email it to us. If you are a registered depositor then we will load the file, and send you back a load report. If you are not a registered depositor, then we will consider whether your data is appropriate for ChEMBL, and be in contact with you shortly.
-
+Once you are confident that your files should pass the formatting tests above, create a zip or tar archive of your files, and email it to us. If you are a registered depositor then we will load the file, and send you back a load report. If you are not a registered depositor, then we will consider whether your data is appropriate for ChEMBL, and be in contact with you shortly.
