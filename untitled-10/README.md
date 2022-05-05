@@ -114,7 +114,7 @@ This must be in V2000 molfile format The InChI binaries we use currently do not 
 
 The TITLE, ABSTRACT and AUTHORS fields of the DOCS table should also be populated for Datasets, as well as Publications.
 
-These can be brief (i.e. an organisation name can be provided for the AUTHORS field) and the abstract can be a simple summary of the experiments and their overall purpose. It should contain sufficient details for a user to locate your publication or project by reading the reference.
+These can be brief (i.e. an organisation name can be provided for the AUTHORS field) and the abstract can be a simple summary of the experiments and their overall purpose. It should contain sufficient details for a user to locate your publication or project by reading the reference. E.g the ABSTRACT field could contain a short description of the dataset and a link to the project site.&#x20;
 
 | Header        | Description                                                   | Existence     | Fie Type                                                            | Additional Constraints                                                                                |
 | ------------- | ------------------------------------------------------------- | ------------- | ------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
