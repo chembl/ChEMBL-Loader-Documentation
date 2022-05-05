@@ -87,6 +87,8 @@ For further information on constraints and error scores for the loader, see [thi
 
 ### COMPOUND\_RECORD
 
+**We need you to provide at least one of COMPOUND\_NAME**_**,**_** COMPOUND**_**\_**_**KEY or COMPOUND\_SOURCE in order to make the compound searchable.**
+
 | Header           | Description                                                                                                                                                        | Existence     | Field Type                          | Additional constraints |
 | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------- | ----------------------------------- | ---------------------- |
 | **CIDX**         | The CIDX cited by the depositor. A Primary Key defined header                                                                                                      | **Mandatory** | Any character upto a length of 200  |                        |
