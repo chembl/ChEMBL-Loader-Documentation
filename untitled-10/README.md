@@ -146,7 +146,7 @@ This must be in V2000 molfile format The InChI binaries we use currently do not 
 | ACT\_ID           | A local ID used to relate records in ACTIVITY\_PROPERTIES and Supplementary tables. Not required unless depositing such data.                                      | Optional      | Any integer upto a length of 11                    |                                                                                               |
 | TEOID             | TEst Occasion ID, grouping together related Activity records. Depositor defined.                                                                                   | Optional      | Any integer upto a length of 11                    |                                                                                               |
 | **TYPE**          | The type of measurement                                                                                                                                            | **Mandatory** | Any character upto a length of 250                 |                                                                                               |
-| ACTION\_TYPE      | Specifies the effect of the drug on its target for protein-based assays. Must match one of the names in the ACTION\_TYPE table                                     | Optional      | Any character up to a length of 50                 | Must be in the ACTION\_TYPE table                                                             |
+| ACTION\_TYPE      | Specifies the effect of the drug on its target for protein-based assays. Must match one of the names in the [ACTION\_TYPE](./#action\_type-valid-names) table      | Optional      | Any character up to a length of 50                 | Must be in the ACTION\_TYPE table                                                             |
 
 ### ACTIVITY\_PROPERTIES
 
@@ -201,3 +201,39 @@ This must be in V2000 molfile format The InChI binaries we use currently do not 
 
 ## ACTION\_TYPE valid names
 
+
+
+| ACTION\_TYPE                  | DESCRIPTION                                                                                                                                                    | PARENT\_TYPE       |
+| ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
+| ACTIVATOR                     | Positively effects the normal functioning of the protein e.g., activation of an enzyme or cleaving a clotting protein precursor                                | POSITIVE MODULATOR |
+| AGONIST                       | Binds to and activates a receptor, often mimicking the effect of the endogenous ligand                                                                         | POSITIVE MODULATOR |
+| ALLOSTERIC ANTAGONIST         | Binds to a receptor at an allosteric site and prevents activation by a positive allosteric modulator at that site                                              | NEGATIVE MODULATOR |
+| ANTAGONIST                    | Binds to a receptor and prevents activation by an agonist through competing for the binding site                                                               | NEGATIVE MODULATOR |
+| ANTISENSE INHIBITOR           | Prevents translation of a complementary mRNA sequence through binding and targeting it for degradation                                                         | NEGATIVE MODULATOR |
+| BINDING AGENT                 | Binds to a substance such as a cell surface antigen, targetting a drug to that location, but not necessarily affecting the functioning of the substance itself | OTHER              |
+| BLOCKER                       | Negatively effects the normal functioning of an ion channel e.g., prevents or reduces transport of ions through the channel                                    | NEGATIVE MODULATOR |
+| CHELATING AGENT               | Binds to a metal, reducing its availability for further interactions                                                                                           | OTHER              |
+| CROSS-LINKING AGENT           | Induces cross-linking of proteins or nucleic acids                                                                                                             | OTHER              |
+| DEGRADER                      | Binds to or antagonizes a receptor, leading to its degradation                                                                                                 | NEGATIVE MODULATOR |
+| DISRUPTING AGENT              | Destabilises or disrupts a protein complex, macromolecular assembly, cell membrane etc                                                                         | OTHER              |
+| HYDROLYTIC ENZYME             | Hydrolyses a substrate through enzymatic reaction                                                                                                              | OTHER              |
+| INHIBITOR                     | Negatively effects (inhibits) the normal functioning of the protein e.g., prevention of enzymatic reaction or activation of downstream pathway                 | NEGATIVE MODULATOR |
+| INVERSE AGONIST               | Binds to and inactivates a receptor                                                                                                                            | NEGATIVE MODULATOR |
+| METHYLATING AGENT             | Methylates or participates in methylation (e.g., through donation of a methyl group) of a substrate molecule                                                   | OTHER              |
+| MODULATOR                     | Effects the normal functioning of a protein in some way e.g., mixed agonist/antagonist or unclear whether action is positive or negative                       | OTHER              |
+| NEGATIVE ALLOSTERIC MODULATOR | Reduces or prevents the action of the endogenous ligand of a receptor through binding to a site distinct from that ligand (non-competitive inhibition)         | NEGATIVE MODULATOR |
+| NEGATIVE MODULATOR            | Negatively effects the normal functioning of a protein e.g., receptor antagonist, inverse agonist or negative allosteric modulator                             | NEGATIVE MODULATOR |
+| OPENER                        | Positively effects the normal functioning of an ion channel e.g., facilitates transport of ions through the channel                                            | POSITIVE MODULATOR |
+| OTHER                         | Other action type, not clearly postively or negatively affecting the normal functioning of a protein e.g., chelation of substances, hydrolysis of substrate    | OTHER              |
+| OXIDATIVE ENZYME              | Oxidises a substrate through enzymatic reaction                                                                                                                | OTHER              |
+| PARTIAL AGONIST               | Binds to and only partially activates a receptor (relative to the response to a full agonist)                                                                  | POSITIVE MODULATOR |
+| POSITIVE ALLOSTERIC MODULATOR | Enhances the action of the endogenous ligand of a receptor through binding to a site distinct from that ligand                                                 | POSITIVE MODULATOR |
+| POSITIVE MODULATOR            | Positively effects the normal functioning of a protein e.g., receptor agonist, positive allosteric modulator, ion channel activator                            | POSITIVE MODULATOR |
+| PROTEOLYTIC ENZYME            | Hydrolyses a protein substrate through enzymatic reaction                                                                                                      | OTHER              |
+| REDUCING AGENT                | Modifies a substrate via a reduction reaction                                                                                                                  | OTHER              |
+| RELEASING AGENT               | Reverses the normal functioning of a transporter, causing release of the substrate, rather than uptake                                                         | NEGATIVE MODULATOR |
+| RNAI INHIBITOR                | Prevents translation of mRNA through binding and targeting it for destruction (e.g., siRNA)                                                                    | NEGATIVE MODULATOR |
+| SEQUESTERING AGENT            | Binds to a substance such as a drug, toxin or metabolite reducing its availability for further interactions                                                    | OTHER              |
+| STABILISER                    | Increases the conformational stability of a protein or complex                                                                                                 | OTHER              |
+| SUBSTRATE                     | Carried by a transporter, possibly competing with the natural substrate for transport                                                                          | OTHER              |
+| VACCINE ANTIGEN               | Delivers an antigen and promotes an immune response against the antigen e.g. activating the immune system towards cancer-specific biomarkers                   | OTHER              |
