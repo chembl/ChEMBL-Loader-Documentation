@@ -20,6 +20,10 @@ The 'rules' referred to are summarized in table form at the end of this page.&#x
 * Each rule is associated with a single ‘Penalty Score’ (PS) value, which can range from 0 to 9 inclusive.
 * The higher the score, the more serious the problem. Scores of 9 cause an automatic load failure.
 
+### Guidance
+
+* Consider limiting numeric data to a small number of decimal places so it is easily compared by users.
+
 ## Files that may be included in a CHEMBL deposition
 
 | Filenames                | Existence                                                                    | Level         | Depositor Defined ID (DDID) defined by this file | Definition of Primary Key | All records in this file must be 'Foreign-Keyed' to... |
@@ -106,7 +110,11 @@ This must be in V2000 molfile format The InChI binaries we use currently do not 
 | **CIDX** | The CIDX cited by the depositor \[but, note that an alternative header label can be set using the -C option] | **Mandatory** | Any character upto a length of 200 |                        |
 | CTAB     | The CTAB (Connection table) assigned to this CIDX                                                            | Optional      | A very large text field            |                        |
 
-### REFERENCE 
+### REFERENCE
+
+The TITLE, ABSTRACT and AUTHORS fields of the DOCS table should also be populated for Datasets, as well as Publications.
+
+These can be brief (i.e. an organisation name can be provided for the AUTHORS field) and the abstract can be a simple summary of the experiments and their overall purpose.
 
 | Header        | Description                                                   | Existence     | Fie Type                                                            | Additional Constraints                                                                                |
 | ------------- | ------------------------------------------------------------- | ------------- | ------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
@@ -155,12 +163,12 @@ This must be in V2000 molfile format The InChI binaries we use currently do not 
 | Header       | Description                                                                                                                                                  | Existence     | Field type                                         | Additional Constraints                                                                        |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------- | -------------------------------------------------- | --------------------------------------------------------------------------------------------- |
 | **ACT\_ID**  | FK to the ACTIVITY file. Depositor defined.                                                                                                                  | **Mandatory** | Any integer upto a length of 11                    |                                                                                               |
-| **TYPE**     | The type of property measurement. Must be unique within an ACT\_ID                                                                                           | **Mandatory** | Any character upto a length of 250                 |                                                                                               |
+| **TYPE**     | <p>The type of property measurement. Must be unique within an ACT_ID<br>Should be self-explanatory to external researchers</p>                               | **Mandatory** | Any character upto a length of 250                 |                                                                                               |
 | RELATION     | Symbol indicating relationship between the Type and the Value (permitted: '>','<','=','\~','<=','>=','<<','>>')                                              | Optional      | Any character upto a length of 50                  | <p>Relation symbol </p><p>(=, >, &#x3C;, ~, &#x3C;=, >=, >>, &#x3C;&#x3C;)</p><p>[gp022 ]</p> |
-| VALUE        | The numerical value of the property measurment                                                                                                               | Optional      | Any number (incl decimals, negatives and sci Notn) | <p>Any Number. Decimal, Sci Notn, +/-</p><p>[gp005]</p>                                       |
+| VALUE        | The numerical value of the property measurement                                                                                                              | Optional      | Any number (incl decimals, negatives and sci Notn) | <p>Any Number. Decimal, Sci Notn, +/-</p><p>[gp005]</p>                                       |
 | UNITS        | The units of the property measurement                                                                                                                        | Optional      | Any character upto a length of 100                 |                                                                                               |
 | TEXT\_VALUE  | The text value of non-numerical values                                                                                                                       | Optional      | Any character upto a length of 1000                |                                                                                               |
-| COMMENTS     | A comment on the property                                                                                                                                    | Optional      | Any character upto a length of 4000                |                                                                                               |
+| COMMENTS     | A comment on the property. Can be used to further describe the TYPE, TEXT\_VALUE or VALUE  if needed                                                         | Optional      | Any character upto a length of 4000                |                                                                                               |
 | RESULT\_FLAG | A flag to indicate, if set to 1, that this type is a dependent variable/result (e.g., slope) rather than an independent variable/parameter (0, the default). | Optional      | Any integer upto a length of 1                     | <p>0 or 1 (regex='^(0|1)*$')</p><p>[gp001]</p>                                                |
 
 ### ACTIVITY\_SUPPLEMENTARY
