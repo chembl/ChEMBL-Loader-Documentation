@@ -25,6 +25,7 @@ The 'rules' referred to are summarized in table form at the end of this page.&#x
 ### Guidance
 
 * Consider limiting numeric data to a small number of decimal places so it is easily compared by users.
+* Leave values empty if they are null. If you use placeholders like "-", "None" or "NULL" then data may load into the database while being invalid. Or it may be difficult to search for as we will not record these as a null value. The loader attempts to convert such values to nulls, but we cannot cover every possibility.&#x20;
 
 ## Files that may be included in a CHEMBL deposition
 
@@ -49,7 +50,6 @@ The 'rules' referred to are summarized in table form at the end of this page.&#x
 * _Irrelevant_ - May exist, but will be ignored if it does.&#x20;
 * Optional - May exist, and will be used if it does.
 * **Mandatory** - Must exist, and the dataset will not load if it does not.
-*
 
 Some fields will only take certain valid identifiers, for example ASSAY.TEST\_TYPE must be "in vitro", "in vivo", or "ex vivo". Valid datatypes are described in the tables and also summarised [here](./#summary-of-pattern-and-dependency-rules).
 
