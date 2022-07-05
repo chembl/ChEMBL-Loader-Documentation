@@ -251,3 +251,11 @@ Each ACTIVITY can relate to multiple properties, via the ACT\_ID field. Each ACT
 | STABILISER                    | Increases the conformational stability of a protein or complex                                                                                                 | OTHER              |
 | SUBSTRATE                     | Carried by a transporter, possibly competing with the natural substrate for transport                                                                          | OTHER              |
 | VACCINE ANTIGEN               | Delivers an antigen and promotes an immune response against the antigen e.g. activating the immune system towards cancer-specific biomarkers                   | OTHER              |
+
+## ASSAY\_CELL TYPE rules
+
+This is either a cell-line name (e.g. MRC-5) or endogenous cell type (e.g. fibroblasts). You can see this in an example cell report card from ChEMBL: [https://www.ebi.ac.uk/chembl/cell\_line\_report\_card/CHEMBL3308499/](https://www.ebi.ac.uk/chembl/cell\_line\_report\_card/CHEMBL3308499/)
+
+For cells that are within ChEMBL, the cell report card cell name can be used to populate the 'ASSAY\_CELL\_TYPE' field, the CHEMBL\_ID to populate the MC\_CELL\_LINE\_CHEMBL\_ID field and the Cellosaurus\_ID can be used to populate the MC\_CELLOSAURUS\_ID field.
+
+For cells that are not found within ChEMBL, Cellosaurus is a good resource for cell line names. Otherwise, a depositor-defined name can be provided as the ASSAY\_CELL\_TYPE.
