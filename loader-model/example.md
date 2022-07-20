@@ -87,11 +87,10 @@ MMV011229	Pathogen_Box_Bloggs	MMV011229	MMV011229
 This is a truncated example showing only the first 3 rows. The full file is available in the "Simple Example Dataset" download.
 
 ```
-RIDX	CRIDX	CIDX	AIDX	TYPE	RELATION	VALUE	UPPER_VALUE	UNITS	ACTIVITY_COMMENT
-Pathogen_Box_Bloggs	Pathogen_Box_Bloggs	MMV161996	1	Inhibition		0		%	Not active
-Pathogen_Box_Bloggs	Pathogen_Box_Bloggs	MMV202458	1	Inhibition		1		%	Not active
-Pathogen_Box_Bloggs	Pathogen_Box_Bloggs	MMV676395	1	Inhibition		12		%	Not active
-
+RIDX	CRIDX	CIDX	AIDX	TYPE	RELATION	VALUE	UPPER_VALUE	UNITS	ACTIVITY_COMMENT    ACTI_ID
+Pathogen_Box_Bloggs	Pathogen_Box_Bloggs	MMV161996	1	Inhibition		0		%	Not active    PB_FECH_MMV161996
+Pathogen_Box_Bloggs	Pathogen_Box_Bloggs	MMV202458	1	Inhibition		1		%	Not active    PB_FECH_MMV202458
+Pathogen_Box_Bloggs	Pathogen_Box_Bloggs	MMV676395	1	Inhibition		12		%	Not active    PB_FECH_MMV676395
 ```
 
 * **CIDX**, **AIDX, ACT\_ID , CRIDX , TYPE**and **ACTIVITY** are **mandatory.**
@@ -108,7 +107,6 @@ Pathogen_Box_Bloggs	Pathogen_Box_Bloggs	MMV676395	1	Inhibition		12		%	Not active
 ```
 ACT_ID	TYPE	RELATION	TEXT_VALUE	UNITS
 PB_FECH_MMV161996	HILL_SLOPE	=	1.1
-
 ```
 
 _Not a mandatory file, and omitted from the simple test set._\
@@ -125,11 +123,11 @@ Should contain information that is neccessary for interpretation of the ACTIVITY
 ### ACTIVITY\_SUPP
 
 ```
-COMMENTS	REGID	RELATION	SAMID	TEXT_VALUE	TYPE	UNITS	VALUE
-	0	=	0		Treatment		1
-	1	=	1		Treatment		1
-	2	=	2		Treatment		1
-	2	=	2	Y	Side Effect (Y,N)	Y,N	
+REGID	SAMID	RELATION	ACT_ID	TEXT_VALUE	TYPE	UNITS	VALUE	COMMENTS
+0	0	=	PB_FECH_MMV161996		Treatment		1	
+1	1	=	PB_FECH_MMV202458		Treatment		1	
+2	2	=	PB_FECH_MMV676395		Treatment		1	
+2	2	=	PB_FECH_MMV676395	Y	"Side Effect (Y,N)"	"Y,N"		
 ```
 
 _Not a mandatory file, and omitted from the simple test set._\
@@ -140,13 +138,14 @@ This contains supplementary data on the **ACTIVITY** file.&#x20;
 * It is more useful with datasets such as _in vivo_ studies where animal-level data is submitted.
 * In this case, it shows the treatment group for each sample. And for any sample where a side effect on the cells was recorded, it notes this.
 
-### ACTIVITY\_SUPP\_MAP.
+### ACTIVITY\_SUPP\_MAP
 
 ```
 ACT_ID	SAMID
-0	0
-1	1
-2	2
+PB_FECH_MMV161996	0
+PB_FECH_MMV202458	1
+PB_FECH_MMV676395	2
+PB_FECH_MMV676395	2
 ```
 
 _Not a mandatory file, and omitted from the simple test set._\
