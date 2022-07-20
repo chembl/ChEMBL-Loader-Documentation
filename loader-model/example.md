@@ -39,8 +39,9 @@ PB_HMBS	Pathogen_Box_Bloggs	Compound was evaluated for the inhibition of human H
 This file provides a brief description of the assay, along with the target organism, tissue, cellular fraction etc.
 
 * **AIDX**, **ASSAY\_DESCRIPTION** _and_ **ASSAY\_TYPE** are all **mandatory**.&#x20;
-* **RIDX** is optional, but if included it must be an RIDX owned by the depositor. Either one in this set of files or one already loaded into ChEMBL.
-* **ASSAY\_TAX\_ID** and **TARGET\_TAX\_ID** must be the NCBI Taxon ID for the organism, not the strain. The Strain for the assay organism can be given in ASSAY\_STRAIN.
+* **RIDX** is optional, but if included it must be an RIDX owned by the depositor. Either one in this set of files or one already loaded into ChEMBL. CRIDX should generally be idential to RIDX.
+* **ASSAY\_TAX\_ID** and **TARGET\_TAX\_ID** must be the NCBI Taxon ID for the organism, not the strain. The Strain for the assay organism can be given in **ASSAY\_STRAIN**.
+* **ACT\_ID** is mandatory if providing an ACTIVITY\_PROPERTIES or ACTIVITY\_SUPPLEMENTARY record
 * This table describes what the assay is and what it targets.
 
 #### **AIDX Definition**
@@ -55,15 +56,16 @@ This file provides a brief description of the assay, along with the target organ
 
 ```
 AIDX	TYPE	RELATION	VALUE	UNITS	TEXT_VALUE	COMMENTS
-1	CONC	=	10	uM		
-2	CONC	=	100	uM		
+PB_FECH	CONC	=	10	uM		
+PB_HMBS	CONC	=	100	uM		
 ```
 
 This file describes the assay parameters. For example, here the first two records show the concentration of compound used.
 
 * **AIDX** and **TYPE** are both **mandatory.**&#x20;
+* A **VALUE** requires an entry in the **RELATION** field**.** A **TEXT\_VALUE** requires that RELATION is empty.
 * It is a many-to-one mapping, so you can store multiple parameters for one assay.&#x20;
-* Depositors can set their own **TYPE**, but the type must uniquely match to a data type. For example, you may not use both CONC and CONCENTRATION as TYPEs if they are both referring to the same sort of concentration data.&#x20;
+* Depositors can set their own **TYPE**, but you need to use the same TYPE string for each form of data. For example, you may not use both CONC and CONCENTRATION as TYPEs if they are both referring to the same sort of concentration data.&#x20;
 * **AIDX** must match an existing AIDX owned by the depositor.
 
 ### COMPOUND\_RECORD.tsv
@@ -72,12 +74,12 @@ This is a truncated example showing only the first 3 rows. The full file is avai
 
 ```
 CIDX	RIDX	COMPOUND_NAME	COMPOUND_KEY
-MMV010764	1	MMV010764	MMV010764
-MMV026468	1	MMV026468	MMV026468
-MMV011229	1	MMV011229	MMV011229
+MMV010764	Pathogen_Box_Bloggs	MMV010764	MMV010764
+MMV026468	Pathogen_Box_Bloggs	MMV026468	MMV026468
+MMV011229	Pathogen_Box_Bloggs	MMV011229	MMV011229
 ```
 
-* The **CIDX** field is **mandatory.**
+* The **CIDX, COMPOUND\_NAME** and **COMPOUND\_KEY** fields are **mandatory.**
 * **RIDX** is optional, but if included it must be an RIDX owned by the depositor.&#x20;
 
 ### ACTIVITY.tsv
@@ -86,24 +88,26 @@ This is a truncated example showing only the first 3 rows. The full file is avai
 
 ```
 RIDX	CRIDX	CIDX	AIDX	TYPE	RELATION	VALUE	UPPER_VALUE	UNITS	ACTIVITY_COMMENT
-1	1	MMV161996	1	Inhibition		0		%	Not active
-1	1	MMV202458	1	Inhibition		1		%	Not active
-1	1	MMV676395	1	Inhibition		12		%	Not active
+Pathogen_Box_Bloggs	Pathogen_Box_Bloggs	MMV161996	1	Inhibition		0		%	Not active
+Pathogen_Box_Bloggs	Pathogen_Box_Bloggs	MMV202458	1	Inhibition		1		%	Not active
+Pathogen_Box_Bloggs	Pathogen_Box_Bloggs	MMV676395	1	Inhibition		12		%	Not active
 
 ```
 
-* **CIDX**, **AIDX** and **ACTIVITY** are **mandatory.**
+* **CIDX**, **AIDX, ACT\_ID , CRIDX , TYPE**and **ACTIVITY** are **mandatory.**
+* A **VALUE** requires an entry in the **RELATION** field**.**&#x20;
+* Text values can be inserted in **ACTIVITY\_COMMENT** and should not have a **RELATION** sign.
+* **ACT\_ID** is mandatory if providing an **ACTIVITY\_PROPERTIES** or **ACTIVITY\_SUPPLEMENTARY** record that maps to a given line.
 * It is possible to load data without a CTAB file. If you include a CTAB file or will be loading structure data later, the CIDX fields in the CTAB **must** match the CIDX IDs here.
 * **RIDX** is optional, but if included it must be an RIDX owned by the depositor.
-* **ACT\_ID** is mandatory if providing an ACTIVITY_PROPERTIES or ACTIVITY_SUPPLEMENTARY record that maps to a given line.
-* This table will take non-numerical activity values is submitted in the **ACTIVITY\_COMMENT** field.\
-  **CRIDX** should generally be identical to **RIDX.**
+* **CRIDX** should generally be identical to **RIDX**, unless you need to reference a separate paper for the activity and the compound**.**
+* If you include a CTAB file or will be loading structure data later, the **CIDX** fields in the CTAB must match the CIDX IDs here.
 
 ### ACTIVITY\_PROPERTIES.tsv
 
 ```
 ACT_ID	TYPE	RELATION	TEXT_VALUE	UNITS
-1	HILL_SLOPE	=	1.1
+PB_FECH_MMV161996	HILL_SLOPE	=	1.1
 
 ```
 
@@ -112,6 +116,7 @@ Can be used to supply additional activity information, for example the Hill slop
 Should contain information that is neccessary for interpretation of the ACTIVITY table data. Raw results and other supporting information belongs in ACTIVITY\_SUPP.
 
 * **ACT\_ID** and **TYPE** are mandatory.&#x20;
+* A **VALUE** requires an entry in the **RELATION** field**. A TEXT\_VALUE** requires that RELATION is empty.
 * **TYPE** descripes the type of measurement.&#x20;
   * Depositors can set their own categories for TYPE, but should not use the same TYPE value for different sorts of data.&#x20;
   * E.g. PB\_HILL\_SLOPE __ and PB\_R\_SQUARED would be valid, but storing both Hill slope and R-Squared data as PB would not be. Even if they had different UNITS or COMMENTS.
@@ -130,6 +135,7 @@ COMMENTS	REGID	RELATION	SAMID	TEXT_VALUE	TYPE	UNITS	VALUE
 _Not a mandatory file, and omitted from the simple test set._\
 This contains supplementary data on the **ACTIVITY** file.&#x20;
 
+* A **VALUE** requires an entry in the **RELATION** field**. A TEXT\_VALUE** requires that RELATION is empty.
 * It is not necessary to supply, for example, all the points on a curve.&#x20;
 * It is more useful with datasets such as _in vivo_ studies where animal-level data is submitted.
 * In this case, it shows the treatment group for each sample. And for any sample where a side effect on the cells was recorded, it notes this.
