@@ -133,7 +133,8 @@ REGID	SAMID	RELATION	ACT_ID	TEXT_VALUE	TYPE	UNITS	VALUE	COMMENTS
 _Not a mandatory file, and omitted from the simple test set._\
 This contains supplementary data on the **ACTIVITY** file.&#x20;
 
-* A **VALUE** requires an entry in the **RELATION** field**. A TEXT\_VALUE** requires that RELATION is empty.
+* A **VALUE** requires an entry in the **RELATION** field**. A TEXT\_VALUE** requires that **RELATION** is empty.
+* **REGID** groups by a group, **SAMID** groups by sample. You can map many **ACT\_IDS** to one sample in the ACT\_SUPP\_MAP table.
 * It is not necessary to supply, for example, all the points on a curve.&#x20;
 * It is more useful with datasets such as _in vivo_ studies where animal-level data is submitted.
 * In this case, it shows the treatment group for each sample. And for any sample where a side effect on the cells was recorded, it notes this.
@@ -148,8 +149,10 @@ PB_FECH_MMV676395	2
 PB_FECH_MMV676395	2
 ```
 
-_Not a mandatory file, and omitted from the simple test set._\
-This table maps activity IDs in the **ACTIVITY** file to sample IDs in the **ACTIVITY\_SUPP** file. Both fields are **mandatory**.
+_Not a mandatory file, and omitted from the simple test set._
+
+* This table maps activity IDs in the **ACTIVITY** file to sample IDs in the **ACTIVITY\_SUPP** file. Both fields are **mandatory**.
+* You can assign multiple **ACT\_IDs** to one **SAM\_ID**, e.g. multiple results from a single animal (or multiple results from one multiplex plate).
 
 ### COMPOUND\_CTAB.sdf
 
