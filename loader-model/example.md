@@ -18,27 +18,29 @@ A simple set of example data files suitable for use as a template are available 
 
 ```
 RIDX	PUBMED_ID	JOURNAL_NAME	YEAR	VOLUME	ISSUE	FIRST_PAGE	LAST_PAGE	REF_TYPE	TITLE	AUTHORS	ABSTRACT
-1								Dataset	Pathogen Box Compounds Screening 	Bloggs, J; Smith, M	400 compounds from the Pathogen box were screened for inhibitory activity against two human proteins...
+Pathogen_Box_Bloggs								Dataset	Pathogen Box Compounds Screening 	Bloggs, J; Smith, M	400 compounds from the Pathogen box were screened for inhibitory activity against two human proteins...
 ```
 
 The Reference file describes the deposition itself. Whether it currently has a published reference, or has been submitted pre-publication or without being associated with a publication.&#x20;
 
-* **RIDX, YEAR** and **REF\_TYPE** are **mandatory**, all other fields are optional. So for example if you do not yet have a DOI, you can leave it blank. It can be added once your data are published.
+* **RIDX, TITLE, YEAR, ABSTRACT, AUTHORS** and **REF\_TYPE** are **mandatory**, all other fields are optional. So for example if you do not yet have a DOI, you can leave it blank. It can be added once your data are published.
   * For a depositied dataset, **YEAR** should be the year we recieved the file.&#x20;
-* **REF\_TYPE** must be either "Publication" or "Deposited".
+* **REF\_TYPE** must be either "Publication" or "Dataset".
+* **AUTHORS** can be the name of a consortium or institution, rather than individuals.
 
 ### ASSAY.tsv
 
 ```
 AIDX	RIDX	ASSAY_DESCRIPTION	ASSAY_TYPE	ASSAY_TEST_TYPE	ASSAY_ORGANISM	ASSAY_STRAIN	ASSAY_TAX_ID	ASSAY_TISSUE	ASSAY_CELL_TYPE	ASSAY_SUBCELLULAR_FRACTION	TARGET_TYPE	TARGET_NAME	TARGET_ACCESSION	TARGET_ORGANISM	TARGET_TAX_ID
-1	1	Compound was evaluated for the inhibition of human FECH at 10uM	B	In vitro	Homo sapiens		9606				PROTEIN	FECH	P22830	Homo sapiens	9606
-2	1	Compound was evaluated for the inhibition of human HMBS at  100uM	B	In vitro	Homo sapiens		9606				PROTEIN	HMBS	P08397	Homo sapiens	9606
+PB_FECH	Pathogen_Box_Bloggs	Compound was evaluated for the inhibition of human FECH at 10uM	B	In vitro	Homo sapiens		9606				PROTEIN	FECH	P22830	Homo sapiens	9606
+PB_HMBS	Pathogen_Box_Bloggs	Compound was evaluated for the inhibition of human HMBS at  100uM	B	In vitro	Homo sapiens		9606				PROTEIN	HMBS	P08397	Homo sapiens	9606
 ```
 
 This file provides a brief description of the assay, along with the target organism, tissue, cellular fraction etc.
 
 * **AIDX**, **ASSAY\_DESCRIPTION** _and_ **ASSAY\_TYPE** are all **mandatory**.&#x20;
 * **RIDX** is optional, but if included it must be an RIDX owned by the depositor. Either one in this set of files or one already loaded into ChEMBL.
+* **ASSAY\_TAX\_ID** and **TARGET\_TAX\_ID** must be the NCBI Taxon ID for the organism, not the strain. The Strain for the assay organism can be given in ASSAY\_STRAIN.
 * This table describes what the assay is and what it targets.
 
 #### **AIDX Definition**
