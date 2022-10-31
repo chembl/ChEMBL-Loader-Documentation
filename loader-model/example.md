@@ -87,7 +87,7 @@ MMV011229	Pathogen_Box_Bloggs	MMV011229	MMV011229
 This is a truncated example showing only the first 3 rows. The full file is available in the "Simple Example Dataset" download.
 
 ```
-RIDX	CRIDX	CIDX	AIDX	TYPE	RELATION	VALUE	UPPER_VALUE	UNITS	ACTIVITY_COMMENT    ACTI_ID
+RIDX	CRIDX	CIDX	AIDX	TYPE	RELATION	VALUE	UPPER_VALUE	UNITS	ACTIVITY_COMMENT    ACT_ID
 Pathogen_Box_Bloggs	Pathogen_Box_Bloggs	MMV161996	1	Inhibition		0		%	Not active    PB_FECH_MMV161996
 Pathogen_Box_Bloggs	Pathogen_Box_Bloggs	MMV202458	1	Inhibition		1		%	Not active    PB_FECH_MMV202458
 Pathogen_Box_Bloggs	Pathogen_Box_Bloggs	MMV676395	1	Inhibition		12		%	Not active    PB_FECH_MMV676395
