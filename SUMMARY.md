@@ -6,6 +6,7 @@
   * [Depositor-Defined Identifiers](deposition-overview/depositor-defined-identifiers.md)
 * [Input File structure and requirements](untitled-10/README.md)
   * [Constraints on input files](untitled-10/untitled-10.md)
+  * [Requirements Changelog](untitled-10/requirements-changelog.md)
 * [Choosing Depositor-Defined IDs](choosing-depositor-defined-ids.md)
 * [The Loader Model](loader-model/README.md)
   * [Loader files](loader-model/loader-files.md)
