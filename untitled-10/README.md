@@ -59,6 +59,8 @@ For further information on constraints and error scores for the loader, see [thi
 
 ### ASSAY
 
+An ASSAY record is a single instance of an assay, not an assay protocol record. If the same assay protocol is used in multiple datasets, it is still a new ASSAY in each dataset.
+
 | Header                       | Description                                                                                                                                                        | Existence                                                                      | Field type                          | Additional constraints                                                                                                                 |
 | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ----------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
 | **AIDX**                     | The AIDX cited by the depositor. A Primary Key defined header                                                                                                      | **Mandatory**                                                                  | Any character upto a length of 200  |                                                                                                                                        |
