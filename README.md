@@ -1,5 +1,7 @@
 # Introduction to the ChEMBL Loader
 
+## ChEMBL Basics
+
 If you are new to ChEMBL, then we recommend going through some of the training materials and running some test queries before contacting us about deposition. A working understanding of ChEMBL will make it easier for us to load and structure your data in the way you'd like it to be presented.
 
 * The basic ChEMBL training course can be found [here](https://www.ebi.ac.uk/training/online/courses/chembl-quick-tour/). It takes about 30 min. &#x20;
