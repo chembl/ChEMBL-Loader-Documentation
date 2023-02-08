@@ -1,6 +1,10 @@
-# Introduction to the ChEMBL Loader Gateway
+# Introduction to the ChEMBL Loader
 
-The ChEMBL Gateway aims to satisfy a number of requirements for loading and storing data in ChEMBL
+If you are new to ChEMBL, then we recommend going through some of the training materials and running some test queries before contacting us about deposition. A working understanding of ChEMBL will make it easier for us to load and structure your data in the way you'd like it to be presented.
+
+* The basic ChEMBL training course can be found [here](https://www.ebi.ac.uk/training/online/courses/chembl-quick-tour/). It takes about 30 min. &#x20;
+* A short (42 min) webinar on the ChEMBL web interface can be found [here](https://www.ebi.ac.uk/training/events/exploring-chembl-data-new-chembl-interface-0/).
+* A similar webinar on the ChEMBL API can be found [here](https://www.ebi.ac.uk/training/events/guide-accessing-chembl-and-unichem-through-api/).
 
 Although loading data to ChEMBL will remain by invitation only, and will remain in the complete control of ChEMBL administrators, the external facing 'Gateway' aims to stimulate external requests, and assist depositors in correctly formatting depositions before submission to ChEMBL.
 
