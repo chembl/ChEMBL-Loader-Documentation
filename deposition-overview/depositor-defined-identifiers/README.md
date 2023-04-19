@@ -2,7 +2,7 @@
 
 Identifiers for key entities such as Compounds and Assays are defined within the deposition job files by using 'Depositor-Defined Identifiers' (DDIs). These identifiers are created and maintained by depositors themselves, and provide a way for depositors to:
 
-* Give a meaningful unique identifier to for each compound and assay in their datasets.
+* Give a meaningful unique identifier to each compound and assay in their datasets.
 * Update sets later with additional data.
 
 Depositor-defined Identifiers are used for Compounds/Substances, Assays and References, and are called CIDX, AIDX and RIDX, respectively.
@@ -14,7 +14,7 @@ They are also used for internal reference betoween records in a dataset. REGID a
 * DDIs are 'owned' by the depositor. In other words, a given identifier is defined by the depositor when a deposition is first made with the identifier.
 * Subsequent use of the same identifier in future ChEMBL loads will result in the updating of the data that was originally associated with this identifier when it was first loaded.
 
-Other Depositor-defined IDs include SAMID, used to link ACTIVITY\_SUPP records to __ ACTIVITY rows, and REGID, used to group __ ACTIVITY\_SUPP data.
+Other Depositor-defined IDs include SAMID, used to link ACTIVITY\_SUPP records to ACTIVITY rows, and REGID, used to group ACTIVITY\_SUPP data.
 
 ### Sources with multiple depositors
 
