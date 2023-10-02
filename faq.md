@@ -12,4 +12,4 @@ The current list of ChEMBL sources can be found on the 'Activity Source Filter' 
 
 ## Why can't we accept V3000 molfiles?
 
-The InChI binaries we use currently do not accept V3000 molfiles, and so we cannot accept V3000 InChIs as we need an InChI Key for ChEMBL.
+The InChI binaries we use currently do not accept V3000 molfiles, and so we cannot accept V3000 molfiles as we need an InChI Key for ChEMBL.
