@@ -1,5 +1,5 @@
 ---
-description: Depositor-defined Coumpound IDs
+description: Depositor-defined Compound IDs
 ---
 
 # CIDX
