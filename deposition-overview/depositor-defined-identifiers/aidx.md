@@ -7,9 +7,8 @@ description: Depositor-defined Assay IDs
 ### AIDX
 
 * Depositor-defined ASSAY IDs (AIDXs) are defined in ASSAY deposition files.
-* Should be a string that is meaningful to the depositor, and must be unique within the given source.
-* If your dataset has multiple collaborators, giving each collaborator a prefix for their AIDXs will prevent duplicate AIDXs and aid in tracking who submitted what.
-* An assay record records information on the protocol used for the experiment.&#x20;
+* Each line in an ASSAY file records information on the protocol used for the experiment.&#x20;
+* An AIDX should be a string that is meaningful to the depositor, and must be unique within the given source.
 * Each assay can only have a single target.
 * In the case of a panel assay, there will need to be one Assay record per target.
 * Standard reference assays that are used repeatedly can be deposited as a specific dataset, with just that one assay/group/panel.
