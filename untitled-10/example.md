@@ -8,11 +8,11 @@ description: >-
 
 ## Introduction to the load process
 
-You can find the full specifications for the files [here](../untitled-10/). This page will cover the mandatory fields, foreign keys, and how the files relate to each other.
+You can find the full specifications for the files [here](./). This page will cover the mandatory fields, foreign keys, and how the files relate to each other.
 
 A simple set of example data files suitable for use as a template are available below:
 
-{% file src="../.gitbook/assets/simple_full_example.zip" %}
+{% file src="../.gitbook/assets/Simple_Full_Example.zip" %}
 
 ### **REFERENCE.tsv**
 
@@ -117,7 +117,7 @@ Should contain information that is neccessary for interpretation of the ACTIVITY
 * A **VALUE** requires an entry in the **RELATION** field**. A TEXT\_VALUE** requires that RELATION is empty.
 * **TYPE** descripes the type of measurement.&#x20;
   * Depositors can set their own categories for TYPE, but should not use the same TYPE value for different sorts of data.&#x20;
-  * E.g. PB\_HILL\_SLOPE __ and PB\_R\_SQUARED would be valid, but storing both Hill slope and R-Squared data as PB would not be. Even if they had different UNITS or COMMENTS.
+  * E.g. PB\_HILL\_SLOPE and PB\_R\_SQUARED would be valid, but storing both Hill slope and R-Squared data as PB would not be. Even if they had different UNITS or COMMENTS.
 * Can contain dependent or independent variables. If RESULT\_FLAG is set to 1, it shows the record is a dependent variable/result (e.g., slope) rather than an independent variable/parameter.
 
 ### ACTIVITY\_SUPP
