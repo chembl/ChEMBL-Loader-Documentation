@@ -35,15 +35,9 @@ In rare cases, depositors submit additional bioactivity data for existing assays
 
 An existing AIDX can be recorded alongside the new bioactivity data and all ASSAY fields for the record (ASSAY\_DESCRIPTION etc) must match the previous AIDX exactly.  Depositors are responsible for ensuring that the assay set up is consistent with a standard protocol, and ideally with appropriate positive and negative controls to ensure variation is within expected limits.
 
-\
-
-
-How do I record an assay that uses a commercial kit?
+### How do I record an assay that uses a commercial kit?
 
 Commercial kits have a standard assay set-up but we consider assays run by different institutions, using the same kit, as distinct. To allow comparison of similar assays, kit identifiers/catalogue numbers should be included in the ASSAY\_DESCRIPTION field since there are sometimes country specific kits or testing locations.
-
-\
-
 
 e.g. Inhibition of XYZ target at 10uM tested using the Eurofins SafetyScreen44 (BI) (P270)  P270 is the catalogue number.
 
