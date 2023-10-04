@@ -44,13 +44,7 @@ This file provides a brief description of the assay, along with the target organ
 * **ACT\_ID** is mandatory if providing an ACTIVITY\_PROPERTIES or ACTIVITY\_SUPPLEMENTARY record
 * This table describes what the assay is and what it targets.
 
-#### **AIDX Definition**
-
-* AIDX should not be duplicated  within a given source.&#x20;
-* For example, if one panel of probes is being used on multiple sites, or be multiple collaborators, there should only be a single AIDX for "All experiments using this panel".&#x20;
-* Alternatively, each site or group could have one AIDX that refers to "The experiment performed at this location".&#x20;
-* Subsequent data that are using the same panel or at the same location should be loaded with the same AIDX.
-* Ideally, an AIDX should be informative, to avoid mixups. e.g. a group leader's initials or a short version of the site name. It's a variable character field up to 200 characters.&#x20;
+**AIDX Definition**
 
 ### ASSAY\_PARAM.tsv
 
