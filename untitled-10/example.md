@@ -31,9 +31,9 @@ The Reference file describes the deposition itself. Whether it currently has a p
 ### ASSAY.tsv
 
 ```
-AIDX	RIDX	ASSAY_DESCRIPTION	ASSAY_TYPE	ASSAY_TEST_TYPE	ASSAY_ORGANISM	ASSAY_STRAIN	ASSAY_TAX_ID	ASSAY_TISSUE	ASSAY_CELL_TYPE	ASSAY_SUBCELLULAR_FRACTION	TARGET_TYPE	TARGET_NAME	TARGET_ACCESSION	TARGET_ORGANISM	TARGET_TAX_ID
-PB_FECH	Pathogen_Box_Bloggs	Compound was evaluated for the inhibition of human FECH at 10uM	B	In vitro	Homo sapiens		9606				PROTEIN	FECH	P22830	Homo sapiens	9606
-PB_HMBS	Pathogen_Box_Bloggs	Compound was evaluated for the inhibition of human HMBS at  100uM	B	In vitro	Homo sapiens		9606				PROTEIN	HMBS	P08397	Homo sapiens	9606
+AIDX	RIDX	ASSAY_DESCRIPTION	ASSAY_TYPE	ASSAY_ORGANISM	ASSAY_STRAIN	ASSAY_TAX_ID	ASSAY_TISSUE	ASSAY_CELL_TYPE	ASSAY_SUBCELLULAR_FRACTION	TARGET_TYPE	TARGET_NAME	TARGET_ACCESSION	TARGET_ORGANISM	TARGET_TAX_ID
+PB_FECH	Pathogen_Box_Bloggs	Compound was evaluated for the inhibition of human FECH at 10uM	B	Homo sapiens		9606				PROTEIN	FECH	P22830	Homo sapiens	9606
+PB_HMBS	Pathogen_Box_Bloggs	Compound was evaluated for the inhibition of human HMBS at  100uM	B	Homo sapiens		9606				PROTEIN	HMBS	P08397	Homo sapiens	9606
 ```
 
 This file provides a brief description of the assay, along with the target organism, tissue, cellular fraction etc.
